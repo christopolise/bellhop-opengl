@@ -1,6 +1,6 @@
-#include"imgui.h"
-#include"imgui_impl_glfw.h"
-#include"imgui_impl_opengl3.h"
+#include<imgui/imgui.h>
+#include<imgui/imgui_impl_glfw.h>
+#include<imgui/imgui_impl_opengl3.h>
 
 #include<iostream>
 #include<glad/glad.h>
@@ -219,21 +219,21 @@ int main()
 		ImGui::Spacing();
 		// First radio button
         ImGui::RadioButton("##C++", &selectedRadioButton, 0);
-        ImGui::SameLine();  // Move to the same line
+        ImGui::SameLine();  
         ImGui::Text("C++");
-        ImGui::SameLine();  // Move to the same line
+        ImGui::SameLine();  
         // Second radio button
         ImGui::RadioButton("##CUDA", &selectedRadioButton, 1);
-        ImGui::SameLine();  // Move to the same line
+        ImGui::SameLine();  
         ImGui::Text("CUDA");
-        ImGui::SameLine();  // Move to the same line
+        ImGui::SameLine();  
         // Third radio button
         ImGui::RadioButton("##OptiX", &selectedRadioButton, 2);
-        ImGui::SameLine();  // Move to the same line
+        ImGui::SameLine();  
         ImGui::Text("OptiX");
-        // Display the selected color
-        const char* colors[] = { "C++", "CUDA", "OptiX" };
-        // ImGui::Text("Selected Color: %s", colors[selectedRadioButton]);
+        // Display the selected mode of computeMode
+        const char* computeMode[] = { "C++", "CUDA", "OptiX" };
+        // std::cout << "Selected Compute Mode: " << computeMode[selectedRadioButton] << std::endl;
 
 		// New section
         ImGui::Dummy(ImVec2(0.0f, 10.0f));
