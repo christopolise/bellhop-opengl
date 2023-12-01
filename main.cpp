@@ -1,447 +1,513 @@
-#include<imgui/imgui.h>
-#include<imgui/imgui_impl_glfw.h>
-#include<imgui/imgui_impl_opengl3.h>
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_glfw.h>
+#include <imgui/imgui_impl_opengl3.h>
 
-#include<iostream>
-#include<glad/glad.h>
-#include<GLFW/glfw3.h>
-#include<math.h>
+#include <glad/glad.h>
+
+#include <GLFW/glfw3.h>
+
+#include <algorithm>
 #include <fstream>
+#include <iostream>
+#include <math.h>
 #include <sstream>
 #include <vector>
 
 // Vertex Shader source code
-const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"uniform float size;\n"
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(size * aPos.x, size * aPos.y, size * aPos.z, 1.0);\n"
-"}\0";
-//Fragment Shader source code
-const char* fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"uniform vec4 color;\n"
-"void main()\n"
-"{\n"
-"   FragColor = color;\n"
-"}\n\0";
+const char *vertexShaderSource = "#version 330 core\n"
+                                 "layout (location = 0) in vec3 aPos;\n"
+                                 "uniform float size;\n"
+                                 "void main()\n"
+                                 "{\n"
+                                 "   gl_Position = vec4(size * aPos.x, size * "
+                                 "aPos.y, size * aPos.z, 1.0);\n"
+                                 "}\0";
+// Fragment Shader source code
+const char *fragmentShaderSource = "#version 330 core\n"
+                                   "out vec4 FragColor;\n"
+                                   "uniform vec4 color;\n"
+                                   "void main()\n"
+                                   "{\n"
+                                   "   FragColor = color;\n"
+                                   "}\n\0";
 
-struct Data {
-    int vertices;
-    double top_bounce;
-    double bottom_bounce;
-    double angle_of_entry;
-    std::vector<double> x;
-    std::vector<double> y;
+struct Data
+{
+  int vertices;
+  double top_bounce;
+  double bottom_bounce;
+  double angle_of_entry;
+  std::vector<double> x;
+  std::vector<double> y;
 };
 
-int countItems(std::istringstream& iss) {
-    int count = 0;
-    std::string item;
+int
+countItems (std::istringstream &iss)
+{
+  int count = 0;
+  std::string item;
 
-    // Count items
-    while (iss >> item) {
-        count++;
+  // Count items
+  while (iss >> item)
+    {
+      count++;
     }
 
-    // Clear the stream and restore the position
-    iss.clear();
-    iss.seekg(0);
+  // Clear the stream and restore the position
+  iss.clear ();
+  iss.seekg (0);
 
-    return count;
+  return count;
 }
 
-std::vector<Data> readDataFromFile(const std::string& filename) {
-    std::vector<Data> dataVector;
-    std::ifstream file(filename);
+std::vector<Data>
+readDataFromFile (const std::string &filename)
+{
+  std::vector<Data> dataVector;
+  std::ifstream file (filename);
 
-    if (!file.is_open()) {
-        std::cerr << "Error opening file: " << filename << std::endl;
-        return dataVector;
+  if (!file.is_open ())
+    {
+      std::cerr << "Error opening file: " << filename << std::endl;
+      return dataVector;
     }
 
-    std::string line;
-    Data currentData;
-	bool firstPass = true;
+  std::string line;
+  Data currentData;
+  bool firstPass = true;
 
-    while (std::getline(file, line)) {
-        std::istringstream iss(line);
+  while (std::getline (file, line))
+    {
+      std::istringstream iss (line);
 
-        if (countItems(iss) == 1) {
-            // Singular value on its own line, create a new Data struct
-            if (!firstPass) {
-                // Push the previous Data struct into the vector
-                dataVector.push_back(currentData);
+      if (countItems (iss) == 1)
+        {
+          // Singular value on its own line, create a new Data struct
+          if (!firstPass)
+            {
+              // Push the previous Data struct into the vector
+              dataVector.push_back (currentData);
             }
-			firstPass = false;
-			
-            // Reset the currentData struct for the new block
-            currentData = Data();
-            iss >> currentData.angle_of_entry;
-        } else if (countItems(iss) == 3) {
-            // Three values on the line (vertices, top_bounce, bottom_bounce)
-            iss >> currentData.vertices >> currentData.top_bounce >> currentData.bottom_bounce;
-        } else if (countItems(iss) == 2) {
-            // Two values on the line, x and y coordinates
-            double x, y;
-            iss >> x >> y;
-            currentData.x.push_back(x);
-            currentData.y.push_back(y);
+          firstPass = false;
+
+          // Reset the currentData struct for the new block
+          currentData = Data ();
+          iss >> currentData.angle_of_entry;
+        }
+      else if (countItems (iss) == 3)
+        {
+          // Three values on the line (vertices, top_bounce, bottom_bounce)
+          iss >> currentData.vertices >> currentData.top_bounce
+              >> currentData.bottom_bounce;
+        }
+      else if (countItems (iss) == 2)
+        {
+          // Two values on the line, x and y coordinates
+          double x, y;
+          iss >> x >> y;
+          currentData.x.push_back (x);
+          currentData.y.push_back (y);
         }
     }
 
-    // Push the last Data struct into the vector
-    dataVector.push_back(currentData);
+  // Push the last Data struct into the vector
+  dataVector.push_back (currentData);
 
-    return dataVector;
+  return dataVector;
 }
 
-
-int main()
+int
+main ()
 {
 
-	std::vector<Data> dataVector = readDataFromFile("test.ray");
+  std::vector<Data> dataVector = readDataFromFile ("test.ray");
 
-	std::cout << dataVector.size() << std::endl;
+  std::cout << dataVector.size () << std::endl;
 
-	// Initialize GLFW
-	glfwInit();
+  // Initialize GLFW
+  glfwInit ();
 
-	// Set GLFW_RESIZABLE to GLFW_FALSE to prevent window resizing
-	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+  // Set GLFW_RESIZABLE to GLFW_FALSE to prevent window resizing
+  glfwWindowHint (GLFW_RESIZABLE, GLFW_FALSE);
 
-	// Tell GLFW what version of OpenGL we are using 
-	// In this case we are using OpenGL 3.3
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	// Tell GLFW we are using the CORE profile
-	// So that means we only have the modern functions
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  // Tell GLFW what version of OpenGL we are using
+  // In this case we are using OpenGL 3.3
+  glfwWindowHint (GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint (GLFW_CONTEXT_VERSION_MINOR, 3);
+  // Tell GLFW we are using the CORE profile
+  // So that means we only have the modern functions
+  glfwWindowHint (GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	// Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
-	GLFWwindow* window = glfwCreateWindow(1065, 800, "ImGui + GLFW", NULL, NULL);
+  // Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
+  GLFWwindow *window
+      = glfwCreateWindow (1065, 800, "ImGui + GLFW", NULL, NULL);
 
+  // Error check if the window fails to create
+  if (window == NULL)
+    {
+      std::cout << "Failed to create GLFW window" << std::endl;
+      glfwTerminate ();
+      return -1;
+    }
+  // Introduce the window into the current context
+  glfwMakeContextCurrent (window);
 
-	// Error check if the window fails to create
-	if (window == NULL)
-	{
-		std::cout << "Failed to create GLFW window" << std::endl;
-		glfwTerminate();
-		return -1;
-	}
-	// Introduce the window into the current context
-	glfwMakeContextCurrent(window);
+  // Load GLAD so it configures OpenGL
+  gladLoadGL ();
+  // Specify the viewport of OpenGL in the Window
+  // In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
+  glViewport (0, 0, 800, 800);
 
-	//Load GLAD so it configures OpenGL
-	gladLoadGL();
-	// Specify the viewport of OpenGL in the Window
-	// In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
-	glViewport(0, 0, 800, 800);
+  // Create Vertex Shader Object and get its reference
+  GLuint vertexShader = glCreateShader (GL_VERTEX_SHADER);
+  // Attach Vertex Shader source to the Vertex Shader Object
+  glShaderSource (vertexShader, 1, &vertexShaderSource, NULL);
+  // Compile the Vertex Shader into machine code
+  glCompileShader (vertexShader);
 
-	// Create Vertex Shader Object and get its reference
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	// Attach Vertex Shader source to the Vertex Shader Object
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	// Compile the Vertex Shader into machine code
-	glCompileShader(vertexShader);
+  // Create Fragment Shader Object and get its reference
+  GLuint fragmentShader = glCreateShader (GL_FRAGMENT_SHADER);
+  // Attach Fragment Shader source to the Fragment Shader Object
+  glShaderSource (fragmentShader, 1, &fragmentShaderSource, NULL);
+  // Compile the Vertex Shader into machine code
+  glCompileShader (fragmentShader);
 
-	// Create Fragment Shader Object and get its reference
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	// Attach Fragment Shader source to the Fragment Shader Object
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	// Compile the Vertex Shader into machine code
-	glCompileShader(fragmentShader);
+  // Create Shader Program Object and get its reference
+  GLuint shaderProgram = glCreateProgram ();
+  // Attach the Vertex and Fragment Shaders to the Shader Program
+  glAttachShader (shaderProgram, vertexShader);
+  glAttachShader (shaderProgram, fragmentShader);
+  // Wrap-up/Link all the shaders together into the Shader Program
+  glLinkProgram (shaderProgram);
 
-	// Create Shader Program Object and get its reference
-	GLuint shaderProgram = glCreateProgram();
-	// Attach the Vertex and Fragment Shaders to the Shader Program
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	// Wrap-up/Link all the shaders together into the Shader Program
-	glLinkProgram(shaderProgram);
+  // Delete the now useless Vertex and Fragment Shader objects
+  glDeleteShader (vertexShader);
+  glDeleteShader (fragmentShader);
 
-	// Delete the now useless Vertex and Fragment Shader objects
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
+  // Generate sine wave vertices
+  const int numVertices = dataVector[0].vertices;
+  // GLfloat vertices[numVertices * 3];
+  std::vector<GLfloat> vertices;
 
-	// Generate sine wave vertices
-    const int numVertices = 300;
-    GLfloat vertices[numVertices * 3];
+  // Create reference containers for the Vartex Array Object and the Vertex
+  // Buffer Object
+  GLuint VAO, VBO;
 
-	// Create reference containers for the Vartex Array Object and the Vertex Buffer Object
-	GLuint VAO, VBO;
+  // Generate the VAO and VBO with only 1 object each
+  glGenVertexArrays (1, &VAO);
+  glGenBuffers (1, &VBO);
 
-	// Generate the VAO and VBO with only 1 object each
-	glGenVertexArrays(1, &VAO);
-	glGenBuffers(1, &VBO);
+  // Make the VAO the current Vertex Array Object by binding it
+  glBindVertexArray (VAO);
 
-	// Make the VAO the current Vertex Array Object by binding it
-	glBindVertexArray(VAO);
+  // Bind the VBO specifying it's a GL_ARRAY_BUFFER
+  glBindBuffer (GL_ARRAY_BUFFER, VBO);
+  // Introduce the vertices into the VBO
+  // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+  glBufferData (GL_ARRAY_BUFFER, vertices.size () * sizeof (GLfloat),
+                vertices.data (), GL_STATIC_DRAW);
 
-	// Bind the VBO specifying it's a GL_ARRAY_BUFFER
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	// Introduce the vertices into the VBO
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+  // Configure the Vertex Attribute so that OpenGL knows how to read the VBO
+  glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof (float),
+                         (void *)0);
+  // Enable the Vertex Attribute so that OpenGL knows to use it
+  glEnableVertexAttribArray (0);
 
-	// Configure the Vertex Attribute so that OpenGL knows how to read the VBO
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	// Enable the Vertex Attribute so that OpenGL knows to use it
-	glEnableVertexAttribArray(0);
+  // Bind both the VBO and VAO to 0 so that we don't accidentally modify the
+  // VAO and VBO we created
+  glBindBuffer (GL_ARRAY_BUFFER, 0);
+  glBindVertexArray (0);
 
-	// Bind both the VBO and VAO to 0 so that we don't accidentally modify the VAO and VBO we created
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+  // Initialize ImGUI
+  IMGUI_CHECKVERSION ();
+  ImGui::CreateContext ();
+  ImGuiIO &io = ImGui::GetIO ();
+  (void)io;
+  ImGui::StyleColorsDark ();
+  ImGui_ImplGlfw_InitForOpenGL (window, true);
+  ImGui_ImplOpenGL3_Init ("#version 330");
 
-	// Initialize ImGUI
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	ImGui::StyleColorsDark();
-	ImGui_ImplGlfw_InitForOpenGL(window, true);
-	ImGui_ImplOpenGL3_Init("#version 330");
+  // Variables to be changed in the ImGUI window
+  bool drawTriangle = true;
+  float size = 1.0f;
+  float color[4] = { 0.8f, 0.3f, 0.02f, 1.0f };
+  // Variables to store the selected radio button
+  int selectedRadioButton = 0;
 
-	// Variables to be changed in the ImGUI window
-	bool drawTriangle = true;
-	float size = 1.0f;
-	float color[4] = { 0.8f, 0.3f, 0.02f, 1.0f };
-    // Variables to store the selected radio button
-    int selectedRadioButton = 0;
+  // Exporting variables to shaders
+  glUseProgram (shaderProgram);
+  glUniform1f (glGetUniformLocation (shaderProgram, "size"), size);
+  glUniform4f (glGetUniformLocation (shaderProgram, "color"), color[0],
+               color[1], color[2], color[3]);
 
-	// Exporting variables to shaders
-	glUseProgram(shaderProgram);
-	glUniform1f(glGetUniformLocation(shaderProgram, "size"), size);
-	glUniform4f(glGetUniformLocation(shaderProgram, "color"), color[0], color[1], color[2], color[3]);
+  // Timing variables
+  double lastTime = glfwGetTime ();
+  int frameCount = 0;
+  int lastFrameCount = 0;
 
-    // Timing variables
-    double lastTime = glfwGetTime();
-    int frameCount = 0;
-    int lastFrameCount = 0;
+  // Start TX Pos
+  int txStartPosX = 0;
+  int txStartPosY = 0;
 
-	// Start TX Pos
-	int txStartPosX = 0;
-	int txStartPosY = 0;
+  // Start RX Pos
+  int rxStartPosX = 0;
+  int rxStartPosY = 0;
 
-	// Start RX Pos
-	int rxStartPosX = 0;
-	int rxStartPosY = 0;
+  // Tethered Bools
+  bool tetherX = false;
+  bool tetherY = false;
 
-	// Tethered Bools
-	bool tetherX = false;
-	bool tetherY = false;
+  // Test vals
+  float freq = 1;
+  float ampl = 1;
+  float phase = 0;
 
-	// Test vals
-	float freq = 1;
-	float ampl = 1;
-	float phase = 0;
+  const char *vendor
+      = reinterpret_cast<const char *> (glGetString (GL_VENDOR));
+  const char *renderer
+      = reinterpret_cast<const char *> (glGetString (GL_RENDERER));
+  std::cout << "OpenGL Vendor: " << vendor << std::endl;
+  std::cout << "OpenGL Renderer: " << renderer << std::endl;
 
-	const char* vendor = reinterpret_cast<const char*>(glGetString(GL_VENDOR));
-	const char* renderer = reinterpret_cast<const char*>(glGetString(GL_RENDERER));
-	std::cout << "OpenGL Vendor: " << vendor << std::endl;
-	std::cout << "OpenGL Renderer: " << renderer << std::endl;
+  // glfwSwapInterval(0);
 
-	glfwSwapInterval(0);
+  // Min and Max
+  double minX
+      = *std::min_element (dataVector[0].x.begin (), dataVector[0].x.end ());
+  double maxX
+      = *std::max_element (dataVector[0].x.begin (), dataVector[0].x.end ());
+  double minY
+      = *std::min_element (dataVector[0].y.begin (), dataVector[0].y.end ());
+  double maxY
+      = *std::max_element (dataVector[0].y.begin (), dataVector[0].y.end ());
 
-	// Main while loop
-	while (!glfwWindowShouldClose(window))
-	{
+  int ray = 0;
 
-        // Measure speed
-        double currentTime = glfwGetTime();
-        frameCount++;
-        if ( currentTime - lastTime >= 1.0 ){ // If last prinf() was more than 1 sec ago
-            lastFrameCount = frameCount;
-            frameCount = 0;
-            lastTime = currentTime;
+  // Main while loop
+  while (!glfwWindowShouldClose (window))
+    {
+      ray++;
+      ray %= dataVector.size ();
+
+      // Measure speed
+      double currentTime = glfwGetTime ();
+      frameCount++;
+      if (currentTime - lastTime >= 1.0)
+        { // If last prinf() was more than 1 sec ago
+          lastFrameCount = frameCount;
+          frameCount = 0;
+          lastTime = currentTime;
         }
 
-		for (int i = 0; i < numVertices; i++) {
-			float x = static_cast<float>(i) / static_cast<float>(numVertices - 1) * 2.0f - 1.0f; // Map x to [-1, 1]
-			float y = ampl * std::sin((x * 3.14159 * freq) + phase); // Calculate sine wave value
+      vertices.clear ();
+      for (int i = 0; i < dataVector[ray].vertices; i++)
+        {
 
-			vertices[i * 3] = x;
-			vertices[i * 3 + 1] = y;
-			vertices[i * 3 + 2] = 0.0f;
-		}
+          float x = (((dataVector[ray].x[i] - minX) / (maxX - minX)) * 2.0f)
+                    - 1.0f;
+          float y = (((dataVector[ray].y[i] - minY) / (maxY - minY)) * 2.0f)
+                    - 1.0f;
 
+          // std::cout << "x: " << x << " y: " << y << std::endl;
 
-		// Specify the color of the background
-		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-		// Clean the back buffer and assign the new color to it
-		glClear(GL_COLOR_BUFFER_BIT);
+          // vertices[i * 3] = x;
+          // vertices[i * 3 + 1] = y;
+          // vertices[i * 3 + 2] = 0.0f;
+          vertices.push_back (x);
+          vertices.push_back (y);
+          vertices.push_back (0.0f);
+        }
 
-		// Tell OpenGL a new frame is about to begin
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+      // Specify the color of the background
+      glClearColor (0.07f, 0.13f, 0.17f, 1.0f);
+      // Clean the back buffer and assign the new color to it
+      glClear (GL_COLOR_BUFFER_BIT);
 
-		
+      // Tell OpenGL a new frame is about to begin
+      ImGui_ImplOpenGL3_NewFrame ();
+      ImGui_ImplGlfw_NewFrame ();
+      ImGui::NewFrame ();
 
-		// Tell OpenGL which Shader Program we want to use
-		glUseProgram(shaderProgram);
-		// Bind the VAO so OpenGL knows to use it
-		glBindVertexArray(VAO);
+      // Tell OpenGL which Shader Program we want to use
+      glUseProgram (shaderProgram);
+      // Bind the VAO so OpenGL knows to use it
+      glBindVertexArray (VAO);
 
-		 // Bind the VBO specifying it's a GL_ARRAY_BUFFER
-		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		// Introduce the updated vertices into the VBO
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		// Draw the triangle using the GL_TRIANGLES primitive
-		glDrawArrays(GL_LINE_STRIP, 0, numVertices);
+      // Bind the VBO specifying it's a GL_ARRAY_BUFFER
+      glBindBuffer (GL_ARRAY_BUFFER, VBO);
+      // Introduce the updated vertices into the VBO
+      // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices,
+      // GL_STATIC_DRAW);
+      glBufferData (GL_ARRAY_BUFFER, vertices.size () * sizeof (GLfloat),
+                    vertices.data (), GL_STATIC_DRAW);
+      // glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(GLfloat),
+      // vertices.data());
 
-		if(tetherX) txStartPosX = rxStartPosX;
-		if(tetherY) txStartPosY = rxStartPosY;
+      // Draw the triangle using the GL_TRIANGLES primitive
+      glDrawArrays (GL_LINE_STRIP, 0, dataVector[ray].vertices);
 
+      if (tetherX)
+        txStartPosX = rxStartPosX;
+      if (tetherY)
+        txStartPosY = rxStartPosY;
 
-        ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x - 265, 0));
-        ImGui::SetNextWindowSize(ImVec2(265, io.DisplaySize.y));
-		// ImGUI window creation
-		ImGui::Begin("Acoustic Ray Casting Parameters", NULL, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize);
-		// // Text that appears in the window
-		// ImGui::Text("Hello there adventurer!");
-		// // Checkbox that appears in the window
-		// ImGui::Checkbox("Draw Triangle", &drawTriangle);
-		// // Slider that appears in the window
-		// ImGui::SliderFloat("Size", &size, 0.5f, 2.0f);
-		// // Fancy color editor that appears in the window
-		// ImGui::ColorEdit4("Color", color);
-		
-		// Main content
-		ImGui::Dummy(ImVec2(0.0f, 10.0f));
-        ImGui::Text("Select a Computation Method:");
-		ImGui::Spacing();
-		// First radio button
-        ImGui::RadioButton("##C++", &selectedRadioButton, 0);
-        ImGui::SameLine();  
-        ImGui::Text("C++");
-        ImGui::SameLine();  
-        // Second radio button
-        ImGui::RadioButton("##CUDA", &selectedRadioButton, 1);
-        ImGui::SameLine();  
-        ImGui::Text("CUDA");
-        ImGui::SameLine();  
-        // Third radio button
-        ImGui::RadioButton("##OptiX", &selectedRadioButton, 2);
-        ImGui::SameLine();  
-        ImGui::Text("OptiX");
-        // Display the selected mode of computeMode
-        const char* computeMode[] = { "C++", "CUDA", "OptiX" };
-        // std::cout << "Selected Compute Mode: " << computeMode[selectedRadioButton] << std::endl;
+      ImGui::SetNextWindowPos (ImVec2 (io.DisplaySize.x - 265, 0));
+      ImGui::SetNextWindowSize (ImVec2 (265, io.DisplaySize.y));
+      // ImGUI window creation
+      ImGui::Begin ("Acoustic Ray Casting Parameters", NULL,
+                    ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
+                        | ImGuiWindowFlags_NoCollapse
+                        | ImGuiWindowFlags_AlwaysAutoResize);
+      // // Text that appears in the window
+      // ImGui::Text("Hello there adventurer!");
+      // // Checkbox that appears in the window
+      // ImGui::Checkbox("Draw Triangle", &drawTriangle);
+      // // Slider that appears in the window
+      // ImGui::SliderFloat("Size", &size, 0.5f, 2.0f);
+      // // Fancy color editor that appears in the window
+      // ImGui::ColorEdit4("Color", color);
 
-		// New section
-        ImGui::Dummy(ImVec2(0.0f, 10.0f));
-        ImGui::Separator();
-        ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      // Main content
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
+      ImGui::Text ("Select a Computation Method:");
+      ImGui::Spacing ();
+      // First radio button
+      ImGui::RadioButton ("##C++", &selectedRadioButton, 0);
+      ImGui::SameLine ();
+      ImGui::Text ("C++");
+      ImGui::SameLine ();
+      // Second radio button
+      ImGui::RadioButton ("##CUDA", &selectedRadioButton, 1);
+      ImGui::SameLine ();
+      ImGui::Text ("CUDA");
+      ImGui::SameLine ();
+      // Third radio button
+      ImGui::RadioButton ("##OptiX", &selectedRadioButton, 2);
+      ImGui::SameLine ();
+      ImGui::Text ("OptiX");
+      // Display the selected mode of computeMode
+      const char *computeMode[] = { "C++", "CUDA", "OptiX" };
+      // std::cout << "Selected Compute Mode: " <<
+      // computeMode[selectedRadioButton] << std::endl;
 
-		ImGui::Text("Adjust Endpoints:");
-		ImGui::Spacing();
-		ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      // New section
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
+      ImGui::Separator ();
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
-		ImGui::Text("TX");
-		ImGui::Spacing();
-		ImGui::Text("X");
-		ImGui::SameLine();
-		ImGui::SliderInt("##tx_x", &txStartPosX, 0, io.DisplaySize.x - 265);
-		ImGui::SameLine();
-		ImGui::Text("px");
-		ImGui::Text("Y");
-		ImGui::SameLine();
-		ImGui::SliderInt("##tx_y", &txStartPosY, 0, io.DisplaySize.y);
-		ImGui::SameLine();
-		ImGui::Text("px");
-		ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      ImGui::Text ("Adjust Endpoints:");
+      ImGui::Spacing ();
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
-		ImGui::Text("RX");
-		ImGui::Spacing();
-		ImGui::Text("X");
-		ImGui::SameLine();
-		ImGui::SliderInt("##rx_x", &rxStartPosX, 0, io.DisplaySize.x - 265);
-		ImGui::SameLine();
-		ImGui::Text("px");
-		ImGui::Text("Y");
-		ImGui::SameLine();
-		ImGui::SliderInt("##rx_y", &rxStartPosY, 0, io.DisplaySize.y);
-		ImGui::SameLine();
-		ImGui::Text("px");
-		ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      ImGui::Text ("TX");
+      ImGui::Spacing ();
+      ImGui::Text ("X");
+      ImGui::SameLine ();
+      ImGui::SliderInt ("##tx_x", &txStartPosX, 0, io.DisplaySize.x - 265);
+      ImGui::SameLine ();
+      ImGui::Text ("px");
+      ImGui::Text ("Y");
+      ImGui::SameLine ();
+      ImGui::SliderInt ("##tx_y", &txStartPosY, 0, io.DisplaySize.y);
+      ImGui::SameLine ();
+      ImGui::Text ("px");
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
-		// Display a lock icon based on the tethered variable
-		ImGui::Checkbox("Lock X", &tetherX);
-		ImGui::SameLine();
-		ImGui::Checkbox("Lock Y", &tetherY);
+      ImGui::Text ("RX");
+      ImGui::Spacing ();
+      ImGui::Text ("X");
+      ImGui::SameLine ();
+      ImGui::SliderInt ("##rx_x", &rxStartPosX, 0, io.DisplaySize.x - 265);
+      ImGui::SameLine ();
+      ImGui::Text ("px");
+      ImGui::Text ("Y");
+      ImGui::SameLine ();
+      ImGui::SliderInt ("##rx_y", &rxStartPosY, 0, io.DisplaySize.y);
+      ImGui::SameLine ();
+      ImGui::Text ("px");
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
-		// New section
-        ImGui::Dummy(ImVec2(0.0f, 10.0f));
-        ImGui::Separator();
-        ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      // Display a lock icon based on the tethered variable
+      ImGui::Checkbox ("Lock X", &tetherX);
+      ImGui::SameLine ();
+      ImGui::Checkbox ("Lock Y", &tetherY);
 
-		ImGui::Text("Testing stuff");
-		ImGui::SameLine();
-		ImGui::Dummy(ImVec2(65.0f, 0.0f));
-		ImGui::SameLine();
-		if (ImGui::Button("Reset", ImVec2(75, 0))) {
-			// Code to execute when Button 1 is clicked
-			freq = 1.0f;
-			ampl = 1.0f;
-			phase = 0.0;
-		}
-		ImGui::Dummy(ImVec2(0.0f, 10.0f));
-		ImGui::SliderFloat("Freq", &freq, 0.0, 10.0);
-		ImGui::Spacing();
-		ImGui::SliderFloat("Ampl", &ampl, -1.0, 1.0);
-		ImGui::Spacing();
-		ImGui::SliderFloat("Phase", &phase, -1.0 * freq, 1.0 * freq);
-		
+      // New section
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
+      ImGui::Separator ();
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
-        // Add text anchored to the bottom of the side panel
-        ImGui::SetCursorPosY(ImGui::GetWindowHeight() - (ImGui::GetStyle().ItemSpacing.y + 58));
+      ImGui::Text ("Testing stuff");
+      ImGui::SameLine ();
+      ImGui::Dummy (ImVec2 (65.0f, 0.0f));
+      ImGui::SameLine ();
+      if (ImGui::Button ("Reset", ImVec2 (75, 0)))
+        {
+          // Code to execute when Button 1 is clicked
+          freq = 1.0f;
+          ampl = 1.0f;
+          phase = 0.0;
+        }
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
+      ImGui::SliderFloat ("Freq", &freq, 0.0, 10.0);
+      ImGui::Spacing ();
+      ImGui::SliderFloat ("Ampl", &ampl, -1.0, 1.0);
+      ImGui::Spacing ();
+      ImGui::SliderFloat ("Phase", &phase, -1.0 * freq, 1.0 * freq);
 
-		// Center the buttons horizontally
-		ImGui::SetCursorPosX((ImGui::GetWindowWidth() - 200.0f) * 0.5f);
+      // Add text anchored to the bottom of the side panel
+      ImGui::SetCursorPosY (ImGui::GetWindowHeight ()
+                            - (ImGui::GetStyle ().ItemSpacing.y + 58));
 
-		// Add the first button
-		if (ImGui::Button("Export Simulation", ImVec2(200, 0))) {
-			// Code to execute when Button 1 is clicked
-			std::cout << "Code to export simulation variables goes here" << std::endl;
-		}
+      // Center the buttons horizontally
+      ImGui::SetCursorPosX ((ImGui::GetWindowWidth () - 200.0f) * 0.5f);
 
-		ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      // Add the first button
+      if (ImGui::Button ("Export Simulation", ImVec2 (200, 0)))
+        {
+          // Code to execute when Button 1 is clicked
+          std::cout << "Code to export simulation variables goes here"
+                    << std::endl;
+        }
 
-        ImGui::Text("FPS: ");
-        ImGui::SameLine();
-        const char * myFPS = std::to_string(lastFrameCount).c_str();
-        ImGui::Text("%s", myFPS);
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
-		// Ends the window
-		ImGui::End();
+      ImGui::Text ("FPS: ");
+      ImGui::SameLine ();
+      const char *myFPS = std::to_string (lastFrameCount).c_str ();
+      ImGui::Text ("%s", myFPS);
 
-		// Export variables to shader
-		glUseProgram(shaderProgram);
-		glUniform1f(glGetUniformLocation(shaderProgram, "size"), size);
-		glUniform4f(glGetUniformLocation(shaderProgram, "color"), color[0], color[1], color[2], color[3]);
+      // Ends the window
+      ImGui::End ();
 
-		// Renders the ImGUI elements
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+      // Export variables to shader
+      glUseProgram (shaderProgram);
+      glUniform1f (glGetUniformLocation (shaderProgram, "size"), size);
+      glUniform4f (glGetUniformLocation (shaderProgram, "color"), color[0],
+                   color[1], color[2], color[3]);
 
-		// Swap the back buffer with the front buffer
-		glfwSwapBuffers(window);
-		// Take care of all GLFW events
-		glfwPollEvents();
-	}
+      // Renders the ImGUI elements
+      ImGui::Render ();
+      ImGui_ImplOpenGL3_RenderDrawData (ImGui::GetDrawData ());
 
-	// Deletes all ImGUI instances
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
+      // Swap the back buffer with the front buffer
+      glfwSwapBuffers (window);
+      // Take care of all GLFW events
+      glfwPollEvents ();
+    }
 
-	// Delete all the objects we've created
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
-	glDeleteProgram(shaderProgram);
-	// Delete window before ending the program
-	glfwDestroyWindow(window);
-	// Terminate GLFW before ending the program
-	glfwTerminate();
-	return 0;
+  // Deletes all ImGUI instances
+  ImGui_ImplOpenGL3_Shutdown ();
+  ImGui_ImplGlfw_Shutdown ();
+  ImGui::DestroyContext ();
+
+  // Delete all the objects we've created
+  glDeleteVertexArrays (1, &VAO);
+  glDeleteBuffers (1, &VBO);
+  glDeleteProgram (shaderProgram);
+  // Delete window before ending the program
+  glfwDestroyWindow (window);
+  // Terminate GLFW before ending the program
+  glfwTerminate ();
+  return 0;
 }
