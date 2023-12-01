@@ -474,7 +474,7 @@ main ()
                         ImGuiSliderFlags_NoInput);
       ImGui::Spacing ();
 
-      ImGui::Dummy (ImVec2 (20.0f, 0.0f));
+      ImGui::Dummy (ImVec2 (21.5f, 0.0f));
       ImGui::SameLine ();
       ImGui::BeginDisabled (simPlaying);
       if (ImGui::Button ("|<<", ImVec2 (50, 0)))

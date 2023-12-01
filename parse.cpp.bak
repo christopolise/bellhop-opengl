@@ -1,0 +1,96 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
+struct Data {
+    int vertices;
+    double top_bounce;
+    double bottom_bounce;
+    double angle_of_entry;
+    std::vector<double> x;
+    std::vector<double> y;
+};
+
+int countItems(std::istringstream& iss) {
+    int count = 0;
+    std::string item;
+
+    // Count items
+    while (iss >> item) {
+        count++;
+    }
+
+    // Clear the stream and restore the position
+    iss.clear();
+    iss.seekg(0);
+
+    return count;
+}
+
+std::vector<Data> readDataFromFile(const std::string& filename) {
+    std::vector<Data> dataVector;
+    std::ifstream file(filename);
+
+    if (!file.is_open()) {
+        std::cerr << "Error opening file: " << filename << std::endl;
+        return dataVector;
+    }
+
+    std::string line;
+    Data currentData;
+
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+
+        if (countItems(iss) == 1) {
+            // Singular value on its own line, create a new Data struct
+            if (currentData.angle_of_entry != 0.0) {
+                // Push the previous Data struct into the vector
+                dataVector.push_back(currentData);
+            }
+
+            // Reset the currentData struct for the new block
+            currentData = Data();
+            iss >> currentData.angle_of_entry;
+        } else if (countItems(iss) == 3) {
+            // Three values on the line (vertices, top_bounce, bottom_bounce)
+            iss >> currentData.vertices >> currentData.top_bounce >> currentData.bottom_bounce;
+        } else if (countItems(iss) == 2) {
+            // Two values on the line, x and y coordinates
+            double x, y;
+            iss >> x >> y;
+            currentData.x.push_back(x);
+            currentData.y.push_back(y);
+        }
+    }
+
+    // Push the last Data struct into the vector
+    dataVector.push_back(currentData);
+
+    return dataVector;
+}
+
+int main() {
+    std::vector<Data> dataVector = readDataFromFile("test.ray");
+
+    std::cout << dataVector.size() << std::endl;
+
+    // Print the data for verification
+    for (const auto& data : dataVector) {
+        std::cout << "Angle of Entry: " << data.angle_of_entry << std::endl;
+        std::cout << "Vertices: " << data.vertices << ", Top Bounce: " << data.top_bounce
+                  << ", Bottom Bounce: " << data.bottom_bounce << std::endl;
+
+        // std::cout << "X and Y values:" << std::endl;
+        // for (size_t i = 0; i < data.x.size(); ++i) {
+        //     std::cout << data.x[i] << " " << data.y[i] << std::endl;
+        // }
+        std::cout << "X size:\t" << data.x.size() << std::endl;
+        std::cout << "Y size:\t" << data.y.size() << std::endl;
+
+        std::cout << std::endl; // Add a separator between Data structs
+    }
+
+    return 0;
+}
