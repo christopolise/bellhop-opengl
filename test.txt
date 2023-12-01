@@ -1,0 +1,340 @@
+Angle of Entry: -22.5485
+Vertices: 467, Top Bounce: 9, Bottom Bounce: 8
+X size:	467
+Y size:	467
+
+Angle of Entry: -22.5165
+Vertices: 466, Top Bounce: 9, Bottom Bounce: 8
+X size:	466
+Y size:	466
+
+Angle of Entry: -21.5563
+Vertices: 460, Top Bounce: 8, Bottom Bounce: 8
+X size:	460
+Y size:	460
+
+Angle of Entry: -21.5243
+Vertices: 459, Top Bounce: 8, Bottom Bounce: 8
+X size:	459
+Y size:	459
+
+Angle of Entry: -20.084
+Vertices: 455, Top Bounce: 8, Bottom Bounce: 7
+X size:	455
+Y size:	455
+
+Angle of Entry: -20.052
+Vertices: 454, Top Bounce: 8, Bottom Bounce: 7
+X size:	454
+Y size:	454
+
+Angle of Entry: -19.0598
+Vertices: 444, Top Bounce: 7, Bottom Bounce: 7
+X size:	444
+Y size:	444
+
+Angle of Entry: -19.0278
+Vertices: 444, Top Bounce: 7, Bottom Bounce: 7
+X size:	444
+Y size:	444
+
+Angle of Entry: -17.4915
+Vertices: 443, Top Bounce: 7, Bottom Bounce: 6
+X size:	443
+Y size:	443
+
+Angle of Entry: -17.4595
+Vertices: 442, Top Bounce: 7, Bottom Bounce: 6
+X size:	442
+Y size:	442
+
+Angle of Entry: -16.4353
+Vertices: 439, Top Bounce: 6, Bottom Bounce: 6
+X size:	439
+Y size:	439
+
+Angle of Entry: -16.4673
+Vertices: 440, Top Bounce: 6, Bottom Bounce: 6
+X size:	440
+Y size:	440
+
+Angle of Entry: -14.867
+Vertices: 427, Top Bounce: 6, Bottom Bounce: 5
+X size:	427
+Y size:	427
+
+Angle of Entry: -14.835
+Vertices: 436, Top Bounce: 6, Bottom Bounce: 5
+X size:	436
+Y size:	436
+
+Angle of Entry: -13.7788
+Vertices: 424, Top Bounce: 5, Bottom Bounce: 5
+X size:	424
+Y size:	424
+
+Angle of Entry: -13.7467
+Vertices: 432, Top Bounce: 5, Bottom Bounce: 5
+X size:	432
+Y size:	432
+
+Angle of Entry: -12.1464
+Vertices: 424, Top Bounce: 5, Bottom Bounce: 4
+X size:	424
+Y size:	424
+
+Angle of Entry: -12.1144
+Vertices: 423, Top Bounce: 5, Bottom Bounce: 4
+X size:	423
+Y size:	423
+
+Angle of Entry: -11.0582
+Vertices: 424, Top Bounce: 4, Bottom Bounce: 4
+X size:	424
+Y size:	424
+
+Angle of Entry: -11.0262
+Vertices: 423, Top Bounce: 4, Bottom Bounce: 4
+X size:	423
+Y size:	423
+
+Angle of Entry: -9.39388
+Vertices: 419, Top Bounce: 4, Bottom Bounce: 3
+X size:	419
+Y size:	419
+
+Angle of Entry: -9.36187
+Vertices: 418, Top Bounce: 4, Bottom Bounce: 3
+X size:	418
+Y size:	418
+
+Angle of Entry: -8.27365
+Vertices: 414, Top Bounce: 3, Bottom Bounce: 3
+X size:	414
+Y size:	414
+
+Angle of Entry: -8.24165
+Vertices: 413, Top Bounce: 3, Bottom Bounce: 3
+X size:	413
+Y size:	413
+
+Angle of Entry: -6.57732
+Vertices: 412, Top Bounce: 3, Bottom Bounce: 2
+X size:	412
+Y size:	412
+
+Angle of Entry: -6.54531
+Vertices: 411, Top Bounce: 3, Bottom Bounce: 2
+X size:	411
+Y size:	411
+
+Angle of Entry: -5.45709
+Vertices: 411, Top Bounce: 2, Bottom Bounce: 2
+X size:	411
+Y size:	411
+
+Angle of Entry: -5.42509
+Vertices: 409, Top Bounce: 2, Bottom Bounce: 2
+X size:	409
+Y size:	409
+
+Angle of Entry: -3.72875
+Vertices: 406, Top Bounce: 2, Bottom Bounce: 1
+X size:	406
+Y size:	406
+
+Angle of Entry: -3.69674
+Vertices: 408, Top Bounce: 2, Bottom Bounce: 1
+X size:	408
+Y size:	408
+
+Angle of Entry: -2.60852
+Vertices: 404, Top Bounce: 1, Bottom Bounce: 1
+X size:	404
+Y size:	404
+
+Angle of Entry: -2.57652
+Vertices: 405, Top Bounce: 1, Bottom Bounce: 1
+X size:	405
+Y size:	405
+
+Angle of Entry: -0.84817
+Vertices: 403, Top Bounce: 1, Bottom Bounce: 0
+X size:	403
+Y size:	403
+
+Angle of Entry: -0.880176
+Vertices: 403, Top Bounce: 1, Bottom Bounce: 0
+X size:	403
+Y size:	403
+
+Angle of Entry: 0.272054
+Vertices: 402, Top Bounce: 0, Bottom Bounce: 0
+X size:	402
+Y size:	402
+
+Angle of Entry: 0.304061
+Vertices: 402, Top Bounce: 0, Bottom Bounce: 0
+X size:	402
+Y size:	402
+
+Angle of Entry: 2.0004
+Vertices: 404, Top Bounce: 0, Bottom Bounce: 1
+X size:	404
+Y size:	404
+
+Angle of Entry: 2.03241
+Vertices: 403, Top Bounce: 0, Bottom Bounce: 1
+X size:	403
+Y size:	403
+
+Angle of Entry: 3.12062
+Vertices: 404, Top Bounce: 1, Bottom Bounce: 1
+X size:	404
+Y size:	404
+
+Angle of Entry: 3.15263
+Vertices: 405, Top Bounce: 1, Bottom Bounce: 1
+X size:	405
+Y size:	405
+
+Angle of Entry: 4.84897
+Vertices: 408, Top Bounce: 1, Bottom Bounce: 2
+X size:	408
+Y size:	408
+
+Angle of Entry: 4.88098
+Vertices: 408, Top Bounce: 1, Bottom Bounce: 2
+X size:	408
+Y size:	408
+
+Angle of Entry: 5.96919
+Vertices: 410, Top Bounce: 2, Bottom Bounce: 2
+X size:	410
+Y size:	410
+
+Angle of Entry: 6.0012
+Vertices: 409, Top Bounce: 2, Bottom Bounce: 2
+X size:	409
+Y size:	409
+
+Angle of Entry: 7.66553
+Vertices: 410, Top Bounce: 2, Bottom Bounce: 3
+X size:	410
+Y size:	410
+
+Angle of Entry: 7.69754
+Vertices: 412, Top Bounce: 2, Bottom Bounce: 3
+X size:	412
+Y size:	412
+
+Angle of Entry: 8.81776
+Vertices: 417, Top Bounce: 3, Bottom Bounce: 3
+X size:	417
+Y size:	417
+
+Angle of Entry: 8.78576
+Vertices: 416, Top Bounce: 3, Bottom Bounce: 3
+X size:	416
+Y size:	416
+
+Angle of Entry: 10.4501
+Vertices: 421, Top Bounce: 3, Bottom Bounce: 4
+X size:	421
+Y size:	421
+
+Angle of Entry: 10.4821
+Vertices: 416, Top Bounce: 3, Bottom Bounce: 4
+X size:	416
+Y size:	416
+
+Angle of Entry: 11.5703
+Vertices: 419, Top Bounce: 4, Bottom Bounce: 4
+X size:	419
+Y size:	419
+
+Angle of Entry: 11.6023
+Vertices: 420, Top Bounce: 4, Bottom Bounce: 4
+X size:	420
+Y size:	420
+
+Angle of Entry: 13.2026
+Vertices: 424, Top Bounce: 4, Bottom Bounce: 5
+X size:	424
+Y size:	424
+
+Angle of Entry: 13.2346
+Vertices: 424, Top Bounce: 4, Bottom Bounce: 5
+X size:	424
+Y size:	424
+
+Angle of Entry: 14.2909
+Vertices: 429, Top Bounce: 5, Bottom Bounce: 5
+X size:	429
+Y size:	429
+
+Angle of Entry: 14.3229
+Vertices: 430, Top Bounce: 5, Bottom Bounce: 5
+X size:	430
+Y size:	430
+
+Angle of Entry: 15.8912
+Vertices: 434, Top Bounce: 5, Bottom Bounce: 6
+X size:	434
+Y size:	434
+
+Angle of Entry: 15.9232
+Vertices: 435, Top Bounce: 5, Bottom Bounce: 6
+X size:	435
+Y size:	435
+
+Angle of Entry: 16.9474
+Vertices: 440, Top Bounce: 6, Bottom Bounce: 6
+X size:	440
+Y size:	440
+
+Angle of Entry: 16.9794
+Vertices: 441, Top Bounce: 6, Bottom Bounce: 6
+X size:	441
+Y size:	441
+
+Angle of Entry: 18.5157
+Vertices: 443, Top Bounce: 6, Bottom Bounce: 7
+X size:	443
+Y size:	443
+
+Angle of Entry: 18.5477
+Vertices: 444, Top Bounce: 6, Bottom Bounce: 7
+X size:	444
+Y size:	444
+
+Angle of Entry: 19.5399
+Vertices: 441, Top Bounce: 7, Bottom Bounce: 7
+X size:	441
+Y size:	441
+
+Angle of Entry: 19.5719
+Vertices: 442, Top Bounce: 7, Bottom Bounce: 7
+X size:	442
+Y size:	442
+
+Angle of Entry: 21.0762
+Vertices: 449, Top Bounce: 7, Bottom Bounce: 8
+X size:	449
+Y size:	449
+
+Angle of Entry: 21.0442
+Vertices: 448, Top Bounce: 7, Bottom Bounce: 8
+X size:	448
+Y size:	448
+
+Angle of Entry: 22.0684
+Vertices: 456, Top Bounce: 8, Bottom Bounce: 8
+X size:	456
+Y size:	456
+
+Angle of Entry: 22.0364
+Vertices: 455, Top Bounce: 8, Bottom Bounce: 8
+X size:	455
+Y size:	455
+

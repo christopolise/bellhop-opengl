@@ -6,6 +6,9 @@
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 #include<math.h>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
 // Vertex Shader source code
 const char* vertexShaderSource = "#version 330 core\n"
@@ -24,11 +27,89 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "   FragColor = color;\n"
 "}\n\0";
 
+struct Data {
+    int vertices;
+    double top_bounce;
+    double bottom_bounce;
+    double angle_of_entry;
+    std::vector<double> x;
+    std::vector<double> y;
+};
+
+int countItems(std::istringstream& iss) {
+    int count = 0;
+    std::string item;
+
+    // Count items
+    while (iss >> item) {
+        count++;
+    }
+
+    // Clear the stream and restore the position
+    iss.clear();
+    iss.seekg(0);
+
+    return count;
+}
+
+std::vector<Data> readDataFromFile(const std::string& filename) {
+    std::vector<Data> dataVector;
+    std::ifstream file(filename);
+
+    if (!file.is_open()) {
+        std::cerr << "Error opening file: " << filename << std::endl;
+        return dataVector;
+    }
+
+    std::string line;
+    Data currentData;
+	bool firstPass = true;
+
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+
+        if (countItems(iss) == 1) {
+            // Singular value on its own line, create a new Data struct
+            if (!firstPass) {
+                // Push the previous Data struct into the vector
+                dataVector.push_back(currentData);
+            }
+			firstPass = false;
+			
+            // Reset the currentData struct for the new block
+            currentData = Data();
+            iss >> currentData.angle_of_entry;
+        } else if (countItems(iss) == 3) {
+            // Three values on the line (vertices, top_bounce, bottom_bounce)
+            iss >> currentData.vertices >> currentData.top_bounce >> currentData.bottom_bounce;
+        } else if (countItems(iss) == 2) {
+            // Two values on the line, x and y coordinates
+            double x, y;
+            iss >> x >> y;
+            currentData.x.push_back(x);
+            currentData.y.push_back(y);
+        }
+    }
+
+    // Push the last Data struct into the vector
+    dataVector.push_back(currentData);
+
+    return dataVector;
+}
+
 
 int main()
 {
+
+	std::vector<Data> dataVector = readDataFromFile("test.ray");
+
+	std::cout << dataVector.size() << std::endl;
+
 	// Initialize GLFW
 	glfwInit();
+
+	// Set GLFW_RESIZABLE to GLFW_FALSE to prevent window resizing
+	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 	// Tell GLFW what version of OpenGL we are using 
 	// In this case we are using OpenGL 3.3
@@ -39,7 +120,9 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
-	GLFWwindow* window = glfwCreateWindow(800, 800, "ImGui + GLFW", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(1065, 800, "ImGui + GLFW", NULL, NULL);
+
+
 	// Error check if the window fails to create
 	if (window == NULL)
 	{
@@ -55,8 +138,6 @@ int main()
 	// Specify the viewport of OpenGL in the Window
 	// In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
 	glViewport(0, 0, 800, 800);
-
-
 
 	// Create Vertex Shader Object and get its reference
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -84,15 +165,9 @@ int main()
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-
-
-	// Vertices coordinates
-	GLfloat vertices[] =
-	{
-		-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
-		0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower right corner
-		0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f // Upper corner
-	};
+	// Generate sine wave vertices
+    const int numVertices = 300;
+    GLfloat vertices[numVertices * 3];
 
 	// Create reference containers for the Vartex Array Object and the Vertex Buffer Object
 	GLuint VAO, VBO;
@@ -155,11 +230,17 @@ int main()
 	bool tetherX = false;
 	bool tetherY = false;
 
+	// Test vals
+	float freq = 1;
+	float ampl = 1;
+	float phase = 0;
+
 	const char* vendor = reinterpret_cast<const char*>(glGetString(GL_VENDOR));
 	const char* renderer = reinterpret_cast<const char*>(glGetString(GL_RENDERER));
 	std::cout << "OpenGL Vendor: " << vendor << std::endl;
 	std::cout << "OpenGL Renderer: " << renderer << std::endl;
 
+	glfwSwapInterval(0);
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -173,6 +254,15 @@ int main()
             frameCount = 0;
             lastTime = currentTime;
         }
+
+		for (int i = 0; i < numVertices; i++) {
+			float x = static_cast<float>(i) / static_cast<float>(numVertices - 1) * 2.0f - 1.0f; // Map x to [-1, 1]
+			float y = ampl * std::sin((x * 3.14159 * freq) + phase); // Calculate sine wave value
+
+			vertices[i * 3] = x;
+			vertices[i * 3 + 1] = y;
+			vertices[i * 3 + 2] = 0.0f;
+		}
 
 
 		// Specify the color of the background
@@ -191,10 +281,13 @@ int main()
 		glUseProgram(shaderProgram);
 		// Bind the VAO so OpenGL knows to use it
 		glBindVertexArray(VAO);
-		// Only draw the triangle if the ImGUI checkbox is ticked
-		if (drawTriangle)
-			// Draw the triangle using the GL_TRIANGLES primitive
-			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		 // Bind the VBO specifying it's a GL_ARRAY_BUFFER
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		// Introduce the updated vertices into the VBO
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		// Draw the triangle using the GL_TRIANGLES primitive
+		glDrawArrays(GL_LINE_STRIP, 0, numVertices);
 
 		if(tetherX) txStartPosX = rxStartPosX;
 		if(tetherY) txStartPosY = rxStartPosY;
@@ -276,6 +369,29 @@ int main()
 		ImGui::Checkbox("Lock X", &tetherX);
 		ImGui::SameLine();
 		ImGui::Checkbox("Lock Y", &tetherY);
+
+		// New section
+        ImGui::Dummy(ImVec2(0.0f, 10.0f));
+        ImGui::Separator();
+        ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+		ImGui::Text("Testing stuff");
+		ImGui::SameLine();
+		ImGui::Dummy(ImVec2(65.0f, 0.0f));
+		ImGui::SameLine();
+		if (ImGui::Button("Reset", ImVec2(75, 0))) {
+			// Code to execute when Button 1 is clicked
+			freq = 1.0f;
+			ampl = 1.0f;
+			phase = 0.0;
+		}
+		ImGui::Dummy(ImVec2(0.0f, 10.0f));
+		ImGui::SliderFloat("Freq", &freq, 0.0, 10.0);
+		ImGui::Spacing();
+		ImGui::SliderFloat("Ampl", &ampl, -1.0, 1.0);
+		ImGui::Spacing();
+		ImGui::SliderFloat("Phase", &phase, -1.0 * freq, 1.0 * freq);
+		
 
         // Add text anchored to the bottom of the side panel
         ImGui::SetCursorPosY(ImGui::GetWindowHeight() - (ImGui::GetStyle().ItemSpacing.y + 58));
