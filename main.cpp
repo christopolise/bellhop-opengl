@@ -262,6 +262,9 @@ main ()
   float ampl = 1;
   float phase = 0;
 
+  // Sim vals
+  bool simPlaying = true;
+
   const char *vendor
       = reinterpret_cast<const char *> (glGetString (GL_VENDOR));
   const char *renderer
@@ -286,7 +289,8 @@ main ()
   // Main while loop
   while (!glfwWindowShouldClose (window))
     {
-      ray++;
+      if (simPlaying)
+        ray++;
       ray %= dataVector.size ();
 
       // Measure speed
@@ -454,6 +458,45 @@ main ()
       ImGui::SliderFloat ("Ampl", &ampl, -1.0, 1.0);
       ImGui::Spacing ();
       ImGui::SliderFloat ("Phase", &phase, -1.0 * freq, 1.0 * freq);
+
+      // New section
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
+      ImGui::Separator ();
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
+
+      ImGui::Text ("Simulation Settings");
+      ImGui::Spacing ();
+      ImGui::Text ("Sim Progress");
+      ImGui::Spacing ();
+      ImGui::Dummy (ImVec2 (12.5f, 0.0f));
+      ImGui::SameLine ();
+      ImGui::SliderInt ("##playback", &ray, 0, dataVector.size () - 1, "",
+                        ImGuiSliderFlags_NoInput);
+      ImGui::Spacing ();
+
+      ImGui::Dummy (ImVec2 (20.0f, 0.0f));
+      ImGui::SameLine ();
+      ImGui::BeginDisabled (simPlaying);
+      if (ImGui::Button ("|<<", ImVec2 (50, 0)))
+        {
+          ray--;
+          ray = (ray < 0) ? 0 : ray;
+        }
+      ImGui::EndDisabled ();
+      ImGui::SameLine ();
+      if (ImGui::Button (simPlaying ? "||" : "|>", ImVec2 (75, 0)))
+        {
+          // Play/Pause
+          simPlaying = !simPlaying;
+        }
+      ImGui::SameLine ();
+      ImGui::BeginDisabled (simPlaying);
+      if (ImGui::Button (">>|", ImVec2 (50, 0)))
+        {
+          ray++;
+          ray = (ray >= dataVector.size ()) ? dataVector.size () - 1 : ray;
+        }
+      ImGui::EndDisabled ();
 
       // Add text anchored to the bottom of the side panel
       ImGui::SetCursorPosY (ImGui::GetWindowHeight ()
