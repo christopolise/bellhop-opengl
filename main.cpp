@@ -31,11 +31,29 @@ const char *fragmentShaderSource = "#version 330 core\n"
                                    "   FragColor = color;\n"
                                    "}\n\0";
 
+// Second Vertex Shader source code
+const char *secondVertexShaderSource = "#version 330 core\n"
+                                       "layout (location = 0) in vec3 aPos;\n"
+                                       "void main()\n"
+                                       "{\n"
+                                       "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+                                       "}\0";
+
+// Second Fragment Shader source code
+const char *secondFragmentShaderSource = "#version 330 core\n"
+                                         "out vec4 FragColor;\n"
+                                         "void main()\n"
+                                         "{\n"
+                                         "   FragColor = vec4(0.0, 1.0, 0.0, 1.0);\n"
+                                         "}\n\0";
+
+GLuint secondShaderProgram, secondVAO, secondVBO;
+
 struct Data
 {
   int vertices;
-  double top_bounce;
-  double bottom_bounce;
+  int top_bounce;
+  int bottom_bounce;
   double angle_of_entry;
   std::vector<double> x;
   std::vector<double> y;
@@ -116,6 +134,54 @@ readDataFromFile (const std::string &filename)
   return dataVector;
 }
 
+void SetupSecondViewport() {
+    // Create Second Vertex Shader Object and get its reference
+    GLuint secondVertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(secondVertexShader, 1, &secondVertexShaderSource, NULL);
+    glCompileShader(secondVertexShader);
+
+    // Create Second Fragment Shader Object and get its reference
+    GLuint secondFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(secondFragmentShader, 1, &secondFragmentShaderSource, NULL);
+    glCompileShader(secondFragmentShader);
+
+    // Create Second Shader Program Object and get its reference
+    secondShaderProgram = glCreateProgram();
+    glAttachShader(secondShaderProgram, secondVertexShader);
+    glAttachShader(secondShaderProgram, secondFragmentShader);
+    glLinkProgram(secondShaderProgram);
+
+    // Delete the now useless Second Vertex and Fragment Shader objects
+    glDeleteShader(secondVertexShader);
+    glDeleteShader(secondFragmentShader);
+
+    // Create Second Vertex Array Object and Vertex Buffer Object
+    glGenVertexArrays(1, &secondVAO);
+    glGenBuffers(1, &secondVBO);
+
+    // Bind the Second VAO and VBO
+    glBindVertexArray(secondVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, secondVBO);
+
+    // Define the vertices of a simple triangle
+    GLfloat secondVertices[] = {
+        -0.5f, -0.5f, 0.0f,
+         0.5f, -0.5f, 0.0f,
+         0.0f,  0.5f, 0.0f
+    };
+
+    // Introduce the vertices into the Second VBO
+    glBufferData(GL_ARRAY_BUFFER, sizeof(secondVertices), secondVertices, GL_STATIC_DRAW);
+
+    // Configure the Second Vertex Attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    // Unbind the Second VAO and VBO
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+}
+
 int
 main ()
 {
@@ -138,9 +204,8 @@ main ()
   // So that means we only have the modern functions
   glfwWindowHint (GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  // Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
   GLFWwindow *window
-      = glfwCreateWindow (1065, 800, "ImGui + GLFW", NULL, NULL);
+      = glfwCreateWindow (1865, 800, "ImGui + GLFW", NULL, NULL);
 
   // Error check if the window fails to create
   if (window == NULL)
@@ -156,7 +221,7 @@ main ()
   gladLoadGL ();
   // Specify the viewport of OpenGL in the Window
   // In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
-  glViewport (0, 0, 800, 800);
+  // glViewport (0, 0, 800, 800);
 
   // Create Vertex Shader Object and get its reference
   GLuint vertexShader = glCreateShader (GL_VERTEX_SHADER);
@@ -257,11 +322,6 @@ main ()
   bool tetherX = false;
   bool tetherY = false;
 
-  // Test vals
-  float freq = 1;
-  float ampl = 1;
-  float phase = 0;
-
   // Sim vals
   bool simPlaying = true;
 
@@ -272,7 +332,7 @@ main ()
   std::cout << "OpenGL Vendor: " << vendor << std::endl;
   std::cout << "OpenGL Renderer: " << renderer << std::endl;
 
-  // glfwSwapInterval(0);
+  
 
   // Min and Max
   double minX
@@ -286,9 +346,18 @@ main ()
 
   int ray = 0;
 
+  bool enableVSync = true;
+
+  SetupSecondViewport();
+
   // Main while loop
   while (!glfwWindowShouldClose (window))
     {
+
+      glfwSwapInterval(enableVSync);
+
+      glViewport (0, 0, 800, 800);
+
       if (simPlaying)
         ray++;
       ray %= dataVector.size ();
@@ -312,11 +381,6 @@ main ()
           float y = (((dataVector[ray].y[i] - minY) / (maxY - minY)) * 2.0f)
                     - 1.0f;
 
-          // std::cout << "x: " << x << " y: " << y << std::endl;
-
-          // vertices[i * 3] = x;
-          // vertices[i * 3 + 1] = y;
-          // vertices[i * 3 + 2] = 0.0f;
           vertices.push_back (x);
           vertices.push_back (y);
           vertices.push_back (0.0f);
@@ -362,14 +426,6 @@ main ()
                     ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
                         | ImGuiWindowFlags_NoCollapse
                         | ImGuiWindowFlags_AlwaysAutoResize);
-      // // Text that appears in the window
-      // ImGui::Text("Hello there adventurer!");
-      // // Checkbox that appears in the window
-      // ImGui::Checkbox("Draw Triangle", &drawTriangle);
-      // // Slider that appears in the window
-      // ImGui::SliderFloat("Size", &size, 0.5f, 2.0f);
-      // // Fancy color editor that appears in the window
-      // ImGui::ColorEdit4("Color", color);
 
       // Main content
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
@@ -441,23 +497,20 @@ main ()
       ImGui::Separator ();
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
-      ImGui::Text ("Testing stuff");
+      ImGui::Text ("Speed of Sound");
       ImGui::SameLine ();
       ImGui::Dummy (ImVec2 (65.0f, 0.0f));
       ImGui::SameLine ();
       if (ImGui::Button ("Reset", ImVec2 (75, 0)))
         {
           // Code to execute when Button 1 is clicked
-          freq = 1.0f;
-          ampl = 1.0f;
-          phase = 0.0;
         }
-      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
-      ImGui::SliderFloat ("Freq", &freq, 0.0, 10.0);
-      ImGui::Spacing ();
-      ImGui::SliderFloat ("Ampl", &ampl, -1.0, 1.0);
-      ImGui::Spacing ();
-      ImGui::SliderFloat ("Phase", &phase, -1.0 * freq, 1.0 * freq);
+      // ImGui::Dummy (ImVec2 (0.0f, 10.0f));
+      // ImGui::SliderFloat ("Freq", &freq, 0.0, 10.0);
+      // ImGui::Spacing ();
+      // ImGui::SliderFloat ("Ampl", &ampl, -1.0, 1.0);
+      // ImGui::Spacing ();
+      // ImGui::SliderFloat ("Phase", &phase, -1.0 * freq, 1.0 * freq);
 
       // New section
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
@@ -466,12 +519,16 @@ main ()
 
       ImGui::Text ("Simulation Settings");
       ImGui::Spacing ();
-      ImGui::Text ("Sim Progress");
+      ImGui::Text ("Playback");
       ImGui::Spacing ();
       ImGui::Dummy (ImVec2 (12.5f, 0.0f));
       ImGui::SameLine ();
-      ImGui::SliderInt ("##playback", &ray, 0, dataVector.size () - 1, "",
-                        ImGuiSliderFlags_NoInput);
+      char *mySimProgress;
+      std::sprintf (
+          mySimProgress, "%d/%d", ray + 1,
+          dataVector.size ()); 
+      ImGui::SliderInt ("##playback", &ray, 0, dataVector.size () - 1,
+                        mySimProgress, ImGuiSliderFlags_NoInput);
       ImGui::Spacing ();
 
       ImGui::Dummy (ImVec2 (21.5f, 0.0f));
@@ -497,14 +554,20 @@ main ()
           ray = (ray >= dataVector.size ()) ? dataVector.size () - 1 : ray;
         }
       ImGui::EndDisabled ();
+      ImGui::Spacing ();
+      ImGui::Text ("Simulation Characteristics");
+      ImGui::Spacing ();
+      ImGui::Text ("Vertices:        %d", dataVector[ray].vertices);
+      ImGui::Spacing ();
+      ImGui::Text ("Top Bounces:     %d", dataVector[ray].top_bounce);
+      ImGui::Spacing ();
+      ImGui::Text ("Bottom Bounce:   %d", dataVector[ray].bottom_bounce);
 
       // Add text anchored to the bottom of the side panel
       ImGui::SetCursorPosY (ImGui::GetWindowHeight ()
                             - (ImGui::GetStyle ().ItemSpacing.y + 58));
-
       // Center the buttons horizontally
       ImGui::SetCursorPosX ((ImGui::GetWindowWidth () - 200.0f) * 0.5f);
-
       // Add the first button
       if (ImGui::Button ("Export Simulation", ImVec2 (200, 0)))
         {
@@ -512,13 +575,16 @@ main ()
           std::cout << "Code to export simulation variables goes here"
                     << std::endl;
         }
-
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
       ImGui::Text ("FPS: ");
       ImGui::SameLine ();
       const char *myFPS = std::to_string (lastFrameCount).c_str ();
       ImGui::Text ("%s", myFPS);
+      ImGui::SameLine ();
+      ImGui::Dummy (ImVec2 (20.0, 0.0f));
+      ImGui::SameLine ();
+      ImGui::Checkbox ("Enable VSync", &enableVSync);
 
       // Ends the window
       ImGui::End ();
@@ -532,6 +598,13 @@ main ()
       // Renders the ImGUI elements
       ImGui::Render ();
       ImGui_ImplOpenGL3_RenderDrawData (ImGui::GetDrawData ());
+
+      glViewport (800, 0, 800, 800);
+
+      // Render the second OpenGL viewport
+      glUseProgram(secondShaderProgram);
+      glBindVertexArray(secondVAO);
+      glDrawArrays(GL_TRIANGLES, 0, 3);
 
       // Swap the back buffer with the front buffer
       glfwSwapBuffers (window);
