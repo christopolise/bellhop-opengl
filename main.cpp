@@ -20,7 +20,7 @@ const char *vertexShaderSource = "#version 330 core\n"
                                  "void main()\n"
                                  "{\n"
                                  "   gl_Position = vec4(size * aPos.x, size * "
-                                 "aPos.y, size * aPos.z, 1.0);\n"
+                                 "aPos.y * -1, size * aPos.z, 1.0);\n"
                                  "}\0";
 // Fragment Shader source code
 const char *fragmentShaderSource = "#version 330 core\n"
@@ -186,9 +186,15 @@ int
 main ()
 {
 
-  std::vector<Data> dataVector = readDataFromFile ("test.ray");
+  std::vector<Data> dataVector = readDataFromFile ("test_floor_E.ray");
 
   std::cout << dataVector.size () << std::endl;
+
+  std::cout << "VERT:\t" << dataVector[0].vertices << std::endl;
+  std::cout << "TOP:\t" << dataVector[0].top_bounce << std::endl;
+  std::cout << "BOT:\t" << dataVector[0].bottom_bounce << std::endl;
+  std::cout << "X Sz:\t" << dataVector[0].x.size () << std::endl;
+  std::cout << "Y Sz:\t" << dataVector[0].y.size () << std::endl;
 
   // Initialize GLFW
   glfwInit ();
@@ -386,6 +392,7 @@ main ()
           vertices.push_back (0.0f);
         }
 
+
       // Specify the color of the background
       glClearColor (0.07f, 0.13f, 0.17f, 1.0f);
       // Clean the back buffer and assign the new color to it
@@ -523,9 +530,10 @@ main ()
       ImGui::Spacing ();
       ImGui::Dummy (ImVec2 (12.5f, 0.0f));
       ImGui::SameLine ();
-      char *mySimProgress;
+      char mySimProgress[20];
+	  std::cout << "HERE" << std::endl;
       std::sprintf (
-          mySimProgress, "%d/%d", ray + 1,
+          mySimProgress, "%d/%ld", ray + 1,
           dataVector.size ()); 
       ImGui::SliderInt ("##playback", &ray, 0, dataVector.size () - 1,
                         mySimProgress, ImGuiSliderFlags_NoInput);

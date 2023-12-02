@@ -1,0 +1,93 @@
+bellhopcxx
+
+bellhopcxx- arlpy
+ frequency =  2.5000e+04 Hz
+Dummy parameter NMedia = 1
+
+    Spline approximation to SSP
+    Attenuation units: dB/wavelength
+    THORP volume attenuation added
+    VACUUM
+
+  Depth =   3.00e+01  m
+
+Sound speed profile:
+      z         alphaR      betaR     rho        alphaI     betaI
+     (m)         (m/s)      (m/s)   (g/cm^3)      (m/s)     (m/s)
+0.00e+00 1.54e+03 0.00e+00 1.00e+00 0.0000e+00 0.0000e+00
+1.00e+01 1.53e+03 0.00e+00 1.00e+00 0.0000e+00 0.0000e+00
+2.00e+01 1.53e+03 0.00e+00 1.00e+00 0.0000e+00 0.0000e+00
+2.50e+01 1.53e+03 0.00e+00 1.00e+00 0.0000e+00 0.0000e+00
+3.00e+01 1.54e+03 0.00e+00 1.00e+00 0.0000e+00 0.0000e+00
+
+ RMS roughness =  0.000e+00
+    Bathymetry file selected
+    ACOUSTO-ELASTIC half-space
+  3.00e+01   1.45e+03   0.00e+00 1.20e+00 1.0000e+00 0.0000e+00
+
+__________________________________________________________________________
+
+   Number of Source   z-coordinates, Sz = 1
+   Source   z-coordinates, Sz (m)
+     1.500000e+01 
+
+
+__________________________________________________________________________
+
+   Number of Receiver z-coordinates, Rz = 1
+   Receiver z-coordinates, Rz (m)
+     1.000000e+01 
+
+
+__________________________________________________________________________
+
+   Number of Receiver r-coordinates, Rr = 1
+   Receiver r-coordinates, Rr (km)
+     1.000000e+00 
+
+
+Ray trace run
+Geometric hat beams in Cartesian coordinates
+Point source (cylindrical coordinates)
+Rectilinear receiver grid: Receivers at Rr[:] x Rz[:]
+__________________________________________________________________________
+
+   Number of beams in elevation   = 50
+   Beam take-off angles (degrees)
+ -8.000000e+01  -7.673469e+01  -7.346939e+01  -7.020408e+01  -6.693878e+01 
+ -6.367347e+01  -6.040816e+01  -5.714286e+01  -5.387755e+01  -5.061224e+01 
+...   8.000000e+01
+
+__________________________________________________________________________
+
+
+ Step length,       deltas =  3.0000e+00 m
+
+Maximum ray depth, Box.y  =  3.0300e+01 m
+Maximum ray range, Box.x  =  1.0100e+00km
+
+Geometric hat beams
+No beam shift in effect
+
+ Step length,       deltas = 3.0000e+00 m (automatically selected)
+Piecewise linear interpolation
+Number of altimetry points = 2
+
+ Range (km)  Depth (m)
+__________________________________________________________________________
+
+Using bottom-bathymetry file
+Piecewise linear interpolation
+Number of bathymetry points = 5
+Short format (bathymetry only)
+
+ Range (km)  Depth (m)
+0.000e+00 3.000e+01
+3.000e-01 2.000e+01
+1.000e+00 2.500e+01
+Number of source beam pattern points 2
+
+ Angle (degrees)  Power (dB)
+-1.800e+02 0.000e+00
+1.800e+02 0.000e+00
+
