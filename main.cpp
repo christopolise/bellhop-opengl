@@ -19,61 +19,58 @@
 FT_Library ft;
 FT_Face face;
 
-void initFreeType() {
-    if (FT_Init_FreeType(&ft)) {
-        std::cerr << "Error initializing FreeType" << std::endl;
-        exit(EXIT_FAILURE);
+void
+initFreeType ()
+{
+  if (FT_Init_FreeType (&ft))
+    {
+      std::cerr << "Error initializing FreeType" << std::endl;
+      exit (EXIT_FAILURE);
     }
 
-    if (FT_New_Face(ft, "/usr/share/fonts/TTF/DejaVuSans-Bold.ttf", 0, &face)) {
-        std::cerr << "Error loading font" << std::endl;
-        exit(EXIT_FAILURE);
+  if (FT_New_Face (ft, "/usr/share/fonts/TTF/DejaVuSans-Bold.ttf", 0, &face))
+    {
+      std::cerr << "Error loading font" << std::endl;
+      exit (EXIT_FAILURE);
     }
 
-    FT_Set_Pixel_Sizes(face, 0, 48);
+  FT_Set_Pixel_Sizes (face, 0, 48);
 }
 
-void render_text(const char *text, float x, float y, float sx, float sy) {
+void
+render_text (const char *text, float x, float y, float sx, float sy)
+{
   const char *p;
 
-  for(p = text; *p; p++) {
-    if (FT_Load_Char(face, *p, FT_LOAD_RENDER))
-      continue;
+  for (p = text; *p; p++)
+    {
+      if (FT_Load_Char (face, *p, FT_LOAD_RENDER))
+        continue;
 
-    FT_GlyphSlot g = face->glyph;
+      FT_GlyphSlot g = face->glyph;
 
-    glTexImage2D(
-      GL_TEXTURE_2D,
-      0,
-      GL_RED,
-      g->bitmap.width,
-      g->bitmap.rows,
-      0,
-      GL_RED,
-      GL_UNSIGNED_BYTE,
-      g->bitmap.buffer
-    );
+      glTexImage2D (GL_TEXTURE_2D, 0, GL_RED, g->bitmap.width, g->bitmap.rows,
+                    0, GL_RED, GL_UNSIGNED_BYTE, g->bitmap.buffer);
 
-    float x2 = x + g->bitmap_left * sx;
-    float y2 = -y - g->bitmap_top * sy;
-    float w = g->bitmap.width * sx;
-    float h = g->bitmap.rows * sy;
+      float x2 = x + g->bitmap_left * sx;
+      float y2 = -y - g->bitmap_top * sy;
+      float w = g->bitmap.width * sx;
+      float h = g->bitmap.rows * sy;
 
-    GLfloat box[4][4] = {
-      {x2,     -y2    , 0, 0},
-      {x2 + w, -y2    , 1, 0},
-      {x2,     -y2 - h, 0, 1},
-      {x2 + w, -y2 - h, 1, 1},
-    };
+      GLfloat box[4][4] = {
+        { x2, -y2, 0, 0 },
+        { x2 + w, -y2, 1, 0 },
+        { x2, -y2 - h, 0, 1 },
+        { x2 + w, -y2 - h, 1, 1 },
+      };
 
-    glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+      glBufferData (GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
+      glDrawArrays (GL_TRIANGLE_STRIP, 0, 4);
 
-    x += (g->advance.x / 64) * sx;
-    y += (g->advance.y / 64) * sy;
-  }
+      x += (g->advance.x / 64) * sx;
+      y += (g->advance.y / 64) * sy;
+    }
 }
-
 
 // Vertex Shader source code
 const char *vertexShaderSource = "#version 330 core\n"
@@ -94,20 +91,22 @@ const char *fragmentShaderSource = "#version 330 core\n"
                                    "}\n\0";
 
 // Second Vertex Shader source code
-const char *secondVertexShaderSource = "#version 330 core\n"
-                                       "layout (location = 0) in vec3 aPos;\n"
-                                       "void main()\n"
-                                       "{\n"
-                                       "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-                                       "}\0";
+const char *secondVertexShaderSource
+    = "#version 330 core\n"
+      "layout (location = 0) in vec3 aPos;\n"
+      "void main()\n"
+      "{\n"
+      "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+      "}\0";
 
 // Second Fragment Shader source code
-const char *secondFragmentShaderSource = "#version 330 core\n"
-                                         "out vec4 FragColor;\n"
-                                         "void main()\n"
-                                         "{\n"
-                                         "   FragColor = vec4(0.0, 1.0, 0.0, 1.0);\n"
-                                         "}\n\0";
+const char *secondFragmentShaderSource
+    = "#version 330 core\n"
+      "out vec4 FragColor;\n"
+      "void main()\n"
+      "{\n"
+      "   FragColor = vec4(0.0, 1.0, 0.0, 1.0);\n"
+      "}\n\0";
 
 GLuint secondShaderProgram, secondVAO, secondVBO;
 
@@ -196,52 +195,53 @@ readDataFromFile (const std::string &filename)
   return dataVector;
 }
 
-void SetupSecondViewport() {
-    // Create Second Vertex Shader Object and get its reference
-    GLuint secondVertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(secondVertexShader, 1, &secondVertexShaderSource, NULL);
-    glCompileShader(secondVertexShader);
+void
+SetupSecondViewport ()
+{
+  // Create Second Vertex Shader Object and get its reference
+  GLuint secondVertexShader = glCreateShader (GL_VERTEX_SHADER);
+  glShaderSource (secondVertexShader, 1, &secondVertexShaderSource, NULL);
+  glCompileShader (secondVertexShader);
 
-    // Create Second Fragment Shader Object and get its reference
-    GLuint secondFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(secondFragmentShader, 1, &secondFragmentShaderSource, NULL);
-    glCompileShader(secondFragmentShader);
+  // Create Second Fragment Shader Object and get its reference
+  GLuint secondFragmentShader = glCreateShader (GL_FRAGMENT_SHADER);
+  glShaderSource (secondFragmentShader, 1, &secondFragmentShaderSource, NULL);
+  glCompileShader (secondFragmentShader);
 
-    // Create Second Shader Program Object and get its reference
-    secondShaderProgram = glCreateProgram();
-    glAttachShader(secondShaderProgram, secondVertexShader);
-    glAttachShader(secondShaderProgram, secondFragmentShader);
-    glLinkProgram(secondShaderProgram);
+  // Create Second Shader Program Object and get its reference
+  secondShaderProgram = glCreateProgram ();
+  glAttachShader (secondShaderProgram, secondVertexShader);
+  glAttachShader (secondShaderProgram, secondFragmentShader);
+  glLinkProgram (secondShaderProgram);
 
-    // Delete the now useless Second Vertex and Fragment Shader objects
-    glDeleteShader(secondVertexShader);
-    glDeleteShader(secondFragmentShader);
+  // Delete the now useless Second Vertex and Fragment Shader objects
+  glDeleteShader (secondVertexShader);
+  glDeleteShader (secondFragmentShader);
 
-    // Create Second Vertex Array Object and Vertex Buffer Object
-    glGenVertexArrays(1, &secondVAO);
-    glGenBuffers(1, &secondVBO);
+  // Create Second Vertex Array Object and Vertex Buffer Object
+  glGenVertexArrays (1, &secondVAO);
+  glGenBuffers (1, &secondVBO);
 
-    // Bind the Second VAO and VBO
-    glBindVertexArray(secondVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, secondVBO);
+  // Bind the Second VAO and VBO
+  glBindVertexArray (secondVAO);
+  glBindBuffer (GL_ARRAY_BUFFER, secondVBO);
 
-    // Define the vertices of a simple triangle
-    GLfloat secondVertices[] = {
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
-    };
+  // Define the vertices of a simple triangle
+  GLfloat secondVertices[]
+      = { -0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f };
 
-    // Introduce the vertices into the Second VBO
-    glBufferData(GL_ARRAY_BUFFER, sizeof(secondVertices), secondVertices, GL_STATIC_DRAW);
+  // Introduce the vertices into the Second VBO
+  glBufferData (GL_ARRAY_BUFFER, sizeof (secondVertices), secondVertices,
+                GL_STATIC_DRAW);
 
-    // Configure the Second Vertex Attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
+  // Configure the Second Vertex Attribute
+  glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof (float),
+                         (void *)0);
+  glEnableVertexAttribArray (0);
 
-    // Unbind the Second VAO and VBO
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
+  // Unbind the Second VAO and VBO
+  glBindBuffer (GL_ARRAY_BUFFER, 0);
+  glBindVertexArray (0);
 }
 
 int
@@ -391,7 +391,9 @@ main ()
   bool tetherY = false;
 
   // Sim vals
+  bool showPlayback = true;
   bool simPlaying = true;
+  bool drawingRays = true;
 
   const char *vendor
       = reinterpret_cast<const char *> (glGetString (GL_VENDOR));
@@ -400,52 +402,64 @@ main ()
   std::cout << "OpenGL Vendor: " << vendor << std::endl;
   std::cout << "OpenGL Renderer: " << renderer << std::endl;
 
-  initFreeType();
+  initFreeType ();
 
   int ray = 0;
 
   bool enableVSync = true;
 
-  SetupSecondViewport();
+  SetupSecondViewport ();
 
   // Find set min and max
   double minX = 10000;
   double maxX = 0;
   double minY = 10000;
   double maxY = 0;
-  for(int i = 0; i < dataVector.size(); i++) {
-    double temp_minX = *std::min_element (dataVector[i].x.begin (), dataVector[i].x.end ());
-    double temp_maxX = *std::max_element (dataVector[i].x.begin (), dataVector[i].x.end ());
-    double temp_minY = *std::min_element (dataVector[i].y.begin (), dataVector[i].y.end ());
-    double temp_maxY = *std::max_element (dataVector[i].y.begin (), dataVector[i].y.end ());
+  for (int i = 0; i < dataVector.size (); i++)
+    {
+      double temp_minX = *std::min_element (dataVector[i].x.begin (),
+                                            dataVector[i].x.end ());
+      double temp_maxX = *std::max_element (dataVector[i].x.begin (),
+                                            dataVector[i].x.end ());
+      double temp_minY = *std::min_element (dataVector[i].y.begin (),
+                                            dataVector[i].y.end ());
+      double temp_maxY = *std::max_element (dataVector[i].y.begin (),
+                                            dataVector[i].y.end ());
 
-    if(temp_minX < minX) minX = temp_minX;
-    if(temp_maxX > maxX) maxX = temp_maxX;
-    if(temp_minY < minY) minY = temp_minY;
-    if(temp_maxY > maxY) maxY = temp_maxY;
-  }
+      if (temp_minX < minX)
+        minX = temp_minX;
+      if (temp_maxX > maxX)
+        maxX = temp_maxX;
+      if (temp_minY < minY)
+        minY = temp_minY;
+      if (temp_maxY > maxY)
+        maxY = temp_maxY;
+    }
+
+  // Specify the color of the background
+  glClearColor (0.07f, 0.13f, 0.17f, 1.0f);
+  // Clean the back buffer and assign the new color to it
+  glClear (GL_COLOR_BUFFER_BIT);
 
   // Main while loop
   while (!glfwWindowShouldClose (window))
     {
 
-      glfwSwapInterval(enableVSync);
+      if (showPlayback)
+        glfwSwapInterval (enableVSync);
+      else
+        glfwSwapInterval (0);
 
       glViewport (0, 0, 800, 800);
+
+      // Tell OpenGL a new frame is about to begin
+      ImGui_ImplOpenGL3_NewFrame ();
+      ImGui_ImplGlfw_NewFrame ();
+      ImGui::NewFrame ();
 
       if (simPlaying)
         ray++;
       ray %= dataVector.size ();
-
-      // Min and Max
-      // double minX
-      //     = *std::min_element (dataVector[ray].x.begin (), dataVector[ray].x.end ());
-      // double maxX
-      //     = *std::max_element (dataVector[ray].x.begin (), dataVector[ray].x.end ());
-      // double minY
-      //     = *std::min_element (dataVector[ray].y.begin (), dataVector[ray].y.end ());
-      // double maxY
-      //     = *std::max_element (dataVector[ray].y.begin (), dataVector[ray].y.end ());
 
       // Measure speed
       double currentTime = glfwGetTime ();
@@ -471,41 +485,61 @@ main ()
           vertices.push_back (0.0f);
         }
 
+      if (showPlayback)
+        {
+          // Specify the color of the background
+          glClearColor (0.07f, 0.13f, 0.17f, 1.0f);
+          // Clean the back buffer and assign the new color to it
+          glClear (GL_COLOR_BUFFER_BIT);
 
-      // Specify the color of the background
-      glClearColor (0.07f, 0.13f, 0.17f, 1.0f);
-      // Clean the back buffer and assign the new color to it
-      glClear (GL_COLOR_BUFFER_BIT);
+          // Tell OpenGL which Shader Program we want to use
+          glUseProgram (shaderProgram);
+          // Bind the VAO so OpenGL knows to use it
+          glBindVertexArray (VAO);
 
-      // Tell OpenGL a new frame is about to begin
-      ImGui_ImplOpenGL3_NewFrame ();
-      ImGui_ImplGlfw_NewFrame ();
-      ImGui::NewFrame ();
+          // Bind the VBO specifying it's a GL_ARRAY_BUFFER
+          glBindBuffer (GL_ARRAY_BUFFER, VBO);
+          // Introduce the updated vertices into the VBO
+          // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices,
+          // GL_STATIC_DRAW);
+          glBufferData (GL_ARRAY_BUFFER, vertices.size () * sizeof (GLfloat),
+                        vertices.data (), GL_STATIC_DRAW);
 
-      // Tell OpenGL which Shader Program we want to use
-      glUseProgram (shaderProgram);
-      // Bind the VAO so OpenGL knows to use it
-      glBindVertexArray (VAO);
+          // Draw the triangle using the GL_TRIANGLES primitive
+          glDrawArrays (GL_LINE_STRIP, 0, dataVector[ray].vertices);
+        }
+      else
+        {
+          if (drawingRays)
+            {
+              // Tell OpenGL which Shader Program we want to use
+              glUseProgram (shaderProgram);
+              // Bind the VAO so OpenGL knows to use it
+              glBindVertexArray (VAO);
 
-      // Bind the VBO specifying it's a GL_ARRAY_BUFFER
-      glBindBuffer (GL_ARRAY_BUFFER, VBO);
-      // Introduce the updated vertices into the VBO
-      // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices,
-      // GL_STATIC_DRAW);
-      glBufferData (GL_ARRAY_BUFFER, vertices.size () * sizeof (GLfloat),
-                    vertices.data (), GL_STATIC_DRAW);
-      // glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(GLfloat),
-      // vertices.data());
+              // Bind the VBO specifying it's a GL_ARRAY_BUFFER
+              glBindBuffer (GL_ARRAY_BUFFER, VBO);
+              // Introduce the updated vertices into the VBO
+              // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices,
+              // GL_STATIC_DRAW);
+              glBufferData (GL_ARRAY_BUFFER,
+                            vertices.size () * sizeof (GLfloat),
+                            vertices.data (), GL_STATIC_DRAW);
 
-      // Draw the triangle using the GL_TRIANGLES primitive
-      glDrawArrays (GL_LINE_STRIP, 0, dataVector[ray].vertices);
+              // Draw the triangle using the GL_TRIANGLES primitive
+              glDrawArrays (GL_LINE_STRIP, 0, dataVector[ray].vertices);
+
+              // if (ray == dataVector.size () - 1)
+              //   drawingRays = false;
+            }
+        }
 
       if (tetherX)
         txStartPosX = rxStartPosX;
       if (tetherY)
         txStartPosY = rxStartPosY;
 
-      render_text("Hello", 0.0f, 0.0f, 1.0f, 1.0f);
+      render_text ("Hello", 0.0f, 0.0f, 1.0f, 1.0f);
 
       ImGui::SetNextWindowPos (ImVec2 (io.DisplaySize.x - 265, 0));
       ImGui::SetNextWindowSize (ImVec2 (265, io.DisplaySize.y));
@@ -607,49 +641,53 @@ main ()
 
       ImGui::Text ("Simulation Settings");
       ImGui::Spacing ();
-      ImGui::Text ("Playback");
-      ImGui::Spacing ();
-      ImGui::Dummy (ImVec2 (12.5f, 0.0f));
-      ImGui::SameLine ();
-      char mySimProgress[20];
-      std::sprintf (
-          mySimProgress, "%d/%ld", ray + 1,
-          dataVector.size ()); 
-      ImGui::SliderInt ("##playback", &ray, 0, dataVector.size () - 1,
-                        mySimProgress, ImGuiSliderFlags_NoInput);
-      ImGui::Spacing ();
 
-      ImGui::Dummy (ImVec2 (21.5f, 0.0f));
-      ImGui::SameLine ();
-      ImGui::BeginDisabled (simPlaying);
-      if (ImGui::Button ("|<<", ImVec2 (50, 0)))
+      ImGui::Checkbox ("Show Playback", &showPlayback);
+      if (showPlayback)
         {
-          ray--;
-          ray = (ray < 0) ? 0 : ray;
+          ImGui::Text ("Playback");
+          ImGui::Spacing ();
+          ImGui::Dummy (ImVec2 (12.5f, 0.0f));
+          ImGui::SameLine ();
+          char mySimProgress[20];
+          std::sprintf (mySimProgress, "%d/%ld", ray + 1, dataVector.size ());
+          ImGui::SliderInt ("##playback", &ray, 0, dataVector.size () - 1,
+                            mySimProgress, ImGuiSliderFlags_NoInput);
+          ImGui::Spacing ();
+
+          ImGui::Dummy (ImVec2 (21.5f, 0.0f));
+          ImGui::SameLine ();
+          ImGui::BeginDisabled (simPlaying);
+          if (ImGui::Button ("|<<", ImVec2 (50, 0)))
+            {
+              ray--;
+              ray = (ray < 0) ? 0 : ray;
+            }
+          ImGui::EndDisabled ();
+          ImGui::SameLine ();
+          if (ImGui::Button (simPlaying ? "||" : "|>", ImVec2 (75, 0)))
+            {
+              // Play/Pause
+              simPlaying = !simPlaying;
+            }
+          ImGui::SameLine ();
+          ImGui::BeginDisabled (simPlaying);
+          if (ImGui::Button (">>|", ImVec2 (50, 0)))
+            {
+              ray++;
+              ray = (ray >= dataVector.size ()) ? dataVector.size () - 1 : ray;
+            }
+          ImGui::EndDisabled ();
+          ImGui::Spacing ();
+          ImGui::Text ("Simulation Characteristics");
+          ImGui::Spacing ();
+          ImGui::Text ("Vertices:        %d", dataVector[ray].vertices);
+          ImGui::Spacing ();
+          ImGui::Text ("Top Bounces:     %d", dataVector[ray].top_bounce);
+          ImGui::Spacing ();
+          ImGui::Text ("Bottom Bounce:   %d", dataVector[ray].bottom_bounce);
         }
-      ImGui::EndDisabled ();
-      ImGui::SameLine ();
-      if (ImGui::Button (simPlaying ? "||" : "|>", ImVec2 (75, 0)))
-        {
-          // Play/Pause
-          simPlaying = !simPlaying;
-        }
-      ImGui::SameLine ();
-      ImGui::BeginDisabled (simPlaying);
-      if (ImGui::Button (">>|", ImVec2 (50, 0)))
-        {
-          ray++;
-          ray = (ray >= dataVector.size ()) ? dataVector.size () - 1 : ray;
-        }
-      ImGui::EndDisabled ();
-      ImGui::Spacing ();
-      ImGui::Text ("Simulation Characteristics");
-      ImGui::Spacing ();
-      ImGui::Text ("Vertices:        %d", dataVector[ray].vertices);
-      ImGui::Spacing ();
-      ImGui::Text ("Top Bounces:     %d", dataVector[ray].top_bounce);
-      ImGui::Spacing ();
-      ImGui::Text ("Bottom Bounce:   %d", dataVector[ray].bottom_bounce);
+      
 
       // Add text anchored to the bottom of the side panel
       ImGui::SetCursorPosY (ImGui::GetWindowHeight ()
@@ -690,9 +728,9 @@ main ()
       glViewport (800, 0, 800, 800);
 
       // Render the second OpenGL viewport
-      glUseProgram(secondShaderProgram);
-      glBindVertexArray(secondVAO);
-      glDrawArrays(GL_TRIANGLES, 0, 3);
+      glUseProgram (secondShaderProgram);
+      glBindVertexArray (secondVAO);
+      glDrawArrays (GL_TRIANGLES, 0, 3);
 
       // Swap the back buffer with the front buffer
       glfwSwapBuffers (window);
