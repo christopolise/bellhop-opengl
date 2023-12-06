@@ -5,6 +5,7 @@
 #include <glad/glad.h>
 
 #include <GLFW/glfw3.h>
+#include <ft2build.h>
 
 #include <algorithm>
 #include <fstream>
@@ -12,6 +13,67 @@
 #include <math.h>
 #include <sstream>
 #include <vector>
+
+#include FT_FREETYPE_H
+
+FT_Library ft;
+FT_Face face;
+
+void initFreeType() {
+    if (FT_Init_FreeType(&ft)) {
+        std::cerr << "Error initializing FreeType" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    if (FT_New_Face(ft, "/usr/share/fonts/TTF/DejaVuSans-Bold.ttf", 0, &face)) {
+        std::cerr << "Error loading font" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    FT_Set_Pixel_Sizes(face, 0, 48);
+}
+
+void render_text(const char *text, float x, float y, float sx, float sy) {
+  const char *p;
+
+  for(p = text; *p; p++) {
+    if (FT_Load_Char(face, *p, FT_LOAD_RENDER))
+      continue;
+
+    FT_GlyphSlot g = face->glyph;
+
+    glTexImage2D(
+      GL_TEXTURE_2D,
+      0,
+      GL_RED,
+      g->bitmap.width,
+      g->bitmap.rows,
+      0,
+      GL_RED,
+      GL_UNSIGNED_BYTE,
+      g->bitmap.buffer
+    );
+
+    float x2 = x + g->bitmap_left * sx;
+    float y2 = -y - g->bitmap_top * sy;
+    float w = g->bitmap.width * sx;
+    float h = g->bitmap.rows * sy;
+
+    GLfloat box[4][4] = {
+      {x2,     -y2    , 0, 0},
+      {x2 + w, -y2    , 1, 0},
+      {x2,     -y2 - h, 0, 1},
+      {x2 + w, -y2 - h, 1, 1},
+    };
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+    x += (g->advance.x / 64) * sx;
+    y += (g->advance.y / 64) * sy;
+  }
+}
+
 
 // Vertex Shader source code
 const char *vertexShaderSource = "#version 330 core\n"
@@ -338,23 +400,30 @@ main ()
   std::cout << "OpenGL Vendor: " << vendor << std::endl;
   std::cout << "OpenGL Renderer: " << renderer << std::endl;
 
-  
-
-  // Min and Max
-  double minX
-      = *std::min_element (dataVector[0].x.begin (), dataVector[0].x.end ());
-  double maxX
-      = *std::max_element (dataVector[0].x.begin (), dataVector[0].x.end ());
-  double minY
-      = *std::min_element (dataVector[0].y.begin (), dataVector[0].y.end ());
-  double maxY
-      = *std::max_element (dataVector[0].y.begin (), dataVector[0].y.end ());
+  initFreeType();
 
   int ray = 0;
 
   bool enableVSync = true;
 
   SetupSecondViewport();
+
+  // Find set min and max
+  double minX = 10000;
+  double maxX = 0;
+  double minY = 10000;
+  double maxY = 0;
+  for(int i = 0; i < dataVector.size(); i++) {
+    double temp_minX = *std::min_element (dataVector[i].x.begin (), dataVector[i].x.end ());
+    double temp_maxX = *std::max_element (dataVector[i].x.begin (), dataVector[i].x.end ());
+    double temp_minY = *std::min_element (dataVector[i].y.begin (), dataVector[i].y.end ());
+    double temp_maxY = *std::max_element (dataVector[i].y.begin (), dataVector[i].y.end ());
+
+    if(temp_minX < minX) minX = temp_minX;
+    if(temp_maxX > maxX) maxX = temp_maxX;
+    if(temp_minY < minY) minY = temp_minY;
+    if(temp_maxY > maxY) maxY = temp_maxY;
+  }
 
   // Main while loop
   while (!glfwWindowShouldClose (window))
@@ -367,6 +436,16 @@ main ()
       if (simPlaying)
         ray++;
       ray %= dataVector.size ();
+
+      // Min and Max
+      // double minX
+      //     = *std::min_element (dataVector[ray].x.begin (), dataVector[ray].x.end ());
+      // double maxX
+      //     = *std::max_element (dataVector[ray].x.begin (), dataVector[ray].x.end ());
+      // double minY
+      //     = *std::min_element (dataVector[ray].y.begin (), dataVector[ray].y.end ());
+      // double maxY
+      //     = *std::max_element (dataVector[ray].y.begin (), dataVector[ray].y.end ());
 
       // Measure speed
       double currentTime = glfwGetTime ();
@@ -425,6 +504,8 @@ main ()
         txStartPosX = rxStartPosX;
       if (tetherY)
         txStartPosY = rxStartPosY;
+
+      render_text("Hello", 0.0f, 0.0f, 1.0f, 1.0f);
 
       ImGui::SetNextWindowPos (ImVec2 (io.DisplaySize.x - 265, 0));
       ImGui::SetNextWindowSize (ImVec2 (265, io.DisplaySize.y));
@@ -531,7 +612,6 @@ main ()
       ImGui::Dummy (ImVec2 (12.5f, 0.0f));
       ImGui::SameLine ();
       char mySimProgress[20];
-	  std::cout << "HERE" << std::endl;
       std::sprintf (
           mySimProgress, "%d/%ld", ray + 1,
           dataVector.size ()); 
