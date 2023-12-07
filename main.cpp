@@ -248,16 +248,21 @@ readDataFromFile (const std::string &filename)
   return dataVector;
 }
 
-void 
-insertPoint(std::vector<double>& xCoords, std::vector<double>& yCoords, double newX, double newY) {
+void insertOrUpdatePoint(std::vector<double>& xCoords, std::vector<double>& yCoords, double newX, double newY) {
     auto it = std::lower_bound(xCoords.begin(), xCoords.end(), newX);
 
-    // Calculate the index where the new x should be inserted
+    // Calculate the index where the new x should be inserted or updated
     size_t index = std::distance(xCoords.begin(), it);
 
-    // Insert the new x and y coordinates at the calculated index
-    xCoords.insert(it, newX);
-    yCoords.insert(yCoords.begin() + index, newY);
+    // Check if the x-coordinate already exists
+    if (it != xCoords.end() && *it == newX) {
+        // If it exists, overwrite the corresponding y-coordinate
+        yCoords[index] = newY;
+    } else {
+        // If it doesn't exist, insert the new x and y coordinates at the calculated index
+        xCoords.insert(it, newX);
+        yCoords.insert(yCoords.begin() + index, newY);
+    }
 }
 
 void
@@ -702,6 +707,8 @@ main ()
             }
 
           sosVertices.clear ();
+          xSOSCurve.clear ();
+          ySOSCurve.clear ();
           cubicSpline (sosVectorX, sosVectorY, 100, xSOSCurve, ySOSCurve);
 
           double sosMinX
@@ -890,7 +897,7 @@ main ()
         {
           // Code to execute when Button 1 is clicked
           std::cout << "Code to add point goes here" << std::endl;
-          insertPoint (sosVectorX, sosVectorY, addSosX, addSosY);
+          insertOrUpdatePoint (sosVectorX, sosVectorY, addSosX, addSosY);
           splineDrawn = false;
         }
 
