@@ -9,7 +9,7 @@ Very rough draft
 ## Build
 ```bash
 mkdir bld
-g++ -o bld/test *.cpp includes/imgui/*.cpp *.c -lglfw -lGL -lm -I./includes
+g++ -o bld/test *.cpp includes/imgui/*.cpp *.c -I./includes -I/usr/include/freetype2/ -lglfw -lGL -lfreetype
 ```
 
 ## Run

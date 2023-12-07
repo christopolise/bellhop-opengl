@@ -10,9 +10,10 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <math.h>
 #include <sstream>
 #include <vector>
+
+#include "spline.h"
 
 #include FT_FREETYPE_H
 
@@ -91,7 +92,25 @@ const char *fragmentShaderSource = "#version 330 core\n"
                                    "}\n\0";
 
 // Second Vertex Shader source code
-const char *secondVertexShaderSource
+const char *sosVertexShaderSource
+    = "#version 330 core\n"
+      "layout (location = 0) in vec3 aPos;\n"
+      "void main()\n"
+      "{\n"
+      "   gl_Position = vec4(aPos.y, aPos.x * -1, aPos.z, 1.0);\n"
+      "}\0";
+
+// Second Fragment Shader source code
+const char *sosFragmentShaderSource
+    = "#version 330 core\n"
+      "out vec4 FragColor;\n"
+      "void main()\n"
+      "{\n"
+      "   FragColor = vec4(0.0, 1.0, 0.0, 1.0);\n"
+      "}\n\0";
+
+// Frame Vertex Shader source code
+const char *frameVertexShaderSource
     = "#version 330 core\n"
       "layout (location = 0) in vec3 aPos;\n"
       "void main()\n"
@@ -100,15 +119,36 @@ const char *secondVertexShaderSource
       "}\0";
 
 // Second Fragment Shader source code
-const char *secondFragmentShaderSource
+const char *frameFragmentShaderSource
     = "#version 330 core\n"
       "out vec4 FragColor;\n"
       "void main()\n"
       "{\n"
-      "   FragColor = vec4(0.0, 1.0, 0.0, 1.0);\n"
+      "   FragColor = vec4(0.9, 0.9, 0.9, 1.0);\n"
       "}\n\0";
 
-GLuint secondShaderProgram, secondVAO, secondVBO;
+// Frame Vertex Shader source code
+const char *floorVertexShaderSource
+    = "#version 330 core\n"
+      "layout (location = 0) in vec3 aPos;\n"
+      "void main()\n"
+      "{\n"
+      "   gl_Position = vec4(aPos.x, aPos.y * -1, aPos.z, 1.0);\n"
+      "}\0";
+
+// Second Fragment Shader source code
+const char *floorFragmentShaderSource
+    = "#version 330 core\n"
+      "out vec4 FragColor;\n"
+      "void main()\n"
+      "{\n"
+      "   FragColor = vec4(1.0, 1.0, 0.0, 1.0);\n"
+      "}\n\0";
+
+GLuint shaderProgram, VAO, VBO;
+GLuint sosShaderProgram, sosVAO, sosVBO;
+GLuint frameShaderProgram, frameVAO, frameVBO;
+GLuint floorShaderProgram, floorVAO, floorVBO;
 
 struct Data
 {
@@ -119,6 +159,19 @@ struct Data
   std::vector<double> x;
   std::vector<double> y;
 };
+
+void
+cubicSpline (const std::vector<double> &x, const std::vector<double> &y,
+             int resolution, std::vector<double> &x_interp,
+             std::vector<double> &y_interp)
+{
+  tk::spline s (x, y);
+  for (int i = 0; i < resolution; i++)
+    {
+      x_interp.push_back (x[0] + i * (x[x.size () - 1] - x[0]) / resolution);
+      y_interp.push_back (s (x_interp[i]));
+    }
+}
 
 int
 countItems (std::istringstream &iss)
@@ -196,43 +249,35 @@ readDataFromFile (const std::string &filename)
 }
 
 void
-SetupSecondViewport ()
+initRayDraw()
 {
-  // Create Second Vertex Shader Object and get its reference
-  GLuint secondVertexShader = glCreateShader (GL_VERTEX_SHADER);
-  glShaderSource (secondVertexShader, 1, &secondVertexShaderSource, NULL);
-  glCompileShader (secondVertexShader);
+// Create Second Vertex Shader Object and get its reference
+  GLuint vertexShader = glCreateShader (GL_VERTEX_SHADER);
+  glShaderSource (vertexShader, 1, &vertexShaderSource, NULL);
+  glCompileShader (vertexShader);
 
   // Create Second Fragment Shader Object and get its reference
-  GLuint secondFragmentShader = glCreateShader (GL_FRAGMENT_SHADER);
-  glShaderSource (secondFragmentShader, 1, &secondFragmentShaderSource, NULL);
-  glCompileShader (secondFragmentShader);
+  GLuint fragmentShader = glCreateShader (GL_FRAGMENT_SHADER);
+  glShaderSource (fragmentShader, 1, &fragmentShaderSource, NULL);
+  glCompileShader (fragmentShader);
 
   // Create Second Shader Program Object and get its reference
-  secondShaderProgram = glCreateProgram ();
-  glAttachShader (secondShaderProgram, secondVertexShader);
-  glAttachShader (secondShaderProgram, secondFragmentShader);
-  glLinkProgram (secondShaderProgram);
+  shaderProgram = glCreateProgram ();
+  glAttachShader (shaderProgram, vertexShader);
+  glAttachShader (shaderProgram, fragmentShader);
+  glLinkProgram (shaderProgram);
 
   // Delete the now useless Second Vertex and Fragment Shader objects
-  glDeleteShader (secondVertexShader);
-  glDeleteShader (secondFragmentShader);
+  glDeleteShader (vertexShader);
+  glDeleteShader (fragmentShader);
 
   // Create Second Vertex Array Object and Vertex Buffer Object
-  glGenVertexArrays (1, &secondVAO);
-  glGenBuffers (1, &secondVBO);
+  glGenVertexArrays (1, &VAO);
+  glGenBuffers (1, &VBO);
 
   // Bind the Second VAO and VBO
-  glBindVertexArray (secondVAO);
-  glBindBuffer (GL_ARRAY_BUFFER, secondVBO);
-
-  // Define the vertices of a simple triangle
-  GLfloat secondVertices[]
-      = { -0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f };
-
-  // Introduce the vertices into the Second VBO
-  glBufferData (GL_ARRAY_BUFFER, sizeof (secondVertices), secondVertices,
-                GL_STATIC_DRAW);
+  glBindVertexArray (VAO);
+  glBindBuffer (GL_ARRAY_BUFFER, VBO);
 
   // Configure the Second Vertex Attribute
   glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof (float),
@@ -244,11 +289,223 @@ SetupSecondViewport ()
   glBindVertexArray (0);
 }
 
+void
+initSOSDraw ()
+{
+  // Create Second Vertex Shader Object and get its reference
+  GLuint sosVertexShader = glCreateShader (GL_VERTEX_SHADER);
+  glShaderSource (sosVertexShader, 1, &sosVertexShaderSource, NULL);
+  glCompileShader (sosVertexShader);
+
+  // Create Second Fragment Shader Object and get its reference
+  GLuint sosFragmentShader = glCreateShader (GL_FRAGMENT_SHADER);
+  glShaderSource (sosFragmentShader, 1, &sosFragmentShaderSource, NULL);
+  glCompileShader (sosFragmentShader);
+
+  // Create Second Shader Program Object and get its reference
+  sosShaderProgram = glCreateProgram ();
+  glAttachShader (sosShaderProgram, sosVertexShader);
+  glAttachShader (sosShaderProgram, sosFragmentShader);
+  glLinkProgram (sosShaderProgram);
+
+  // Delete the now useless Second Vertex and Fragment Shader objects
+  glDeleteShader (sosVertexShader);
+  glDeleteShader (sosFragmentShader);
+
+  // Create Second Vertex Array Object and Vertex Buffer Object
+  glGenVertexArrays (1, &sosVAO);
+  glGenBuffers (1, &sosVBO);
+
+  // Bind the Second VAO and VBO
+  glBindVertexArray (sosVAO);
+  glBindBuffer (GL_ARRAY_BUFFER, sosVBO);
+
+  // Configure the Second Vertex Attribute
+  glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof (float),
+                         (void *)0);
+  glEnableVertexAttribArray (0);
+
+  // Unbind the Second VAO and VBO
+  glBindBuffer (GL_ARRAY_BUFFER, 0);
+  glBindVertexArray (0);
+}
+
+void
+initFrameDraw ()
+{
+  // Create Second Vertex Shader Object and get its reference
+  GLuint frameVertexShader = glCreateShader (GL_VERTEX_SHADER);
+  glShaderSource (frameVertexShader, 1, &frameVertexShaderSource, NULL);
+  glCompileShader (frameVertexShader);
+
+  // Create Second Fragment Shader Object and get its reference
+  GLuint frameFragmentShader = glCreateShader (GL_FRAGMENT_SHADER);
+  glShaderSource (frameFragmentShader, 1, &frameFragmentShaderSource, NULL);
+  glCompileShader (frameFragmentShader);
+
+  // Create Second Shader Program Object and get its reference
+  frameShaderProgram = glCreateProgram ();
+  glAttachShader (frameShaderProgram, frameVertexShader);
+  glAttachShader (frameShaderProgram, frameFragmentShader);
+  glLinkProgram (frameShaderProgram);
+
+  // Delete the now useless Second Vertex and Fragment Shader objects
+  glDeleteShader (frameVertexShader);
+  glDeleteShader (frameFragmentShader);
+
+  // Create Second Vertex Array Object and Vertex Buffer Object
+  glGenVertexArrays (1, &frameVAO);
+  glGenBuffers (1, &frameVBO);
+
+  // Bind the Second VAO and VBO
+  glBindVertexArray (frameVAO);
+  glBindBuffer (GL_ARRAY_BUFFER, frameVBO);
+
+  // Configure the Second Vertex Attribute
+  glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof (float),
+                         (void *)0);
+  glEnableVertexAttribArray (0);
+
+  // Unbind the Second VAO and VBO
+  glBindBuffer (GL_ARRAY_BUFFER, 0);
+  glBindVertexArray (0);
+}
+
+void
+initFloorDraw ()
+{
+  // Create Second Vertex Shader Object and get its reference
+  GLuint floorVertexShader = glCreateShader (GL_VERTEX_SHADER);
+  glShaderSource (floorVertexShader, 1, &floorVertexShaderSource, NULL);
+  glCompileShader (floorVertexShader);
+
+  // Create Second Fragment Shader Object and get its reference
+  GLuint floorFragmentShader = glCreateShader (GL_FRAGMENT_SHADER);
+  glShaderSource (floorFragmentShader, 1, &floorFragmentShaderSource, NULL);
+  glCompileShader (floorFragmentShader);
+
+  // Create Second Shader Program Object and get its reference
+  floorShaderProgram = glCreateProgram ();
+  glAttachShader (floorShaderProgram, floorVertexShader);
+  glAttachShader (floorShaderProgram, floorFragmentShader);
+  glLinkProgram (floorShaderProgram);
+
+  // Delete the now useless Second Vertex and Fragment Shader objects
+  glDeleteShader (floorVertexShader);
+  glDeleteShader (floorFragmentShader);
+
+  // Create Second Vertex Array Object and Vertex Buffer Object
+  glGenVertexArrays (1, &floorVAO);
+  glGenBuffers (1, &floorVBO);
+
+  // Bind the Second VAO and VBO
+  glBindVertexArray (floorVAO);
+  glBindBuffer (GL_ARRAY_BUFFER, floorVBO);
+
+  // Configure the Second Vertex Attribute
+  glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof (float),
+                         (void *)0);
+  glEnableVertexAttribArray (0);
+
+  // Unbind the Second VAO and VBO
+  glBindBuffer (GL_ARRAY_BUFFER, 0);
+  glBindVertexArray (0);
+}
+
+void
+drawFrame(std::vector<GLfloat> frameVertices)
+{
+  glUseProgram (frameShaderProgram);
+  glBindVertexArray (frameVAO);
+  glBindBuffer (GL_ARRAY_BUFFER, frameVBO);
+  glBufferData (GL_ARRAY_BUFFER, frameVertices.size () * sizeof (GLfloat),
+                frameVertices.data (), GL_STATIC_DRAW);
+  glDrawArrays (GL_LINE_LOOP, 0, frameVertices.size () / 3);
+}
+
+void
+drawFloor(std::vector<GLfloat> floorVertices)
+{
+  glUseProgram (floorShaderProgram);
+  glBindVertexArray (floorVAO);
+  glBindBuffer (GL_ARRAY_BUFFER, floorVBO);
+  glBufferData (GL_ARRAY_BUFFER, floorVertices.size () * sizeof (GLfloat),
+                floorVertices.data (), GL_STATIC_DRAW);
+  glDrawArrays (GL_LINE_STRIP, 0, floorVertices.size () / 3);
+}
+
+void
+drawRay(int ray, std::vector<Data> dataVector, std::vector<GLfloat> vertices)
+{
+  glUseProgram (shaderProgram);
+  glBindVertexArray (VAO);
+  glBindBuffer (GL_ARRAY_BUFFER, VBO);
+  glBufferData (GL_ARRAY_BUFFER, vertices.size () * sizeof (GLfloat),
+                vertices.data (), GL_STATIC_DRAW);
+  glDrawArrays (GL_LINE_STRIP, 0, dataVector[ray].vertices);
+}
+
+void
+drawSOS(std::vector<GLfloat> sosVertices)
+{
+  // Render the second OpenGL viewport
+  glUseProgram (sosShaderProgram);
+  glBindVertexArray (sosVAO);
+  glBindBuffer (GL_ARRAY_BUFFER, sosVBO);
+  glBufferData (GL_ARRAY_BUFFER, sosVertices.size () * sizeof (GLfloat),
+                sosVertices.data (), GL_STATIC_DRAW);
+  glDrawArrays (GL_LINE_STRIP, 0, sosVertices.size () / 3);
+}
+
+void
+deleteRayDraw()
+{
+  glDeleteVertexArrays (1, &VAO);
+  glDeleteBuffers (1, &VBO);
+  glDeleteProgram (shaderProgram);
+}
+
+void
+deleteSecondViewport ()
+{
+  glDeleteVertexArrays (1, &sosVAO);
+  glDeleteBuffers (1, &sosVBO);
+  glDeleteProgram (sosShaderProgram);
+}
+
+void
+deleteFrameDraw ()
+{
+  glDeleteVertexArrays (1, &frameVAO);
+  glDeleteBuffers (1, &frameVBO);
+  glDeleteProgram (frameShaderProgram);
+}
+
+void
+deleteFloorDraw ()
+{
+  glDeleteVertexArrays (1, &floorVAO);
+  glDeleteBuffers (1, &floorVBO);
+  glDeleteProgram (floorShaderProgram);
+}
+
 int
 main ()
 {
-
+  // Rays
   std::vector<Data> dataVector = readDataFromFile ("test_floor_E.ray");
+
+  // Floor shape
+  std::vector<double> floorVectorX = { 0, 300, 1000 };
+  std::vector<double> floorVectorY = { 30, 20, 25 };
+
+  // Speed of sound spline
+  std::vector<double> sosVectorX = { 0, 10, 20, 25, 30 };
+  std::vector<double> sosVectorY = { 1540, 1530, 1532, 1533, 1535 };
+
+  // Bezier curve
+  std::vector<double> xSOSCurve;
+  std::vector<double> ySOSCurve;
 
   std::cout << dataVector.size () << std::endl;
 
@@ -260,96 +517,32 @@ main ()
 
   // Initialize GLFW
   glfwInit ();
-
-  // Set GLFW_RESIZABLE to GLFW_FALSE to prevent window resizing
   glfwWindowHint (GLFW_RESIZABLE, GLFW_FALSE);
-
-  // Tell GLFW what version of OpenGL we are using
-  // In this case we are using OpenGL 3.3
   glfwWindowHint (GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint (GLFW_CONTEXT_VERSION_MINOR, 3);
-  // Tell GLFW we are using the CORE profile
-  // So that means we only have the modern functions
   glfwWindowHint (GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+  // Create Window
   GLFWwindow *window
-      = glfwCreateWindow (1865, 800, "ImGui + GLFW", NULL, NULL);
-
-  // Error check if the window fails to create
+      = glfwCreateWindow (1880, 800, "Bellhop OpenGL", NULL, NULL);
   if (window == NULL)
     {
       std::cout << "Failed to create GLFW window" << std::endl;
       glfwTerminate ();
       return -1;
     }
-  // Introduce the window into the current context
   glfwMakeContextCurrent (window);
 
   // Load GLAD so it configures OpenGL
   gladLoadGL ();
-  // Specify the viewport of OpenGL in the Window
-  // In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
-  // glViewport (0, 0, 800, 800);
-
-  // Create Vertex Shader Object and get its reference
-  GLuint vertexShader = glCreateShader (GL_VERTEX_SHADER);
-  // Attach Vertex Shader source to the Vertex Shader Object
-  glShaderSource (vertexShader, 1, &vertexShaderSource, NULL);
-  // Compile the Vertex Shader into machine code
-  glCompileShader (vertexShader);
-
-  // Create Fragment Shader Object and get its reference
-  GLuint fragmentShader = glCreateShader (GL_FRAGMENT_SHADER);
-  // Attach Fragment Shader source to the Fragment Shader Object
-  glShaderSource (fragmentShader, 1, &fragmentShaderSource, NULL);
-  // Compile the Vertex Shader into machine code
-  glCompileShader (fragmentShader);
-
-  // Create Shader Program Object and get its reference
-  GLuint shaderProgram = glCreateProgram ();
-  // Attach the Vertex and Fragment Shaders to the Shader Program
-  glAttachShader (shaderProgram, vertexShader);
-  glAttachShader (shaderProgram, fragmentShader);
-  // Wrap-up/Link all the shaders together into the Shader Program
-  glLinkProgram (shaderProgram);
-
-  // Delete the now useless Vertex and Fragment Shader objects
-  glDeleteShader (vertexShader);
-  glDeleteShader (fragmentShader);
 
   // Generate sine wave vertices
-  const int numVertices = dataVector[0].vertices;
-  // GLfloat vertices[numVertices * 3];
   std::vector<GLfloat> vertices;
-
-  // Create reference containers for the Vartex Array Object and the Vertex
-  // Buffer Object
-  GLuint VAO, VBO;
-
-  // Generate the VAO and VBO with only 1 object each
-  glGenVertexArrays (1, &VAO);
-  glGenBuffers (1, &VBO);
-
-  // Make the VAO the current Vertex Array Object by binding it
-  glBindVertexArray (VAO);
-
-  // Bind the VBO specifying it's a GL_ARRAY_BUFFER
-  glBindBuffer (GL_ARRAY_BUFFER, VBO);
-  // Introduce the vertices into the VBO
-  // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-  glBufferData (GL_ARRAY_BUFFER, vertices.size () * sizeof (GLfloat),
-                vertices.data (), GL_STATIC_DRAW);
-
-  // Configure the Vertex Attribute so that OpenGL knows how to read the VBO
-  glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof (float),
-                         (void *)0);
-  // Enable the Vertex Attribute so that OpenGL knows to use it
-  glEnableVertexAttribArray (0);
-
-  // Bind both the VBO and VAO to 0 so that we don't accidentally modify the
-  // VAO and VBO we created
-  glBindBuffer (GL_ARRAY_BUFFER, 0);
-  glBindVertexArray (0);
+  std::vector<GLfloat> sosVertices;
+  std::vector<GLfloat> frameVertices = {
+    .85, .85, 0.0, .85, -.85, 0.0, -.85, -.85, 0.0, -.85, .85, 0.0,
+  };
+  std::vector<GLfloat> floorVertices;
 
   // Initialize ImGUI
   IMGUI_CHECKVERSION ();
@@ -366,12 +559,6 @@ main ()
   float color[4] = { 0.8f, 0.3f, 0.02f, 1.0f };
   // Variables to store the selected radio button
   int selectedRadioButton = 0;
-
-  // Exporting variables to shaders
-  glUseProgram (shaderProgram);
-  glUniform1f (glGetUniformLocation (shaderProgram, "size"), size);
-  glUniform4f (glGetUniformLocation (shaderProgram, "color"), color[0],
-               color[1], color[2], color[3]);
 
   // Timing variables
   double lastTime = glfwGetTime ();
@@ -395,6 +582,8 @@ main ()
   bool simPlaying = true;
   bool drawingRays = true;
 
+  bool splineDrawn = false;
+
   const char *vendor
       = reinterpret_cast<const char *> (glGetString (GL_VENDOR));
   const char *renderer
@@ -408,7 +597,10 @@ main ()
 
   bool enableVSync = true;
 
-  SetupSecondViewport ();
+  initRayDraw ();
+  initSOSDraw ();
+  initFrameDraw ();
+  initFloorDraw ();
 
   // Find set min and max
   double minX = 10000;
@@ -450,7 +642,7 @@ main ()
       else
         glfwSwapInterval (0);
 
-      glViewport (0, 0, 800, 800);
+      glViewport (0, 0, 950, 800);
 
       // Tell OpenGL a new frame is about to begin
       ImGui_ImplOpenGL3_NewFrame ();
@@ -475,62 +667,90 @@ main ()
       for (int i = 0; i < dataVector[ray].vertices; i++)
         {
 
-          float x = (((dataVector[ray].x[i] - minX) / (maxX - minX)) * 2.0f)
-                    - 1.0f;
-          float y = (((dataVector[ray].y[i] - minY) / (maxY - minY)) * 2.0f)
-                    - 1.0f;
+          float x = (((dataVector[ray].x[i] - minX) / (maxX - minX)) * 1.7f)
+                    - 0.85f;
+          float y = (((dataVector[ray].y[i] - minY) / (maxY - minY)) * 1.7f)
+                    - 0.85f;
 
           vertices.push_back (x);
           vertices.push_back (y);
           vertices.push_back (0.0f);
         }
 
+      if (!splineDrawn)
+        {
+          sosVertices.clear ();
+          cubicSpline (sosVectorX, sosVectorY, 100, xSOSCurve, ySOSCurve);
+
+          double sosMinX
+              = *std::min_element (xSOSCurve.begin (), xSOSCurve.end ());
+          double sosMaxX
+              = *std::max_element (xSOSCurve.begin (), xSOSCurve.end ());
+          double sosMinY
+              = *std::min_element (ySOSCurve.begin (), ySOSCurve.end ());
+          double sosMaxY
+              = *std::max_element (ySOSCurve.begin (), ySOSCurve.end ());
+          for (int i = 0; i < xSOSCurve.size (); i++)
+            {
+
+              float x
+                  = (((xSOSCurve[i] - sosMinX) / (sosMaxX - sosMinX)) * 1.7f)
+                    - .85f;
+              float y
+                  = (((ySOSCurve[i] - sosMinY) / (sosMaxY - sosMinY)) * 1.7f)
+                    - .85f;
+
+              sosVertices.push_back (x);
+              sosVertices.push_back (y);
+              sosVertices.push_back (0.0f);
+            }
+          splineDrawn = true;
+        }
+
+      floorVertices.clear ();
+      for (int i = 0; i < floorVectorX.size (); i++)
+        {
+
+          float x = (((floorVectorX[i] - minX) / (maxX - minX)) * 1.7f)
+                    - 0.85f;
+          float y = (((floorVectorY[i] - minY) / (maxY - minY)) * 1.7f)
+                    - 0.85f;
+
+          floorVertices.push_back (x);
+          floorVertices.push_back (y);
+          floorVertices.push_back (0.0f);
+        }
+
       if (showPlayback)
         {
-          // Specify the color of the background
+          // Clear screen
           glClearColor (0.07f, 0.13f, 0.17f, 1.0f);
-          // Clean the back buffer and assign the new color to it
           glClear (GL_COLOR_BUFFER_BIT);
 
-          // Tell OpenGL which Shader Program we want to use
-          glUseProgram (shaderProgram);
-          // Bind the VAO so OpenGL knows to use it
-          glBindVertexArray (VAO);
-
-          // Bind the VBO specifying it's a GL_ARRAY_BUFFER
-          glBindBuffer (GL_ARRAY_BUFFER, VBO);
-          // Introduce the updated vertices into the VBO
-          // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices,
-          // GL_STATIC_DRAW);
-          glBufferData (GL_ARRAY_BUFFER, vertices.size () * sizeof (GLfloat),
-                        vertices.data (), GL_STATIC_DRAW);
-
-          // Draw the triangle using the GL_TRIANGLES primitive
-          glDrawArrays (GL_LINE_STRIP, 0, dataVector[ray].vertices);
+          drawFrame(frameVertices);
+          drawFloor(floorVertices);
+          drawRay(ray, dataVector, vertices);
         }
       else
         {
           if (drawingRays)
             {
-              // Tell OpenGL which Shader Program we want to use
-              glUseProgram (shaderProgram);
-              // Bind the VAO so OpenGL knows to use it
-              glBindVertexArray (VAO);
+              int numOfDrawnRays = 0;
 
-              // Bind the VBO specifying it's a GL_ARRAY_BUFFER
-              glBindBuffer (GL_ARRAY_BUFFER, VBO);
-              // Introduce the updated vertices into the VBO
-              // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices,
-              // GL_STATIC_DRAW);
-              glBufferData (GL_ARRAY_BUFFER,
-                            vertices.size () * sizeof (GLfloat),
-                            vertices.data (), GL_STATIC_DRAW);
+              if (numOfDrawnRays == 0)
+                {
+                  drawFrame(frameVertices);
+                  drawFloor(floorVertices);
+                }
 
-              // Draw the triangle using the GL_TRIANGLES primitive
-              glDrawArrays (GL_LINE_STRIP, 0, dataVector[ray].vertices);
+              drawRay(ray, dataVector, vertices);
+              numOfDrawnRays++;
 
-              // if (ray == dataVector.size () - 1)
-              //   drawingRays = false;
+              if (numOfDrawnRays == dataVector.size () - 1)
+                {
+                  drawingRays = false;
+                  numOfDrawnRays = 0;
+                }
             }
         }
 
@@ -541,8 +761,8 @@ main ()
 
       render_text ("Hello", 0.0f, 0.0f, 1.0f, 1.0f);
 
-      ImGui::SetNextWindowPos (ImVec2 (io.DisplaySize.x - 265, 0));
-      ImGui::SetNextWindowSize (ImVec2 (265, io.DisplaySize.y));
+      ImGui::SetNextWindowPos (ImVec2 (io.DisplaySize.x - 280, 0));
+      ImGui::SetNextWindowSize (ImVec2 (280, io.DisplaySize.y));
       // ImGUI window creation
       ImGui::Begin ("Acoustic Ray Casting Parameters", NULL,
                     ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
@@ -626,13 +846,8 @@ main ()
       if (ImGui::Button ("Reset", ImVec2 (75, 0)))
         {
           // Code to execute when Button 1 is clicked
+          std::cout << "Code to reset speed of sound goes here" << std::endl;
         }
-      // ImGui::Dummy (ImVec2 (0.0f, 10.0f));
-      // ImGui::SliderFloat ("Freq", &freq, 0.0, 10.0);
-      // ImGui::Spacing ();
-      // ImGui::SliderFloat ("Ampl", &ampl, -1.0, 1.0);
-      // ImGui::Spacing ();
-      // ImGui::SliderFloat ("Phase", &phase, -1.0 * freq, 1.0 * freq);
 
       // New section
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
@@ -640,9 +855,20 @@ main ()
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
       ImGui::Text ("Simulation Settings");
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
+      // First radio button
+      ImGui::RadioButton ("##eigenerays", &selectedRadioButton, 0);
+      ImGui::SameLine ();
+      ImGui::Text ("Eigenrays");
+      ImGui::SameLine ();
+      // Second radio button
+      ImGui::RadioButton ("##rays", &selectedRadioButton, 1);
+      ImGui::SameLine ();
+      ImGui::Text ("Rays");
       ImGui::Spacing ();
-
       ImGui::Checkbox ("Show Playback", &showPlayback);
+      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
+
       if (showPlayback)
         {
           ImGui::Text ("Playback");
@@ -687,11 +913,10 @@ main ()
           ImGui::Spacing ();
           ImGui::Text ("Bottom Bounce:   %d", dataVector[ray].bottom_bounce);
         }
-      
 
       // Add text anchored to the bottom of the side panel
       ImGui::SetCursorPosY (ImGui::GetWindowHeight ()
-                            - (ImGui::GetStyle ().ItemSpacing.y + 58));
+                            - (ImGui::GetStyle ().ItemSpacing.y + 60));
       // Center the buttons horizontally
       ImGui::SetCursorPosX ((ImGui::GetWindowWidth () - 200.0f) * 0.5f);
       // Add the first button
@@ -725,12 +950,12 @@ main ()
       ImGui::Render ();
       ImGui_ImplOpenGL3_RenderDrawData (ImGui::GetDrawData ());
 
-      glViewport (800, 0, 800, 800);
+      glViewport (950, 0, 650, 800);
+
+      drawFrame(frameVertices);
 
       // Render the second OpenGL viewport
-      glUseProgram (secondShaderProgram);
-      glBindVertexArray (secondVAO);
-      glDrawArrays (GL_TRIANGLES, 0, 3);
+      drawSOS(sosVertices);
 
       // Swap the back buffer with the front buffer
       glfwSwapBuffers (window);
@@ -744,9 +969,11 @@ main ()
   ImGui::DestroyContext ();
 
   // Delete all the objects we've created
-  glDeleteVertexArrays (1, &VAO);
-  glDeleteBuffers (1, &VBO);
-  glDeleteProgram (shaderProgram);
+  deleteRayDraw();
+  deleteSecondViewport ();
+  deleteFrameDraw ();
+  deleteFloorDraw ();
+
   // Delete window before ending the program
   glfwDestroyWindow (window);
   // Terminate GLFW before ending the program
