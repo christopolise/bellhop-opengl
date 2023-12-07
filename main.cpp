@@ -3,75 +3,25 @@
 #include <imgui/imgui_impl_opengl3.h>
 
 #include <glad/glad.h>
-
 #include <GLFW/glfw3.h>
 #include <ft2build.h>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <sstream>
+#include <string>
 #include <vector>
 
 #include "spline.h"
+#include "shader.h"
 
 #include FT_FREETYPE_H
-
-FT_Library ft;
-FT_Face face;
-
-void
-initFreeType ()
-{
-  if (FT_Init_FreeType (&ft))
-    {
-      std::cerr << "Error initializing FreeType" << std::endl;
-      exit (EXIT_FAILURE);
-    }
-
-  if (FT_New_Face (ft, "/usr/share/fonts/TTF/DejaVuSans-Bold.ttf", 0, &face))
-    {
-      std::cerr << "Error loading font" << std::endl;
-      exit (EXIT_FAILURE);
-    }
-
-  FT_Set_Pixel_Sizes (face, 0, 48);
-}
-
-void
-render_text (const char *text, float x, float y, float sx, float sy)
-{
-  const char *p;
-
-  for (p = text; *p; p++)
-    {
-      if (FT_Load_Char (face, *p, FT_LOAD_RENDER))
-        continue;
-
-      FT_GlyphSlot g = face->glyph;
-
-      glTexImage2D (GL_TEXTURE_2D, 0, GL_RED, g->bitmap.width, g->bitmap.rows,
-                    0, GL_RED, GL_UNSIGNED_BYTE, g->bitmap.buffer);
-
-      float x2 = x + g->bitmap_left * sx;
-      float y2 = -y - g->bitmap_top * sy;
-      float w = g->bitmap.width * sx;
-      float h = g->bitmap.rows * sy;
-
-      GLfloat box[4][4] = {
-        { x2, -y2, 0, 0 },
-        { x2 + w, -y2, 1, 0 },
-        { x2, -y2 - h, 0, 1 },
-        { x2 + w, -y2 - h, 1, 1 },
-      };
-
-      glBufferData (GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
-      glDrawArrays (GL_TRIANGLE_STRIP, 0, 4);
-
-      x += (g->advance.x / 64) * sx;
-      y += (g->advance.y / 64) * sy;
-    }
-}
 
 // Vertex Shader source code
 const char *vertexShaderSource = "#version 330 core\n"
@@ -145,10 +95,43 @@ const char *floorFragmentShaderSource
       "   FragColor = vec4(1.0, 1.0, 0.0, 1.0);\n"
       "}\n\0";
 
+// Frame Vertex Shader source code
+const char *textVertexShaderSource
+    = "#version 330 core\n"
+      "layout (location = 0) in vec3 aPos;\n"
+      "void main()\n"
+      "{\n"
+      "   gl_Position = vec4(aPos.x, aPos.y * -1, aPos.z, 1.0);\n"
+      "}\0";
+
+// Second Fragment Shader source code
+const char *textFragmentShaderSource
+    = "#version 330 core\n"
+      "out vec4 FragColor;\n"
+      "void main()\n"
+      "{\n"
+      "   FragColor = vec4(1.0, 1.0, 0.0, 1.0);\n"
+      "}\n\0";
+
 GLuint shaderProgram, VAO, VBO;
 GLuint sosShaderProgram, sosVAO, sosVBO;
 GLuint frameShaderProgram, frameVAO, frameVBO;
 GLuint floorShaderProgram, floorVAO, floorVBO;
+
+GLuint textShaderProgram, textVAO, textVBO;
+GLuint textShaderProgramVert, textVertVAO, textVertVBO;
+FT_Library ft;
+FT_Face face;
+
+/// Holds all state information relevant to a character as loaded using FreeType
+struct Character {
+    unsigned int TextureID; // ID handle of the glyph texture
+    glm::ivec2   Size;      // Size of glyph
+    glm::ivec2   Bearing;   // Offset from baseline to left/top of glyph
+    unsigned int Advance;   // Horizontal offset to advance to next glyph
+};
+
+std::map<GLchar, Character> Characters;
 
 struct Data
 {
@@ -248,20 +231,27 @@ readDataFromFile (const std::string &filename)
   return dataVector;
 }
 
-void insertOrUpdatePoint(std::vector<double>& xCoords, std::vector<double>& yCoords, double newX, double newY) {
-    auto it = std::lower_bound(xCoords.begin(), xCoords.end(), newX);
+void
+insertOrUpdatePoint (std::vector<double> &xCoords,
+                     std::vector<double> &yCoords, double newX, double newY)
+{
+  auto it = std::lower_bound (xCoords.begin (), xCoords.end (), newX);
 
-    // Calculate the index where the new x should be inserted or updated
-    size_t index = std::distance(xCoords.begin(), it);
+  // Calculate the index where the new x should be inserted or updated
+  size_t index = std::distance (xCoords.begin (), it);
 
-    // Check if the x-coordinate already exists
-    if (it != xCoords.end() && *it == newX) {
-        // If it exists, overwrite the corresponding y-coordinate
-        yCoords[index] = newY;
-    } else {
-        // If it doesn't exist, insert the new x and y coordinates at the calculated index
-        xCoords.insert(it, newX);
-        yCoords.insert(yCoords.begin() + index, newY);
+  // Check if the x-coordinate already exists
+  if (it != xCoords.end () && *it == newX)
+    {
+      // If it exists, overwrite the corresponding y-coordinate
+      yCoords[index] = newY;
+    }
+  else
+    {
+      // If it doesn't exist, insert the new x and y coordinates at the
+      // calculated index
+      xCoords.insert (it, newX);
+      yCoords.insert (yCoords.begin () + index, newY);
     }
 }
 
@@ -507,6 +497,153 @@ deleteFloorDraw ()
 }
 
 int
+initTextDraw(Shader &shader, glm::mat4 &projection)
+{
+  // FreeType
+  // --------
+  // All functions return a value different than 0 whenever an error occurred
+  if (FT_Init_FreeType(&ft))
+  {
+      std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std::endl;
+      return -1;
+  }
+
+// find path to font
+  std::string font_name = "./MesloLGS-NF-Regular.ttf";
+  if (font_name.empty())
+  {
+      std::cout << "ERROR::FREETYPE: Failed to load font_name" << std::endl;
+      return -1;
+  }
+
+// load font as face
+  FT_Face face;
+  if (FT_New_Face(ft, font_name.c_str(), 0, &face)) {
+      std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
+      return -1;
+  }
+  else {
+      // set size to load glyphs as
+      FT_Set_Pixel_Sizes(face, 0, 48);
+
+      // disable byte-alignment restriction
+      glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+      // load first 128 characters of ASCII set
+      for (unsigned char c = 0; c < 128; c++)
+      {
+          // Load character glyph 
+          if (FT_Load_Char(face, c, FT_LOAD_RENDER))
+          {
+              std::cout << "ERROR::FREETYTPE: Failed to load Glyph" << std::endl;
+              continue;
+          }
+          // generate texture
+          unsigned int texture;
+          glGenTextures(1, &texture);
+          glBindTexture(GL_TEXTURE_2D, texture);
+          glTexImage2D(
+              GL_TEXTURE_2D,
+              0,
+              GL_RED,
+              face->glyph->bitmap.width,
+              face->glyph->bitmap.rows,
+              0,
+              GL_RED,
+              GL_UNSIGNED_BYTE,
+              face->glyph->bitmap.buffer
+          );
+          // set texture options
+          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+          // now store character for later use
+          Character character = {
+              texture,
+              glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
+              glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
+              static_cast<unsigned int>(face->glyph->advance.x)
+          };
+          Characters.insert(std::pair<char, Character>(c, character));
+      }
+      glBindTexture(GL_TEXTURE_2D, 0);
+  }
+  // destroy FreeType once we're finished
+  FT_Done_Face(face);
+  FT_Done_FreeType(ft);
+
+  
+  // configure VAO/VBO for texture quads
+  // -----------------------------------
+  glGenVertexArrays(1, &textVAO);
+  glGenBuffers(1, &textVBO);
+  glBindVertexArray(textVAO);
+  glBindBuffer(GL_ARRAY_BUFFER, textVBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+  glEnableVertexAttribArray(0);
+  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindVertexArray(0);
+
+  return 0;
+}
+
+void
+drawText(Shader &shader, std::string text, float x, float y, float scale, glm::vec3 color)
+{
+  // activate corresponding render state	
+    shader.use();
+    glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
+    glActiveTexture(GL_TEXTURE0);
+    glBindVertexArray(textVAO);
+
+    // iterate through all characters
+    std::string::const_iterator c;
+    for (c = text.begin(); c != text.end(); c++) 
+    {
+        Character ch = Characters[*c];
+
+        float xpos = x + ch.Bearing.x * scale;
+        float ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
+
+        float w = ch.Size.x * scale;
+        float h = ch.Size.y * scale;
+        // update VBO for each character
+        float vertices[6][4] = {
+            { xpos,     ypos + h,   0.0f, 0.0f },            
+            { xpos,     ypos,       0.0f, 1.0f },
+            { xpos + w, ypos,       1.0f, 1.0f },
+
+            { xpos,     ypos + h,   0.0f, 0.0f },
+            { xpos + w, ypos,       1.0f, 1.0f },
+            { xpos + w, ypos + h,   1.0f, 0.0f }           
+        };
+        // render glyph texture over quad
+        glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+        // update content of VBO memory
+        glBindBuffer(GL_ARRAY_BUFFER, textVBO);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        // render quad
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+        x += (ch.Advance >> 6) * scale; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+    }
+    glBindVertexArray(0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void
+deleteText()
+{
+  glDeleteVertexArrays (1, &textVAO);
+  glDeleteBuffers (1, &textVBO);
+  glDeleteProgram (textShaderProgram);
+}
+
+int
 main ()
 {
   // Rays
@@ -552,6 +689,12 @@ main ()
 
   // Load GLAD so it configures OpenGL
   gladLoadGL ();
+
+  // OpenGL state
+  // ------------
+  glEnable(GL_CULL_FACE);
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   // Generate sine wave vertices
   std::vector<GLfloat> vertices;
@@ -605,6 +748,8 @@ main ()
   double addSosX = 0;
   double addSosY = 0;
 
+  bool staticDrawAxes = false;
+
   const char *vendor
       = reinterpret_cast<const char *> (glGetString (GL_VENDOR));
   const char *renderer
@@ -612,16 +757,20 @@ main ()
   std::cout << "OpenGL Vendor: " << vendor << std::endl;
   std::cout << "OpenGL Renderer: " << renderer << std::endl;
 
-  initFreeType ();
-
   int ray = 0;
 
   bool enableVSync = true;
+
+  Shader shader("text.vs", "text.fs");
+  glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(1880), 0.0f, static_cast<float>(800));
+  shader.use();
+  glUniformMatrix4fv(glGetUniformLocation(shader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
   initRayDraw ();
   initSOSDraw ();
   initFrameDraw ();
   initFloorDraw ();
+  initTextDraw (shader, projection);
 
   // Find set min and max
   double minX = 10000;
@@ -789,8 +938,6 @@ main ()
       if (tetherY)
         txStartPosY = rxStartPosY;
 
-      render_text ("Hello", 0.0f, 0.0f, 1.0f, 1.0f);
-
       ImGui::SetNextWindowPos (ImVec2 (io.DisplaySize.x - 280, 0));
       ImGui::SetNextWindowSize (ImVec2 (280, io.DisplaySize.y));
       // ImGUI window creation
@@ -813,15 +960,9 @@ main ()
       ImGui::SameLine ();
       ImGui::Text ("CUDA");
       ImGui::SameLine ();
-      // Third radio button
-      ImGui::RadioButton ("##OptiX", &selectedComputeMode, 2);
-      ImGui::SameLine ();
-      ImGui::Text ("OptiX");
       // Display the selected mode of computeMode
-      const char *computeMode[] = { "C++", "CUDA", "OptiX" };
+      const char *computeMode[] = { "C++", "CUDA" };
       const char *rayMode[] = { "eigenrays", "rays" };
-      // std::cout << "Selected Compute Mode: " <<
-      // computeMode[selectedComputeMode] << std::endl;
 
       // New section
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
@@ -1014,6 +1155,33 @@ main ()
 
       // Render the second OpenGL viewport
       drawSOS (sosVertices);
+
+      glViewport (0, 0, 1880, 800);
+      // Draw Once
+      if (showPlayback)
+      {
+        drawText(shader, "Bellhop Algorithm", 350.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
+        drawText(shader, "Distance (m)", 425.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
+        drawText(shader, "Speed of Sound", 1175.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
+        drawText(shader, "Speed (m/s)", 1225.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
+        staticDrawAxes = true;
+      }
+      else
+      {
+        if (staticDrawAxes)
+        {
+          drawText(shader, "Bellhop Algorithm", 350.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
+          drawText(shader, "Distance (m)", 425.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
+          drawText(shader, "Speed of Sound", 1175.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
+          drawText(shader, "Speed (m/s)", 1225.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
+          staticDrawAxes = false;
+        }
+      }
+
+      // Bellhop Axes
+      // drawText(shader_vert, "0", 35.0, 25.0, 0.4f, glm::vec3(1.0f, 1.0f, 1.0f)); // Origin
+      // drawText(shader, "0", 35.0, 775.0, 0.4f, glm::vec3(1.0f, 1.0f, 1.0f)); // Y Max
+      // drawText(shader, std::to_string(*std::max_element (dataVector[ray].y.begin (), dataVector[ray].y.end ())), 35.0, 775.0, 0.4f, glm::vec3(1.0f, 1.0f, 1.0f)); // X Max
 
       // Swap the back buffer with the front buffer
       glfwSwapBuffers (window);
