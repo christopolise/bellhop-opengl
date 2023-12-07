@@ -575,7 +575,8 @@ main ()
   float size = 1.0f;
   float color[4] = { 0.8f, 0.3f, 0.02f, 1.0f };
   // Variables to store the selected radio button
-  int selectedRadioButton = 0;
+  int selectedComputeMode = 0;
+  int selectedRayMode = 0;
 
   // Timing variables
   double lastTime = glfwGetTime ();
@@ -803,23 +804,24 @@ main ()
       ImGui::Text ("Select a Computation Method:");
       ImGui::Spacing ();
       // First radio button
-      ImGui::RadioButton ("##C++", &selectedRadioButton, 0);
+      ImGui::RadioButton ("##C++", &selectedComputeMode, 0);
       ImGui::SameLine ();
       ImGui::Text ("C++");
       ImGui::SameLine ();
       // Second radio button
-      ImGui::RadioButton ("##CUDA", &selectedRadioButton, 1);
+      ImGui::RadioButton ("##CUDA", &selectedComputeMode, 1);
       ImGui::SameLine ();
       ImGui::Text ("CUDA");
       ImGui::SameLine ();
       // Third radio button
-      ImGui::RadioButton ("##OptiX", &selectedRadioButton, 2);
+      ImGui::RadioButton ("##OptiX", &selectedComputeMode, 2);
       ImGui::SameLine ();
       ImGui::Text ("OptiX");
       // Display the selected mode of computeMode
       const char *computeMode[] = { "C++", "CUDA", "OptiX" };
+      const char *rayMode[] = { "eigenrays", "rays" };
       // std::cout << "Selected Compute Mode: " <<
-      // computeMode[selectedRadioButton] << std::endl;
+      // computeMode[selectedComputeMode] << std::endl;
 
       // New section
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
@@ -876,6 +878,9 @@ main ()
         {
           // Code to execute when Button 1 is clicked
           std::cout << "Code to reset speed of sound goes here" << std::endl;
+          sosVectorX = { 0, 10, 20, 25, 30 };
+          sosVectorY = { 1540, 1530, 1532, 1533, 1535 };
+          splineDrawn = false;
         }
       ImGui::Spacing ();
       ImGui::Text ("Add Point");
@@ -909,12 +914,12 @@ main ()
       ImGui::Text ("Simulation Settings");
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
       // First radio button
-      ImGui::RadioButton ("##eigenerays", &selectedRadioButton, 0);
+      ImGui::RadioButton ("##eigenerays", &selectedRayMode, 0);
       ImGui::SameLine ();
       ImGui::Text ("Eigenrays");
       ImGui::SameLine ();
       // Second radio button
-      ImGui::RadioButton ("##rays", &selectedRadioButton, 1);
+      ImGui::RadioButton ("##rays", &selectedRayMode, 1);
       ImGui::SameLine ();
       ImGui::Text ("Rays");
       ImGui::Spacing ();
