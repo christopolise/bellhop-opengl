@@ -1,0 +1,173 @@
+.
+├── bin
+│   ├── bellhopcuda
+│   ├── bellhopcuda2d
+│   ├── bellhopcuda3d
+│   ├── bellhopcudanx2d
+│   ├── bellhopcxx
+│   ├── bellhopcxx2d
+│   ├── bellhopcxx3d
+│   ├── bellhopcxxnx2d
+│   ├── defaults
+│   ├── libbellhopcudalib.so
+│   ├── libbellhopcudastatic.a
+│   ├── libbellhopcxxlib.so
+│   ├── libbellhopcxxstatic.a
+│   ├── readout
+│   ├── test
+│   └── writeenv
+├── clang-format.hook
+├── CMakeLists.txt
+├── CMakeSettings.json
+├── config
+│   ├── CMakeLists.txt
+│   ├── cuda
+│   │   ├── CMakeLists.txt
+│   │   └── SetupCUDA.cmake
+│   ├── cxx
+│   │   └── CMakeLists.txt
+│   ├── examples
+│   │   └── CMakeLists.txt
+│   ├── GenTemplates.cmake
+│   └── SetupCommon.cmake
+├── examples
+│   ├── bellhop_GUI.cpp
+│   ├── defaults.cpp
+│   ├── readout.cpp
+│   ├── shader.h
+│   ├── spline.h
+│   ├── test.cpp
+│   ├── text.fs
+│   ├── text_vert.vs
+│   ├── text.vs
+│   └── writeenv.cpp
+├── fonts
+│   └── MesloLGS-NF-Regular.ttf
+├── glad
+│   ├── include
+│   │   ├── glad
+│   │   │   └── glad.h
+│   │   └── KHR
+│   │       └── khrplatform.h
+│   └── src
+│       └── glad.c
+├── glm
+├── include
+│   ├── bhc
+│   │   ├── bhc.hpp
+│   │   ├── math.hpp
+│   │   ├── platform.hpp
+│   │   └── structs.hpp
+│   └── imgui
+│       ├── imconfig.h
+│       ├── imgui.cpp
+│       ├── imgui_demo.cpp
+│       ├── imgui_draw.cpp
+│       ├── imgui.h
+│       ├── imgui_impl_glfw.cpp
+│       ├── imgui_impl_glfw.h
+│       ├── imgui_impl_opengl3.cpp
+│       ├── imgui_impl_opengl3.h
+│       ├── imgui_impl_opengl3_loader.h
+│       ├── imgui_internal.h
+│       ├── imgui_tables.cpp
+│       ├── imgui_widgets.cpp
+│       ├── imstb_rectpack.h
+│       ├── imstb_textedit.h
+│       └── imstb_truetype.h
+├── input_output
+│   ├── test.env
+│   ├── test_floor_E.bty
+│   ├── test_floor_E.env
+│   ├── test_floor_E.prt
+│   ├── test_floor_E.ray
+│   ├── test_floor_R.bty
+│   ├── test_floor_R.env
+│   ├── test_floor_R.prt
+│   ├── test_floor_R.ray
+│   ├── test.prt
+│   ├── test.ray
+│   └── test.txt
+├── logo
+│   ├── bhc_logo_combined.svg
+│   ├── bhc_logo_cuda_256.png
+│   ├── bhc_logo_cuda_32.png
+│   ├── bhc_logo_cuda_64.png
+│   ├── bhc_logo_cuda.svg
+│   ├── bhc_logo_cuda_withtext_medium.png
+│   ├── bhc_logo_cxx_256.png
+│   ├── bhc_logo_cxx_32.png
+│   ├── bhc_logo_cxx_64.png
+│   ├── bhc_logo_cxx.svg
+│   ├── bhc_logo_cxx_withtext_medium.png
+│   ├── bhc_logo_round.svg
+│   └── bhc_logo_round_withtext_medium.png
+├── out.txt
+├── parse.cpp.bak
+├── README.md
+└── src
+    ├── api.cpp
+    ├── arrivals.hpp
+    ├── boundary.hpp
+    ├── cmdline.cpp
+    ├── common.hpp
+    ├── common_run.hpp
+    ├── common_setup.hpp
+    ├── curves.hpp
+    ├── eigenrays.hpp
+    ├── influence.hpp
+    ├── mode
+    │   ├── arr.cpp
+    │   ├── arr.hpp
+    │   ├── eigen.cpp
+    │   ├── eigen.hpp
+    │   ├── field.cpp
+    │   ├── field.hpp
+    │   ├── fieldimpl.cpp.in
+    │   ├── fieldimpl.cu.in
+    │   ├── fieldimpl.hpp
+    │   ├── modemodule.hpp
+    │   ├── ray.cpp
+    │   ├── ray.hpp
+    │   ├── tl.cpp
+    │   └── tl.hpp
+    ├── module
+    │   ├── atten.cpp
+    │   ├── atten.hpp
+    │   ├── beaminfo.hpp
+    │   ├── botopt.hpp
+    │   ├── boundarycond.hpp
+    │   ├── boundary.hpp
+    │   ├── freq0.hpp
+    │   ├── freqvec.hpp
+    │   ├── nmedia.hpp
+    │   ├── paramsmodule.hpp
+    │   ├── rayangles.hpp
+    │   ├── rcvrbearings.hpp
+    │   ├── rcvrranges.hpp
+    │   ├── reflcoef.hpp
+    │   ├── runtype.hpp
+    │   ├── sbp.hpp
+    │   ├── ssp.hpp
+    │   ├── sxsy.hpp
+    │   ├── szrz.hpp
+    │   ├── title.hpp
+    │   └── topopt.hpp
+    ├── reflect.hpp
+    ├── runtype.hpp
+    ├── ssp.hpp
+    ├── step.hpp
+    ├── trace.hpp
+    └── util
+        ├── atomics.hpp
+        ├── directio.hpp
+        ├── errors.cpp
+        ├── errors.hpp
+        ├── ldio.hpp
+        ├── prtfileemu.hpp
+        ├── timing.cpp
+        ├── timing.hpp
+        ├── unformattedio.hpp
+        └── UtilsCUDA.cuh
+
+22 directories, 148 files

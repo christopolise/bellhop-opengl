@@ -30,15 +30,16 @@ function(create_example EXNAME)
 endfunction()
 
 
+set(OpenGL_GL_PREFERENCE "LEGACY")
+find_package(OpenGL REQUIRED)
 find_package(glfw3 REQUIRED)
 # Prefer GLVND OpenGL library if available
-set(OpenGL_GL_PREFERENCE "GLVND")
-find_package(OpenGL REQUIRED)
+
 find_package(Freetype REQUIRED)
 
 function(create_gui EXNAME)
 
-    # include_directories(${CMAKE_SOURCE_DIR}/glad/include)
+    include_directories(${CMAKE_SOURCE_DIR}/glad/include)
     file(GLOB SOURCES
     "${CMAKE_SOURCE_DIR}/glad/src/glad.c"
     "${CMAKE_SOURCE_DIR}/examples/${EXNAME}.cpp"
@@ -61,7 +62,7 @@ create_example(defaults)
 create_example(readout)
 create_example(writeenv)
 create_example(test)
-create_gui(bellhop_GUI)
+create_gui(bellhop_GL)
 
 
 
