@@ -38,7 +38,7 @@ find_package(Freetype REQUIRED)
 
 function(create_gui EXNAME)
 
-    include_directories(${CMAKE_SOURCE_DIR}/glad/include)
+    # include_directories(${CMAKE_SOURCE_DIR}/glad/include)
     file(GLOB SOURCES
     "${CMAKE_SOURCE_DIR}/glad/src/glad.c"
     "${CMAKE_SOURCE_DIR}/examples/${EXNAME}.cpp"
@@ -49,11 +49,12 @@ function(create_gui EXNAME)
     add_executable(${EXNAME}
         ${SOURCES}
     )
-    target_link_libraries(${EXNAME} PUBLIC bellhopcxxlib Threads::Threads glfw OpenGL::GL m freetype)
     
+    target_include_directories(${EXNAME} PUBLIC "${CMAKE_SOURCE_DIR}/glad/include/")
     target_include_directories(${EXNAME} PUBLIC "${CMAKE_SOURCE_DIR}/include/")
     target_include_directories(${EXNAME} PUBLIC "${CMAKE_SOURCE_DIR}/glm/")
     target_include_directories(${EXNAME} PUBLIC "/usr/include/freetype2/")
+    target_link_libraries(${EXNAME} PUBLIC bellhopcxxlib Threads::Threads glfw OpenGL::GL m freetype)
 endfunction()
 
 create_example(defaults)
@@ -61,3 +62,6 @@ create_example(readout)
 create_example(writeenv)
 create_example(test)
 create_gui(bellhop_GUI)
+
+
+
