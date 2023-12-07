@@ -248,10 +248,22 @@ readDataFromFile (const std::string &filename)
   return dataVector;
 }
 
+void 
+insertPoint(std::vector<double>& xCoords, std::vector<double>& yCoords, double newX, double newY) {
+    auto it = std::lower_bound(xCoords.begin(), xCoords.end(), newX);
+
+    // Calculate the index where the new x should be inserted
+    size_t index = std::distance(xCoords.begin(), it);
+
+    // Insert the new x and y coordinates at the calculated index
+    xCoords.insert(it, newX);
+    yCoords.insert(yCoords.begin() + index, newY);
+}
+
 void
-initRayDraw()
+initRayDraw ()
 {
-// Create Second Vertex Shader Object and get its reference
+  // Create Second Vertex Shader Object and get its reference
   GLuint vertexShader = glCreateShader (GL_VERTEX_SHADER);
   glShaderSource (vertexShader, 1, &vertexShaderSource, NULL);
   glCompileShader (vertexShader);
@@ -413,7 +425,7 @@ initFloorDraw ()
 }
 
 void
-drawFrame(std::vector<GLfloat> frameVertices)
+drawFrame (std::vector<GLfloat> frameVertices)
 {
   glUseProgram (frameShaderProgram);
   glBindVertexArray (frameVAO);
@@ -424,7 +436,7 @@ drawFrame(std::vector<GLfloat> frameVertices)
 }
 
 void
-drawFloor(std::vector<GLfloat> floorVertices)
+drawFloor (std::vector<GLfloat> floorVertices)
 {
   glUseProgram (floorShaderProgram);
   glBindVertexArray (floorVAO);
@@ -435,7 +447,7 @@ drawFloor(std::vector<GLfloat> floorVertices)
 }
 
 void
-drawRay(int ray, std::vector<Data> dataVector, std::vector<GLfloat> vertices)
+drawRay (int ray, std::vector<Data> dataVector, std::vector<GLfloat> vertices)
 {
   glUseProgram (shaderProgram);
   glBindVertexArray (VAO);
@@ -446,7 +458,7 @@ drawRay(int ray, std::vector<Data> dataVector, std::vector<GLfloat> vertices)
 }
 
 void
-drawSOS(std::vector<GLfloat> sosVertices)
+drawSOS (std::vector<GLfloat> sosVertices)
 {
   // Render the second OpenGL viewport
   glUseProgram (sosShaderProgram);
@@ -458,7 +470,7 @@ drawSOS(std::vector<GLfloat> sosVertices)
 }
 
 void
-deleteRayDraw()
+deleteRayDraw ()
 {
   glDeleteVertexArrays (1, &VAO);
   glDeleteBuffers (1, &VBO);
@@ -466,7 +478,7 @@ deleteRayDraw()
 }
 
 void
-deleteSecondViewport ()
+deleteSOSDraw ()
 {
   glDeleteVertexArrays (1, &sosVAO);
   glDeleteBuffers (1, &sosVBO);
@@ -584,6 +596,9 @@ main ()
 
   bool splineDrawn = false;
 
+  double addSosX = 0;
+  double addSosY = 0;
+
   const char *vendor
       = reinterpret_cast<const char *> (glGetString (GL_VENDOR));
   const char *renderer
@@ -679,6 +694,13 @@ main ()
 
       if (!splineDrawn)
         {
+          std::cout << "Spline" << std::endl;
+          // Print out x and y sline vals side by side
+          for (int i = 0; i < sosVectorX.size (); i++)
+            {
+              std::cout << sosVectorX[i] << "\t" << sosVectorY[i] << std::endl;
+            }
+
           sosVertices.clear ();
           cubicSpline (sosVectorX, sosVectorY, 100, xSOSCurve, ySOSCurve);
 
@@ -711,10 +733,10 @@ main ()
       for (int i = 0; i < floorVectorX.size (); i++)
         {
 
-          float x = (((floorVectorX[i] - minX) / (maxX - minX)) * 1.7f)
-                    - 0.85f;
-          float y = (((floorVectorY[i] - minY) / (maxY - minY)) * 1.7f)
-                    - 0.85f;
+          float x
+              = (((floorVectorX[i] - minX) / (maxX - minX)) * 1.7f) - 0.85f;
+          float y
+              = (((floorVectorY[i] - minY) / (maxY - minY)) * 1.7f) - 0.85f;
 
           floorVertices.push_back (x);
           floorVertices.push_back (y);
@@ -727,9 +749,9 @@ main ()
           glClearColor (0.07f, 0.13f, 0.17f, 1.0f);
           glClear (GL_COLOR_BUFFER_BIT);
 
-          drawFrame(frameVertices);
-          drawFloor(floorVertices);
-          drawRay(ray, dataVector, vertices);
+          drawFrame (frameVertices);
+          drawFloor (floorVertices);
+          drawRay (ray, dataVector, vertices);
         }
       else
         {
@@ -739,11 +761,11 @@ main ()
 
               if (numOfDrawnRays == 0)
                 {
-                  drawFrame(frameVertices);
-                  drawFloor(floorVertices);
+                  drawFrame (frameVertices);
+                  drawFloor (floorVertices);
                 }
 
-              drawRay(ray, dataVector, vertices);
+              drawRay (ray, dataVector, vertices);
               numOfDrawnRays++;
 
               if (numOfDrawnRays == dataVector.size () - 1)
@@ -848,6 +870,29 @@ main ()
           // Code to execute when Button 1 is clicked
           std::cout << "Code to reset speed of sound goes here" << std::endl;
         }
+      ImGui::Spacing ();
+      ImGui::Text ("Add Point");
+      ImGui::Spacing ();
+      ImGui::Text ("X");
+      ImGui::SameLine ();
+      ImGui::PushItemWidth (60);
+      ImGui::SameLine ();
+      ImGui::InputDouble ("##sos_x", &addSosX);
+      ImGui::PushItemWidth (60);
+      ImGui::SameLine ();
+      ImGui::Text ("Y");
+      ImGui::SameLine ();
+      ImGui::InputDouble ("##sos_y", &addSosY);
+      ImGui::SameLine ();
+      ImGui::Dummy (ImVec2 (5.0f, 0.0f));
+      ImGui::SameLine ();
+      if (ImGui::Button ("Add", ImVec2 (75, 0)))
+        {
+          // Code to execute when Button 1 is clicked
+          std::cout << "Code to add point goes here" << std::endl;
+          insertPoint (sosVectorX, sosVectorY, addSosX, addSosY);
+          splineDrawn = false;
+        }
 
       // New section
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
@@ -877,6 +922,7 @@ main ()
           ImGui::SameLine ();
           char mySimProgress[20];
           std::sprintf (mySimProgress, "%d/%ld", ray + 1, dataVector.size ());
+          ImGui::PushItemWidth (ImGui::GetWindowWidth () - 50);
           ImGui::SliderInt ("##playback", &ray, 0, dataVector.size () - 1,
                             mySimProgress, ImGuiSliderFlags_NoInput);
           ImGui::Spacing ();
@@ -952,10 +998,10 @@ main ()
 
       glViewport (950, 0, 650, 800);
 
-      drawFrame(frameVertices);
+      drawFrame (frameVertices);
 
       // Render the second OpenGL viewport
-      drawSOS(sosVertices);
+      drawSOS (sosVertices);
 
       // Swap the back buffer with the front buffer
       glfwSwapBuffers (window);
@@ -969,8 +1015,8 @@ main ()
   ImGui::DestroyContext ();
 
   // Delete all the objects we've created
-  deleteRayDraw();
-  deleteSecondViewport ();
+  deleteRayDraw ();
+  deleteSOSDraw ();
   deleteFrameDraw ();
   deleteFloorDraw ();
 
