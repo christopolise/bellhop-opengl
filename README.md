@@ -3,12 +3,6 @@
 Very rough draft
 
 ## Dependencies
-- OpenGL 3.3
-- GLFW
-
-## Build
-
-### Prerequisites
 In order for `bellhopgl` to work, please make sure you have the following dependencies installed:
 - OpenGL
 - GLFW
@@ -20,6 +14,8 @@ To install these on Ubuntu 22.04, run
 sudo apt update
 sudo apt install mesa-common-dev libglfw3-dev libglm-dev libfreetype6-dev
 ```
+
+## Build
 
 Prepare your build environment by running the following at the project root
 ```bash

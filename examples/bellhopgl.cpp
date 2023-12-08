@@ -18,6 +18,9 @@
 #include <string>
 #include <vector>
 
+#include <bhc/bhc.hpp>
+#include "../src/common_run.hpp"
+
 #include "spline.h"
 #include "shader.h"
 
