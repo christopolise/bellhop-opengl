@@ -38,12 +38,12 @@ option(BHC_LIMIT_FEATURES "Limit bellhopcxx/bellhopcuda to only features support
 option(BHC_USE_FLOATS  "Perform all floating-point arithmetic as 32-bit" OFF)
 
 option(BHC_DIM_ENABLE_2D   "Enable 2D runs" ON)
-option(BHC_DIM_ENABLE_3D   "Enable 3D runs" ON)
-option(BHC_DIM_ENABLE_NX2D "Enable Nx2D runs" ON)
+option(BHC_DIM_ENABLE_3D   "Enable 3D runs" OFF)
+option(BHC_DIM_ENABLE_NX2D "Enable Nx2D runs" OFF)
 
-option(BHC_RUN_ENABLE_TL        "Enable TL runs        (Beam->RunType[0] == 'C' or 'S' or 'I')" ON)
+option(BHC_RUN_ENABLE_TL        "Enable TL runs        (Beam->RunType[0] == 'C' or 'S' or 'I')" OFF)
 option(BHC_RUN_ENABLE_EIGENRAYS "Enable eigenrays runs (Beam->RunType[0] == 'E')"               ON)
-option(BHC_RUN_ENABLE_ARRIVALS  "Enable arrivals runs  (Beam->RunType[0] == 'A' or 'a')"        ON)
+option(BHC_RUN_ENABLE_ARRIVALS  "Enable arrivals runs  (Beam->RunType[0] == 'A' or 'a')"        OFF)
 
 option(BHC_INFL_ENABLE_CERVENY_RAYCEN "Enable Cerveny     ray-centered influence (Beam->Type[0] == 'R')" ON)
 option(BHC_INFL_ENABLE_CERVENY_CART   "Enable Cerveny     Cartesian    influence (Beam->Type[0] == 'C')" ON)
