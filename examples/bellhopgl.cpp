@@ -21,6 +21,9 @@
 #include "spline.h"
 #include "shader.h"
 
+#include <bhc/bhc.hpp>
+#include "../src/common_run.hpp"
+
 #include FT_FREETYPE_H
 
 // Vertex Shader source code
@@ -190,10 +193,16 @@ readDataFromFile (const std::string &filename)
   std::string line;
   Data currentData;
   bool firstPass = true;
-
+  int line_no = 0;
   while (std::getline (file, line))
     {
       std::istringstream iss (line);
+
+      if (line_no < 7)
+        {
+          line_no++;
+          continue;
+        }
 
       if (countItems (iss) == 1)
         {
@@ -643,19 +652,59 @@ deleteText()
   glDeleteProgram (textShaderProgram);
 }
 
+void getRays(std::vector<Data> &dataVector, bhc::bhcOutputs<false, false> outputs){
+  for (int r = 0; r < outputs.rayinfo->NRays; ++r) {
+        dataVector.push_back(Data());
+        dataVector[r].vertices = outputs.rayinfo->results[r].Nsteps;
+        dataVector[r].top_bounce = outputs.rayinfo->results[r].ray[dataVector[r].vertices - 1].NumTopBnc;
+        dataVector[r].bottom_bounce = outputs.rayinfo->results[r].ray[dataVector[r].vertices - 1].NumBotBnc;
+        dataVector[r].angle_of_entry = outputs.rayinfo->results[r].SrcDeclAngle;
+        for(int j = 0; j < outputs.rayinfo->results[r].Nsteps; j++) {
+
+            outputs.rayinfo->results[r].ray[j].x = RayToOceanX(outputs.rayinfo->results[r].ray[j].x,outputs.rayinfo->results[r].org);
+            dataVector[r].x.push_back(outputs.rayinfo->results[r].ray[j].x.x);
+            dataVector[r].y.push_back(outputs.rayinfo->results[r].ray[j].x.y);
+        }
+    }
+}
+
 int
-main ()
+main (int argc, char **argv)
 {
+
+  // Load environment
+  bhc::bhcParams<false> params;
+  bhc::bhcOutputs<false, false> outputs;
+  bhc::bhcInit init;
+  if (argc < 2 || argc > 3) exit(1);
+  init.FileRoot       = argv[1];
+  // init.outputCallback = OutputCallback;
+  // init.prtCallback    = PrtCallback;
+  bhc::setup(init, params, outputs);
+
+  bhc::run(params, outputs);
+
   // Rays
-  std::vector<Data> dataVector = readDataFromFile ("../input_output/test_floor_E.ray");
+  // std::vector<Data> dataVector = readDataFromFile (argv[1] + std::string (".ray"));
+  std::vector<Data> dataVector;
+  getRays(dataVector, outputs);
+
 
   // Floor shape
-  std::vector<double> floorVectorX = { 0, 300, 1000 };
-  std::vector<double> floorVectorY = { 30, 20, 25 };
+  std::vector<double> floorVectorX;
+  std::vector<double> floorVectorY;
+  for (int i = 1; i < params.bdinfo->bot.NPts - 1; i++) {
+        floorVectorX.push_back(params.bdinfo->bot.bd[i].x.x);
+        floorVectorY.push_back(params.bdinfo->bot.bd[i].x.y);
+  }
 
   // Speed of sound spline
-  std::vector<double> sosVectorX = { 0, 10, 20, 25, 30 };
-  std::vector<double> sosVectorY = { 1540, 1530, 1532, 1533, 1535 };
+  std::vector<double> sosVectorX;
+  std::vector<double> sosVectorY;
+  for (int i = 0; i < params.ssp->NPts; i++) {
+        sosVectorX.push_back(params.ssp->z[i]);
+        sosVectorY.push_back(params.ssp->alphaR[i]);
+  }
 
   // Bezier curve
   std::vector<double> xSOSCurve;
@@ -727,12 +776,12 @@ main ()
   int lastFrameCount = 0;
 
   // Start TX Pos
-  int txStartPosX = 0;
-  int txStartPosY = 0;
+  int txStartPosX = params.Pos->Sx[0];
+  int txStartPosY = params.Pos->Sz[0];
 
   // Start RX Pos
-  int rxStartPosX = 0;
-  int rxStartPosY = 0;
+  int rxStartPosX = params.Pos->Rr[0];
+  int rxStartPosY = params.Pos->Rz[0];
 
   // Tethered Bools
   bool tetherX = false;
@@ -806,6 +855,12 @@ main ()
   // Main while loop
   while (!glfwWindowShouldClose (window))
     {
+
+      // Run Bellhop algorithm
+      bhc::run(params, outputs);
+      // Update rays
+      dataVector.clear ();
+      getRays(dataVector, outputs);
 
       if (showPlayback)
         glfwSwapInterval (enableVSync);
@@ -1108,6 +1163,8 @@ main ()
           ImGui::Spacing ();
           ImGui::Text ("Vertices:        %d", dataVector[ray].vertices);
           ImGui::Spacing ();
+          ImGui::Text ("Angle of Entry:  %f", dataVector[ray].angle_of_entry);
+          ImGui::Spacing ();
           ImGui::Text ("Top Bounces:     %d", dataVector[ray].top_bounce);
           ImGui::Spacing ();
           ImGui::Text ("Bottom Bounce:   %d", dataVector[ray].bottom_bounce);
@@ -1187,6 +1244,16 @@ main ()
       glfwSwapBuffers (window);
       // Take care of all GLFW events
       glfwPollEvents ();
+
+      // Check to see if TX and RX positions are updated
+      if (txStartPosX != params.Pos->Sx[0])
+        params.Pos->Sx[0] = txStartPosX;
+      if (txStartPosY != params.Pos->Sz[0])
+        params.Pos->Sz[0] = txStartPosY;
+      if (rxStartPosX != params.Pos->Rr[0])
+        params.Pos->Rr[0] = rxStartPosX;
+      if (rxStartPosY != params.Pos->Rz[0])
+        params.Pos->Rz[0] = rxStartPosY;
     }
 
   // Deletes all ImGUI instances

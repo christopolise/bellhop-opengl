@@ -108,7 +108,7 @@ int main(int argc, char **argv)
         for(int j = 0; j < outputs.rayinfo->results[r].Nsteps; j++) {
 
             outputs.rayinfo->results[r].ray[j].x = RayToOceanX(outputs.rayinfo->results[r].ray[j].x,outputs.rayinfo->results[r].org);
-            // std::cout << outputs.rayinfo->results[r].ray[j].x << std::endl;
+            std::cout << outputs.rayinfo->results[r].ray[j].x << std::endl;
         }
     }
     std::cout <<"printed "<< outputs.rayinfo->results[0].Nsteps << " vertices of the first ray\n";
