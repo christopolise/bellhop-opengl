@@ -30,7 +30,7 @@ set(CMAKE_CONFIGURATION_TYPES ${CMAKE_BUILD_TYPE} CACHE STRING "" FORCE) # Only 
 
 project(bellhoptoplevel LANGUAGES NONE)
 
-option(BHC_ENABLE_CUDA "Build CUDA version in addition to C++ version" ON)
+option(BHC_ENABLE_CUDA "Build CUDA version in addition to C++ version" OFF)
 option(CUDA_ALL_ARCHES "Build CUDA device code for all GPUs in system, not just newest one" OFF)
 
 option(BHC_BUILD_EXAMPLES "Build example programs. Requires 2D, 3D, Nx2D all enabled" ON)

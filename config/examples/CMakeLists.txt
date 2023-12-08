@@ -62,7 +62,7 @@ create_example(defaults)
 create_example(readout)
 create_example(writeenv)
 create_example(test)
-create_gui(bellhop_GL)
+create_gui(bellhopgl)
 
 
 

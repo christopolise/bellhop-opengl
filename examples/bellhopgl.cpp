@@ -509,7 +509,7 @@ initTextDraw(Shader &shader, glm::mat4 &projection)
   }
 
 // find path to font
-  std::string font_name = "./MesloLGS-NF-Regular.ttf";
+  std::string font_name = "../fonts/MesloLGS-NF-Regular.ttf";
   if (font_name.empty())
   {
       std::cout << "ERROR::FREETYPE: Failed to load font_name" << std::endl;
@@ -647,7 +647,7 @@ int
 main ()
 {
   // Rays
-  std::vector<Data> dataVector = readDataFromFile ("test_floor_E.ray");
+  std::vector<Data> dataVector = readDataFromFile ("../input_output/test_floor_E.ray");
 
   // Floor shape
   std::vector<double> floorVectorX = { 0, 300, 1000 };
@@ -761,7 +761,7 @@ main ()
 
   bool enableVSync = true;
 
-  Shader shader("text.vs", "text.fs");
+  Shader shader("../examples/text.vs", "../examples/text.fs");
   glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(1880), 0.0f, static_cast<float>(800));
   shader.use();
   glUniformMatrix4fv(glGetUniformLocation(shader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
