@@ -671,6 +671,15 @@ void getRays(std::vector<Data> &dataVector, bhc::bhcOutputs<false, false> output
     }
 }
 
+void OutputCallback(const char *message)
+{
+    // std::cout << "Out: " << message << std::endl << std::flush;
+}
+
+void PrtCallback(const char *message) { 
+    // std::cout << message << std::flush; 
+    }
+
 int
 main (int argc, char **argv)
 {
@@ -681,8 +690,8 @@ main (int argc, char **argv)
   bhc::bhcInit init;
   if (argc < 2 || argc > 3) exit(1);
   init.FileRoot       = argv[1];
-  // init.outputCallback = OutputCallback;
-  // init.prtCallback    = PrtCallback;
+  init.outputCallback = OutputCallback;
+  init.prtCallback    = PrtCallback;
   bhc::setup(init, params, outputs);
 
   bhc::run(params, outputs);
@@ -1289,7 +1298,16 @@ main (int argc, char **argv)
       if (rxStartPosY != params.Pos->Rz[0])
         if (!showPlayback) eraseRays = true;
         params.Pos->Rz[0] = rxStartPosY;
+
+      // check to see if Ray mode needs to change
+      if (params.Beam->RunType[0] =='E' && selectedRayMode == 1 )
+        params.Beam->RunType[0] = 'R';
+      if (params.Beam->RunType[0] =='R' && selectedRayMode == 0 )
+        params.Beam->RunType[0] = 'E';
     }
+
+  // free memory used by bellhop
+  bhc::finalize(params, outputs);
 
   // Deletes all ImGUI instances
   ImGui_ImplOpenGL3_Shutdown ();

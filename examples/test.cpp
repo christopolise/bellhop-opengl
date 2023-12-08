@@ -53,10 +53,14 @@ std::ostream &operator<<(std::ostream &out, const bhc::VEC23<false>& x) {
 
 void OutputCallback(const char *message)
 {
-    std::cout << "Out: " << message << std::endl << std::flush;
+    message;
+    // std::cout << "Out: " << message << std::endl << std::flush;
 }
 
-void PrtCallback(const char *message) { std::cout << message << std::flush; }
+void PrtCallback(const char *message) { 
+    message;
+    // std::cout << message << std::flush; 
+    }
 
 int main(int argc, char **argv)
 {
@@ -65,8 +69,8 @@ int main(int argc, char **argv)
     bhc::bhcInit init;
     if (argc < 2 || argc > 3) exit(1);
     init.FileRoot       = argv[1];
-    // init.outputCallback = OutputCallback;
-    // init.prtCallback    = PrtCallback;
+    init.outputCallback = OutputCallback;
+    init.prtCallback    = PrtCallback;
 
     bhc::setup(init, params, outputs);
     // bhc::echo(params);
@@ -100,17 +104,17 @@ int main(int argc, char **argv)
 
     std::cout << "Type of Beams? " << params.Beam->RunType[0]<< std::endl;
 
-    std::cout << "\n" << outputs.rayinfo->NRays << " rays:\n";
-    std::cout << "\n" << outputs.eigen->neigen << " eigenrays\n";
+    // std::cout << "\n" << outputs.rayinfo->NRays << " rays:\n";
+    // std::cout << "\n" << outputs.eigen->neigen << " eigenrays\n";
     std::cout << "Fixing rays to have correct locations\n";
     // for (int r = 0; r < outputs.rayinfo->NRays; ++r) {
-        for (int r = 0; r < 1; ++r) {
-        for(int j = 0; j < outputs.rayinfo->results[r].Nsteps; j++) {
+    //     for (int r = 0; r < 1; ++r) {
+    //     for(int j = 0; j < outputs.rayinfo->results[r].Nsteps; j++) {
 
-            outputs.rayinfo->results[r].ray[j].x = RayToOceanX(outputs.rayinfo->results[r].ray[j].x,outputs.rayinfo->results[r].org);
-            std::cout << outputs.rayinfo->results[r].ray[j].x << std::endl;
-        }
-    }
+    //         outputs.rayinfo->results[r].ray[j].x = RayToOceanX(outputs.rayinfo->results[r].ray[j].x,outputs.rayinfo->results[r].org);
+    //         std::cout << outputs.rayinfo->results[r].ray[j].x << std::endl;
+    //     }
+    // }
     std::cout <<"printed "<< outputs.rayinfo->results[0].Nsteps << " vertices of the first ray\n";
     
     // for(int r=0; r<outputs.rayinfo->NRays; ++r){
