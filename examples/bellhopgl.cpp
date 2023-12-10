@@ -813,6 +813,8 @@ main (int argc, char **argv)
 
   bool staticDrawAxes = false;
 
+  bool eraseRays = false;
+
   const char *vendor
       = reinterpret_cast<const char *> (glGetString (GL_VENDOR));
   const char *renderer
@@ -984,8 +986,33 @@ main (int argc, char **argv)
         }
       else
         {
-          if (drawingRays)
+          if (eraseRays)
+          {
+            glUseProgram (shaderProgram);
+            glUniform4f (glGetUniformLocation (shaderProgram, "color"),
+                          0.07f, 0.13f, 0.17f, 1.0f);
+            int numOfErasedRays = 0;
+
+            if (numOfErasedRays == 0)
+              {
+                drawFrame (frameVertices);
+                drawFloor (floorVertices);
+              }
+
+            drawRay (ray, dataVector, vertices);
+            numOfErasedRays++;
+
+            if (numOfErasedRays == dataVector.size () - 1)
+              {
+                eraseRays = false;
+                numOfErasedRays = 0;
+              }
+          }
+          else if (drawingRays)
             {
+              glUseProgram (shaderProgram);
+              glUniform4f (glGetUniformLocation (shaderProgram, "color"),
+                           0.8f, 0.3f, 0.02f, 1.0f);
               int numOfDrawnRays = 0;
 
               if (numOfDrawnRays == 0)
@@ -1003,6 +1030,7 @@ main (int argc, char **argv)
                   numOfDrawnRays = 0;
                 }
             }
+          
         }
 
       if (tetherX)
@@ -1049,12 +1077,12 @@ main (int argc, char **argv)
       ImGui::Spacing ();
       ImGui::Text ("X");
       ImGui::SameLine ();
-      ImGui::SliderInt ("##tx_x", &txStartPosX, 0, io.DisplaySize.x - 265);
+      ImGui::SliderInt ("##tx_x", &txStartPosX, 0, maxX);
       ImGui::SameLine ();
       ImGui::Text ("px");
       ImGui::Text ("Y");
       ImGui::SameLine ();
-      ImGui::SliderInt ("##tx_y", &txStartPosY, 0, io.DisplaySize.y);
+      ImGui::SliderInt ("##tx_y", &txStartPosY, 0, maxY);
       ImGui::SameLine ();
       ImGui::Text ("px");
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
@@ -1063,12 +1091,12 @@ main (int argc, char **argv)
       ImGui::Spacing ();
       ImGui::Text ("X");
       ImGui::SameLine ();
-      ImGui::SliderInt ("##rx_x", &rxStartPosX, 0, io.DisplaySize.x - 265);
+      ImGui::SliderInt ("##rx_x", &rxStartPosX, 0, maxX);
       ImGui::SameLine ();
       ImGui::Text ("px");
       ImGui::Text ("Y");
       ImGui::SameLine ();
-      ImGui::SliderInt ("##rx_y", &rxStartPosY, 0, 30);
+      ImGui::SliderInt ("##rx_y", &rxStartPosY, 0, maxY);
       ImGui::SameLine ();
       ImGui::Text ("px");
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
@@ -1263,14 +1291,17 @@ main (int argc, char **argv)
       glfwPollEvents ();
 
       // Check to see if TX and RX positions are updated
-      if (txStartPosX != params.Pos->Sy[0]){
-        params.Pos->Sy[0] = txStartPosX; std::cout <<"change in tx y"<<std::endl;
-      }
+      if (txStartPosX != params.Pos->Sx[0])
+        if (!showPlayback) eraseRays = true;
+        params.Pos->Sx[0] = txStartPosX;
       if (txStartPosY != params.Pos->Sz[0])
+        if (!showPlayback) eraseRays = true;
         params.Pos->Sz[0] = txStartPosY;
       if (rxStartPosX != params.Pos->Rr[0])
+        if (!showPlayback) eraseRays = true;
         params.Pos->Rr[0] = rxStartPosX;
       if (rxStartPosY != params.Pos->Rz[0])
+        if (!showPlayback) eraseRays = true;
         params.Pos->Rz[0] = rxStartPosY;
 
       // check to see if Ray mode needs to change
