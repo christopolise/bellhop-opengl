@@ -53,12 +53,10 @@ std::ostream &operator<<(std::ostream &out, const bhc::VEC23<false>& x) {
 
 void OutputCallback(const char *message)
 {
-    message;
     // std::cout << "Out: " << message << std::endl << std::flush;
 }
 
 void PrtCallback(const char *message) { 
-    message;
     // std::cout << message << std::flush; 
     }
 
@@ -84,7 +82,7 @@ int main(int argc, char **argv)
     //     }
     //     std::cout << "\n";
     // }
-    std::cout << "TX Location: " << params.Pos->Sx[0] << "\t" << params.Pos->Sz[0] <<std::endl;
+    std::cout << "TX Location: " << params.Pos->Sy[0] << "\t" << params.Pos->Sz[0] <<std::endl;
     std::cout << "RX Location: " << params.Pos->Rr[0] << "\t" << params.Pos->Rz[0] <<std::endl;
     std::cout << "Surface points("<<params.bdinfo->top.NPts<<"):\n";
     for (int i = 0; i < params.bdinfo->top.NPts; i++) {
@@ -103,6 +101,7 @@ int main(int argc, char **argv)
     std::cout << std::endl;
 
     std::cout << "Type of Beams? " << params.Beam->RunType[0]<< std::endl;
+    std::cout <<"Beam angles? "<< params.Beam->Box <<std::endl;
 
     // std::cout << "\n" << outputs.rayinfo->NRays << " rays:\n";
     // std::cout << "\n" << outputs.eigen->neigen << " eigenrays\n";
@@ -126,6 +125,9 @@ int main(int argc, char **argv)
     //         std::cout << outputs.rayinfo->results[r].ray[s] << "\n";
     //     }
     // }
+    for (int i = 0; i < params.Angles->alpha.n;++i) {
+        std::cout <<i<<"th angle "<<params.Angles->alpha.angles[i] << std::endl;
+    }
     
     if(!bhc::writeout<false,false>(params, outputs, nullptr)) return 1;
     bhc::finalize(params, outputs);

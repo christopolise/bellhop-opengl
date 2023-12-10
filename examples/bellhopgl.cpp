@@ -26,6 +26,8 @@
 
 #include <bhc/bhc.hpp>
 #include "../src/common_run.hpp"
+#include "../src/common_setup.hpp"
+
 
 #include FT_FREETYPE_H
 
@@ -788,7 +790,7 @@ main (int argc, char **argv)
   int lastFrameCount = 0;
 
   // Start TX Pos
-  int txStartPosX = params.Pos->Sx[0];
+  int txStartPosX = params.Pos->Sy[0];
   int txStartPosY = params.Pos->Sz[0];
 
   // Start RX Pos
@@ -873,6 +875,9 @@ main (int argc, char **argv)
       // Update rays
       dataVector.clear ();
       getRays(dataVector, outputs);
+      // if (dataVector.size() == 0) {
+      //   std::cout << "data vec size is zero"<<std::endl;
+      // }
 
       if (showPlayback)
         glfwSwapInterval (enableVSync);
@@ -1258,8 +1263,9 @@ main (int argc, char **argv)
       glfwPollEvents ();
 
       // Check to see if TX and RX positions are updated
-      if (txStartPosX != params.Pos->Sx[0])
-        params.Pos->Sx[0] = txStartPosX;
+      if (txStartPosX != params.Pos->Sy[0]){
+        params.Pos->Sy[0] = txStartPosX; std::cout <<"change in tx y"<<std::endl;
+      }
       if (txStartPosY != params.Pos->Sz[0])
         params.Pos->Sz[0] = txStartPosY;
       if (rxStartPosX != params.Pos->Rr[0])
@@ -1268,10 +1274,36 @@ main (int argc, char **argv)
         params.Pos->Rz[0] = rxStartPosY;
 
       // check to see if Ray mode needs to change
-      if (params.Beam->RunType[0] =='E' && selectedRayMode == 1 )
+      if (params.Beam->RunType[0] =='E' && selectedRayMode == 1 ) {
         params.Beam->RunType[0] = 'R';
-      if (params.Beam->RunType[0] =='R' && selectedRayMode == 0 )
+        params.Angles->alpha.n = 50;
+        bhc::extsetup_rayelevations<false>(params,50);
+        params.Angles->alpha.inDegrees = true;
+        // int n = params.Angles->alpha.n;
+        // for(int32_t i = 0; i < n; ++i) {
+        //         params.Angles->alpha.angles[i] = (float)(i * 360) / (float)(n);
+        //         params.Angles->alpha.inDegrees = 1;
+        params.Angles->alpha.angles[0] = RL(-80.0);
+            params.Angles->alpha.angles[1] = RL(80.0);
+            params.Angles->alpha.angles[2] = FL(-999.9);
+            bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
+            // }
+      }
+      if (params.Beam->RunType[0] =='R' && selectedRayMode == 0 ) {
         params.Beam->RunType[0] = 'E';
+        params.Angles->alpha.n = 5000;
+        params.Angles->alpha.inDegrees = true;
+        // int n = params.Angles->alpha.n;
+        bhc::extsetup_rayelevations<false>(params,5000);
+        params.Angles->alpha.angles[0] = RL(-80.0);
+            params.Angles->alpha.angles[1] = RL(80.0);
+            params.Angles->alpha.angles[2] = FL(-999.9);
+            bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
+        // for(int32_t i = 0; i < n; ++i) {
+        //         params.Angles->alpha.angles[i] = (float)(i * 360) / (float)(n);
+        //         params.Angles->alpha.inDegrees = 1;
+        //     }
+      }
     }
 
   // free memory used by bellhop
