@@ -732,6 +732,13 @@ main (int argc, char **argv)
         sosVectorY.push_back(params.ssp->alphaR[i]);
   }
 
+  std::vector<double> resetSosVectorX;
+  std::vector<double> resetSosVectorY;
+  for (int i = 0; i < params.ssp->NPts; i++) {
+        resetSosVectorX.push_back(params.ssp->z[i]);
+        resetSosVectorY.push_back(params.ssp->alphaR[i]);
+  }
+
   // Bezier curve
   std::vector<double> xSOSCurve;
   std::vector<double> ySOSCurve;
@@ -907,13 +914,6 @@ main (int argc, char **argv)
           vertices.push_back (0.0f);
         }
       }
-      // std::cout << "Wave vertices size:\t" << vertices.size ()
-      //           << "\tRX x:\t" << rxStartPosX 
-      //           << "\tMin X:\t" << minX 
-      //           << "\tMax X:\t" << maxX
-      //           << "\tMin Y:\t" << minY 
-      //           << "\tMax Y:\t" << maxY << 
-      //           std::endl;
 
       if (!splineDrawn)
         {
@@ -1087,8 +1087,19 @@ main (int argc, char **argv)
         {
           // Code to execute when Button 1 is clicked
           std::cout << "Code to reset speed of sound goes here" << std::endl;
-          sosVectorX = { 0, 10, 20, 25, 30 };
-          sosVectorY = { 1540, 1530, 1532, 1533, 1535 };
+          sosVectorX.clear ();
+          sosVectorY.clear ();
+          sosVectorX = resetSosVectorX;
+          sosVectorY = resetSosVectorY;
+          // Print sos vectors
+          std::cout << "Reset Spline" << std::endl;
+          for (int i = 0; i < sosVectorX.size (); i++)
+            {
+              std::cout << sosVectorX[i] << "\t" << sosVectorY[i] << std::endl;
+            }
+          // clearRegion (950, 0, 650, 800);
+          // clearRegion (0, 0, 1000, 800);
+          glClear (GL_COLOR_BUFFER_BIT);
           splineDrawn = false;
         }
       ImGui::Spacing ();
@@ -1113,6 +1124,8 @@ main (int argc, char **argv)
           std::cout << "Code to add point goes here" << std::endl;
           insertOrUpdatePoint (sosVectorX, sosVectorY, addSosX, addSosY);
           clearRegion (950, 0, 650, 800);
+          clearRegion (0, 0, 1000, 800);
+          dataVector.clear();
           splineDrawn = false;
         }
 
