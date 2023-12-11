@@ -20,13 +20,10 @@
 
 #include <bhc/bhc.hpp>
 #include "../src/common_run.hpp"
+#include "../src/common_setup.hpp"
 
 #include "spline.h"
 #include "shader.h"
-
-#include <bhc/bhc.hpp>
-#include "../src/common_run.hpp"
-#include "../src/common_setup.hpp"
 
 
 #include FT_FREETYPE_H
@@ -657,7 +654,20 @@ deleteText()
   glDeleteProgram (textShaderProgram);
 }
 
-void getRays(std::vector<Data> &dataVector, bhc::bhcOutputs<false, false> outputs){
+void clearRegion(int x, int y, int width, int height)
+{
+  glViewport(x, y, width, height);
+  glEnable(GL_SCISSOR_TEST);
+  glScissor(x, y, width, height);
+  glClear(GL_COLOR_BUFFER_BIT);
+  glDisable(GL_SCISSOR_TEST);
+}
+
+void getRays(std::vector<Data> &dataVector, bhc::bhcOutputs<false, false> outputs, double & xMin, double & xMax, double & yMin, double & yMax){
+    xMin = 100000000;
+    xMax = -100000000;
+    yMin = 100000000;
+    yMax = -100000000;
   for (int r = 0; r < outputs.rayinfo->NRays; ++r) {
         dataVector.push_back(Data());
         dataVector[r].vertices = outputs.rayinfo->results[r].Nsteps;
@@ -667,6 +677,10 @@ void getRays(std::vector<Data> &dataVector, bhc::bhcOutputs<false, false> output
         for(int j = 0; j < outputs.rayinfo->results[r].Nsteps; j++) {
 
             outputs.rayinfo->results[r].ray[j].x = RayToOceanX(outputs.rayinfo->results[r].ray[j].x,outputs.rayinfo->results[r].org);
+            if (outputs.rayinfo->results[r].ray[j].x.x < xMin) xMin = outputs.rayinfo->results[r].ray[j].x.x;
+            if (outputs.rayinfo->results[r].ray[j].x.x > xMax) xMax = outputs.rayinfo->results[r].ray[j].x.x;
+            if (outputs.rayinfo->results[r].ray[j].x.y < yMin) yMin = outputs.rayinfo->results[r].ray[j].x.y;
+            if (outputs.rayinfo->results[r].ray[j].x.y > yMax) yMax = outputs.rayinfo->results[r].ray[j].x.y;
             dataVector[r].x.push_back(outputs.rayinfo->results[r].ray[j].x.x);
             dataVector[r].y.push_back(outputs.rayinfo->results[r].ray[j].x.y);
         }
@@ -685,6 +699,11 @@ void PrtCallback(const char *message) {
 int
 main (int argc, char **argv)
 {
+  // Find set min and max
+  double minX = 10000;
+  double maxX = 0;
+  double minY = 10000;
+  double maxY = 0;
 
   // Load environment
   bhc::bhcParams<false> params;
@@ -701,7 +720,7 @@ main (int argc, char **argv)
   // Rays
   // std::vector<Data> dataVector = readDataFromFile (argv[1] + std::string (".ray"));
   std::vector<Data> dataVector;
-  getRays(dataVector, outputs);
+  getRays(dataVector, outputs, minX, maxX, minY, maxY);
 
 
   // Floor shape
@@ -790,16 +809,11 @@ main (int argc, char **argv)
   int lastFrameCount = 0;
 
   // Start TX Pos
-  int txStartPosX = params.Pos->Sy[0];
-  int txStartPosY = params.Pos->Sz[0];
-
+  // float txStartPosX = params.Pos->Sx[0];
+  float txStartPosY = params.Pos->Sz[0];
   // Start RX Pos
-  int rxStartPosX = params.Pos->Rr[0];
-  int rxStartPosY = params.Pos->Rz[0];
-
-  // Tethered Bools
-  bool tetherX = false;
-  bool tetherY = false;
+  float rxStartPosX = params.Pos->Rr[0];
+  float rxStartPosY = params.Pos->Rz[0];
 
   // Sim vals
   bool showPlayback = true;
@@ -813,7 +827,7 @@ main (int argc, char **argv)
 
   bool staticDrawAxes = false;
 
-  bool eraseRays = false;
+  int numOfRays = 1;
 
   const char *vendor
       = reinterpret_cast<const char *> (glGetString (GL_VENDOR));
@@ -838,30 +852,30 @@ main (int argc, char **argv)
   initTextDraw (shader, projection);
 
   // Find set min and max
-  double minX = 10000;
-  double maxX = 0;
-  double minY = 10000;
-  double maxY = 0;
-  for (int i = 0; i < dataVector.size (); i++)
-    {
-      double temp_minX = *std::min_element (dataVector[i].x.begin (),
-                                            dataVector[i].x.end ());
-      double temp_maxX = *std::max_element (dataVector[i].x.begin (),
-                                            dataVector[i].x.end ());
-      double temp_minY = *std::min_element (dataVector[i].y.begin (),
-                                            dataVector[i].y.end ());
-      double temp_maxY = *std::max_element (dataVector[i].y.begin (),
-                                            dataVector[i].y.end ());
+  // double minX = 10000;
+  // double maxX = 0;
+  // double minY = 10000;
+  // double maxY = 0;
+  // for (int i = 0; i < dataVector.size (); i++)
+  //   {
+  //     double temp_minX = *std::min_element (dataVector[i].x.begin (),
+  //                                           dataVector[i].x.end ());
+  //     double temp_maxX = *std::max_element (dataVector[i].x.begin (),
+  //                                           dataVector[i].x.end ());
+  //     double temp_minY = *std::min_element (dataVector[i].y.begin (),
+  //                                           dataVector[i].y.end ());
+  //     double temp_maxY = *std::max_element (dataVector[i].y.begin (),
+  //                                           dataVector[i].y.end ());
 
-      if (temp_minX < minX)
-        minX = temp_minX;
-      if (temp_maxX > maxX)
-        maxX = temp_maxX;
-      if (temp_minY < minY)
-        minY = temp_minY;
-      if (temp_maxY > maxY)
-        maxY = temp_maxY;
-    }
+  //     if (temp_minX < minX)
+  //       minX = temp_minX;
+  //     if (temp_maxX > maxX)
+  //       maxX = temp_maxX;
+  //     if (temp_minY < minY)
+  //       minY = temp_minY;
+  //     if (temp_maxY > maxY)
+  //       maxY = temp_maxY;
+  //   }
 
   // Specify the color of the background
   glClearColor (0.07f, 0.13f, 0.17f, 1.0f);
@@ -876,10 +890,9 @@ main (int argc, char **argv)
       bhc::run(params, outputs);
       // Update rays
       dataVector.clear ();
-      getRays(dataVector, outputs);
-      // if (dataVector.size() == 0) {
-      //   std::cout << "data vec size is zero"<<std::endl;
-      // }
+      std::cout << "Getting rays..." << std::endl;
+      getRays(dataVector, outputs, minX, maxX, minY, maxY);
+      std::cout << "Got rays" << std::endl;
 
       if (showPlayback)
         glfwSwapInterval (enableVSync);
@@ -893,9 +906,12 @@ main (int argc, char **argv)
       ImGui_ImplGlfw_NewFrame ();
       ImGui::NewFrame ();
 
-      if (simPlaying)
+      if (simPlaying && !dataVector.empty ())
+      {
         ray++;
-      ray %= dataVector.size ();
+        ray %= dataVector.size ();
+      }
+      // if (!dataVector.empty ())
 
       // Measure speed
       double currentTime = glfwGetTime ();
@@ -907,8 +923,11 @@ main (int argc, char **argv)
           lastTime = currentTime;
         }
 
+
       vertices.clear ();
-      for (int i = 0; i < dataVector[ray].vertices; i++)
+      if (!dataVector.empty ())
+      {
+        for (int i = 0; i < dataVector[ray].vertices; i++)
         {
 
           float x = (((dataVector[ray].x[i] - minX) / (maxX - minX)) * 1.7f)
@@ -920,6 +939,14 @@ main (int argc, char **argv)
           vertices.push_back (y);
           vertices.push_back (0.0f);
         }
+      }
+      std::cout << "Wave vertices size:\t" << vertices.size ()
+                << "\tRX x:\t" << rxStartPosX 
+                << "\tMin X:\t" << minX 
+                << "\tMax X:\t" << maxX
+                << "\tMin Y:\t" << minY 
+                << "\tMax Y:\t" << maxY << 
+                std::endl;
 
       if (!splineDrawn)
         {
@@ -982,46 +1009,25 @@ main (int argc, char **argv)
 
           drawFrame (frameVertices);
           drawFloor (floorVertices);
-          drawRay (ray, dataVector, vertices);
+          if (!dataVector.empty ())
+            drawRay (ray, dataVector, vertices);
         }
       else
         {
-          if (eraseRays)
-          {
-            glUseProgram (shaderProgram);
-            glUniform4f (glGetUniformLocation (shaderProgram, "color"),
-                          0.07f, 0.13f, 0.17f, 1.0f);
-            int numOfErasedRays = 0;
-
-            if (numOfErasedRays == 0)
-              {
-                drawFrame (frameVertices);
-                drawFloor (floorVertices);
-              }
-
-            drawRay (ray, dataVector, vertices);
-            numOfErasedRays++;
-
-            if (numOfErasedRays == dataVector.size () - 1)
-              {
-                eraseRays = false;
-                numOfErasedRays = 0;
-              }
-          }
-          else if (drawingRays)
+          if (drawingRays)
             {
-              glUseProgram (shaderProgram);
-              glUniform4f (glGetUniformLocation (shaderProgram, "color"),
-                           0.8f, 0.3f, 0.02f, 1.0f);
               int numOfDrawnRays = 0;
 
               if (numOfDrawnRays == 0)
                 {
+                  // clearRegion (70, 50, 900, 700);
+                  // glViewport (0, 0, 950, 800);
                   drawFrame (frameVertices);
                   drawFloor (floorVertices);
                 }
 
-              drawRay (ray, dataVector, vertices);
+              if (!dataVector.empty ())
+                drawRay (ray, dataVector, vertices);
               numOfDrawnRays++;
 
               if (numOfDrawnRays == dataVector.size () - 1)
@@ -1032,11 +1038,6 @@ main (int argc, char **argv)
             }
           
         }
-
-      if (tetherX)
-        txStartPosX = rxStartPosX;
-      if (tetherY)
-        txStartPosY = rxStartPosY;
 
       ImGui::SetNextWindowPos (ImVec2 (io.DisplaySize.x - 280, 0));
       ImGui::SetNextWindowSize (ImVec2 (280, io.DisplaySize.y));
@@ -1075,36 +1076,36 @@ main (int argc, char **argv)
 
       ImGui::Text ("TX");
       ImGui::Spacing ();
-      ImGui::Text ("X");
-      ImGui::SameLine ();
-      ImGui::SliderInt ("##tx_x", &txStartPosX, 0, maxX);
-      ImGui::SameLine ();
-      ImGui::Text ("px");
+      // ImGui::Text ("X");
+      // ImGui::SameLine ();
+      // ImGui::SliderInt ("##tx_x", &txStartPosX, 0, maxX);
+      // ImGui::SameLine ();
+      // ImGui::Text ("px");
       ImGui::Text ("Y");
       ImGui::SameLine ();
-      ImGui::SliderInt ("##tx_y", &txStartPosY, 0, maxY);
+      ImGui::SliderFloat ("##tx_y", &txStartPosY, 0, maxY - .1);
       ImGui::SameLine ();
       ImGui::Text ("px");
+      if (selectedRayMode == 1)
+      {
+        ImGui::Text ("Rays");
+        ImGui::SameLine ();
+        ImGui::SliderInt("##rays", &numOfRays, 1, 5000);
+      }
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
       ImGui::Text ("RX");
       ImGui::Spacing ();
       ImGui::Text ("X");
       ImGui::SameLine ();
-      ImGui::SliderInt ("##rx_x", &rxStartPosX, 0, maxX);
+      ImGui::SliderFloat ("##rx_x", &rxStartPosX, minX < 0 ? 0 : minX, maxX);
       ImGui::SameLine ();
       ImGui::Text ("px");
       ImGui::Text ("Y");
       ImGui::SameLine ();
-      ImGui::SliderInt ("##rx_y", &rxStartPosY, 0, maxY);
+      ImGui::SliderFloat ("##rx_y", &rxStartPosY, 0, maxY - .1);
       ImGui::SameLine ();
       ImGui::Text ("px");
-      ImGui::Dummy (ImVec2 (0.0f, 10.0f));
-
-      // Display a lock icon based on the tethered variable
-      ImGui::Checkbox ("Lock X", &tetherX);
-      ImGui::SameLine ();
-      ImGui::Checkbox ("Lock Y", &tetherY);
 
       // New section
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
@@ -1144,6 +1145,7 @@ main (int argc, char **argv)
           // Code to execute when Button 1 is clicked
           std::cout << "Code to add point goes here" << std::endl;
           insertOrUpdatePoint (sosVectorX, sosVectorY, addSosX, addSosY);
+          clearRegion (950, 0, 650, 800);
           splineDrawn = false;
         }
 
@@ -1180,39 +1182,51 @@ main (int argc, char **argv)
                             mySimProgress, ImGuiSliderFlags_NoInput);
           ImGui::Spacing ();
 
-          ImGui::Dummy (ImVec2 (21.5f, 0.0f));
+          ImGui::Dummy (ImVec2 (32.5f, 0.0f));
           ImGui::SameLine ();
-          ImGui::BeginDisabled (simPlaying);
-          if (ImGui::Button ("|<<", ImVec2 (50, 0)))
-            {
-              ray--;
-              ray = (ray < 0) ? 0 : ray;
-            }
-          ImGui::EndDisabled ();
-          ImGui::SameLine ();
-          if (ImGui::Button (simPlaying ? "||" : "|>", ImVec2 (75, 0)))
-            {
-              // Play/Pause
-              simPlaying = !simPlaying;
-            }
-          ImGui::SameLine ();
-          ImGui::BeginDisabled (simPlaying);
-          if (ImGui::Button (">>|", ImVec2 (50, 0)))
-            {
-              ray++;
-              ray = (ray >= dataVector.size ()) ? dataVector.size () - 1 : ray;
-            }
+
+          if (!dataVector.empty ())
+          {
+            ImGui::BeginDisabled (simPlaying);
+            if (ImGui::Button ("|<<", ImVec2 (50, 0)))
+              {
+                ray--;
+                ray = (ray < 0) ? 0 : ray;
+              }
+            ImGui::EndDisabled ();
+            ImGui::SameLine ();
+            if (ImGui::Button (simPlaying ? "||" : "|>", ImVec2 (75, 0)))
+              {
+                // Play/Pause
+                simPlaying = !simPlaying;
+              }
+            ImGui::SameLine ();
+            ImGui::BeginDisabled (simPlaying);
+            if (ImGui::Button (">>|", ImVec2 (50, 0)))
+              {
+                ray++;
+                ray = (ray >= dataVector.size ()) ? dataVector.size () - 1 : ray;
+              }
+          }
           ImGui::EndDisabled ();
           ImGui::Spacing ();
           ImGui::Text ("Simulation Characteristics");
           ImGui::Spacing ();
-          ImGui::Text ("Vertices:        %d", dataVector[ray].vertices);
-          ImGui::Spacing ();
-          ImGui::Text ("Angle of Entry:  %f", dataVector[ray].angle_of_entry);
-          ImGui::Spacing ();
-          ImGui::Text ("Top Bounces:     %d", dataVector[ray].top_bounce);
-          ImGui::Spacing ();
-          ImGui::Text ("Bottom Bounce:   %d", dataVector[ray].bottom_bounce);
+
+          if(! dataVector.empty())
+          {
+            ImGui::Text ("Vertices:        %d", dataVector[ray].vertices);
+            ImGui::Spacing ();
+            ImGui::Text ("Angle of Entry:  %f", dataVector[ray].angle_of_entry);
+            ImGui::Spacing ();
+            ImGui::Text ("Top Bounces:     %d", dataVector[ray].top_bounce);
+            ImGui::Spacing ();
+            ImGui::Text ("Bottom Bounce:   %d", dataVector[ray].bottom_bounce);
+          }
+          else
+          {
+            ImGui::Text ("No Data");
+          }
         }
 
       // Add text anchored to the bottom of the side panel
@@ -1253,37 +1267,76 @@ main (int argc, char **argv)
 
       glViewport (950, 0, 650, 800);
 
+      clearRegion (950, 0, 650, 800);
       drawFrame (frameVertices);
 
       // Render the second OpenGL viewport
       drawSOS (sosVertices);
 
+      // glViewport (0, 0, 1880, 800);
+      clearRegion (0, 0, 1880 - 280, 59); // Clear bottom bar
+      clearRegion (0, 800-59, 1880 - 280, 59 ); // Clear top bar
+      clearRegion (0, 0, 70, 800); // Clear left bar
+      clearRegion ((1880 / 2) - 12, 0, 70, 800); // Clear right bar
       glViewport (0, 0, 1880, 800);
       // Draw Once
-      if (showPlayback)
-      {
+      // if (showPlayback)
+      // {
         drawText(shader, "Bellhop Algorithm", 350.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
         drawText(shader, "Distance (m)", 425.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
         drawText(shader, "Speed of Sound", 1175.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
         drawText(shader, "Speed (m/s)", 1225.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
-        staticDrawAxes = true;
-      }
-      else
-      {
-        if (staticDrawAxes)
-        {
-          drawText(shader, "Bellhop Algorithm", 350.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
-          drawText(shader, "Distance (m)", 425.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
-          drawText(shader, "Speed of Sound", 1175.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
-          drawText(shader, "Speed (m/s)", 1225.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
-          staticDrawAxes = false;
-        }
-      }
+        char yMinStr[100];
+        char yMaxStr[100];
+        char xMinStr[100];
+        char xMaxStr[100];
+        std::sprintf (yMinStr, "%f", minY);
+        std::sprintf (yMaxStr, "%f", maxY);
+        std::sprintf (xMinStr, "%f", minX);
+        std::sprintf (xMaxStr, "%f", maxX);
+        std::cout << "HERE" << std::endl;
+        drawText(shader, yMinStr, 15.0, 60.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // Y Max
+        drawText(shader, yMaxStr, 10.0, 735.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // Y Min
+        drawText(shader, xMinStr, 70.0, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // X Min
+        drawText(shader, xMaxStr, 840.0, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // X Max
 
-      // Bellhop Axes
-      // drawText(shader_vert, "0", 35.0, 25.0, 0.4f, glm::vec3(1.0f, 1.0f, 1.0f)); // Origin
-      // drawText(shader, "0", 35.0, 775.0, 0.4f, glm::vec3(1.0f, 1.0f, 1.0f)); // Y Max
-      // drawText(shader, std::to_string(*std::max_element (dataVector[ray].y.begin (), dataVector[ray].y.end ())), 35.0, 775.0, 0.4f, glm::vec3(1.0f, 1.0f, 1.0f)); // X Max
+        double sosMinX
+            = *std::min_element (xSOSCurve.begin (), xSOSCurve.end ());
+        double sosMaxX
+            = *std::max_element (xSOSCurve.begin (), xSOSCurve.end ());
+        double sosMinY
+            = *std::min_element (ySOSCurve.begin (), ySOSCurve.end ());
+        double sosMaxY
+            = *std::max_element (ySOSCurve.begin (), ySOSCurve.end ());
+        char sosMinXStr[10];
+        char sosMaxXStr[10];
+        char sosMinYStr[10];
+        char sosMaxYStr[10];
+        std::sprintf (sosMinXStr, "%.1f", sosMinX);
+        std::sprintf (sosMaxXStr, "%.1f", sosMaxX);
+        std::sprintf (sosMinYStr, "%.1f", sosMinY);
+        std::sprintf (sosMaxYStr, "%.1f", sosMaxY);
+        drawText(shader, sosMinYStr, 1000, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS X Min
+        drawText(shader, sosMaxYStr, 1525, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS X Max
+        drawText(shader, sosMaxXStr, 950, 60.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS Y Max
+        drawText(shader, sosMinXStr, 950, 735.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS Y Min
+
+
+
+
+      //   staticDrawAxes = true;
+      // }
+      // else
+      // {
+      //   if (staticDrawAxes)
+      //   {
+      //     drawText(shader, "Bellhop Algorithm", 350.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
+      //     drawText(shader, "Distance (m)", 425.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
+      //     drawText(shader, "Speed of Sound", 1175.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
+      //     drawText(shader, "Speed (m/s)", 1225.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
+      //     staticDrawAxes = false;
+      //   }
+      // }
 
       // Swap the back buffer with the front buffer
       glfwSwapBuffers (window);
@@ -1291,21 +1344,29 @@ main (int argc, char **argv)
       glfwPollEvents ();
 
       // Check to see if TX and RX positions are updated
-      if (txStartPosX != params.Pos->Sx[0])
-        if (!showPlayback) eraseRays = true;
-        params.Pos->Sx[0] = txStartPosX;
       if (txStartPosY != params.Pos->Sz[0])
-        if (!showPlayback) eraseRays = true;
-        params.Pos->Sz[0] = txStartPosY;
+        { 
+          params.Pos->Sz[0] = txStartPosY;
+          clearRegion (70, 50, 900, 700);
+          glViewport (0, 0, 950, 800);
+        }
       if (rxStartPosX != params.Pos->Rr[0])
-        if (!showPlayback) eraseRays = true;
-        params.Pos->Rr[0] = rxStartPosX;
+        { 
+          params.Pos->Rr[0] = rxStartPosX;
+          clearRegion (70, 50, 900, 700);
+          glViewport (0, 0, 950, 800);
+        }
       if (rxStartPosY != params.Pos->Rz[0])
-        if (!showPlayback) eraseRays = true;
-        params.Pos->Rz[0] = rxStartPosY;
+        { 
+          params.Pos->Rz[0] = rxStartPosY;
+          clearRegion (70, 50, 900, 700);
+          glViewport (0, 0, 950, 800);
+        }
 
       // check to see if Ray mode needs to change
       if (params.Beam->RunType[0] =='E' && selectedRayMode == 1 ) {
+        clearRegion (70, 50, 900, 700);
+        glViewport (0, 0, 950, 800);
         params.Beam->RunType[0] = 'R';
         
         bhc::extsetup_rayelevations<false>(params,50);
@@ -1319,6 +1380,8 @@ main (int argc, char **argv)
             // }
       }
       if (params.Beam->RunType[0] =='R' && selectedRayMode == 0 ) {
+        clearRegion (70, 50, 900, 700);
+        glViewport (0, 0, 950, 800);
         params.Beam->RunType[0] = 'E';
         // params.Angles->alpha.n = 5000;
         params.Angles->alpha.inDegrees = true;
