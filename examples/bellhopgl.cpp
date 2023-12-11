@@ -663,11 +663,7 @@ void clearRegion(int x, int y, int width, int height)
   glDisable(GL_SCISSOR_TEST);
 }
 
-void getRays(std::vector<Data> &dataVector, bhc::bhcOutputs<false, false> outputs, double & xMin, double & xMax, double & yMin, double & yMax){
-    xMin = 100000000;
-    xMax = -100000000;
-    yMin = 100000000;
-    yMax = -100000000;
+void getRays(std::vector<Data> &dataVector, bhc::bhcOutputs<false, false> outputs){
   for (int r = 0; r < outputs.rayinfo->NRays; ++r) {
         dataVector.push_back(Data());
         dataVector[r].vertices = outputs.rayinfo->results[r].Nsteps;
@@ -675,12 +671,7 @@ void getRays(std::vector<Data> &dataVector, bhc::bhcOutputs<false, false> output
         dataVector[r].bottom_bounce = outputs.rayinfo->results[r].ray[dataVector[r].vertices - 1].NumBotBnc;
         dataVector[r].angle_of_entry = outputs.rayinfo->results[r].SrcDeclAngle;
         for(int j = 0; j < outputs.rayinfo->results[r].Nsteps; j++) {
-
             outputs.rayinfo->results[r].ray[j].x = RayToOceanX(outputs.rayinfo->results[r].ray[j].x,outputs.rayinfo->results[r].org);
-            if (outputs.rayinfo->results[r].ray[j].x.x < xMin) xMin = outputs.rayinfo->results[r].ray[j].x.x;
-            if (outputs.rayinfo->results[r].ray[j].x.x > xMax) xMax = outputs.rayinfo->results[r].ray[j].x.x;
-            if (outputs.rayinfo->results[r].ray[j].x.y < yMin) yMin = outputs.rayinfo->results[r].ray[j].x.y;
-            if (outputs.rayinfo->results[r].ray[j].x.y > yMax) yMax = outputs.rayinfo->results[r].ray[j].x.y;
             dataVector[r].x.push_back(outputs.rayinfo->results[r].ray[j].x.x);
             dataVector[r].y.push_back(outputs.rayinfo->results[r].ray[j].x.y);
         }
@@ -715,13 +706,15 @@ main (int argc, char **argv)
   init.prtCallback    = PrtCallback;
   bhc::setup(init, params, outputs);
 
+  maxY =  params.Bdry->Bot.hs.Depth;
+  std::cout << "Max Y:\t" << maxY << std::endl;
+
   bhc::run(params, outputs);
 
   // Rays
   // std::vector<Data> dataVector = readDataFromFile (argv[1] + std::string (".ray"));
   std::vector<Data> dataVector;
-  getRays(dataVector, outputs, minX, maxX, minY, maxY);
-
+  getRays(dataVector, outputs);
 
   // Floor shape
   std::vector<double> floorVectorX;
@@ -827,7 +820,7 @@ main (int argc, char **argv)
 
   bool staticDrawAxes = false;
 
-  int numOfRays = 1;
+  int numOfRays = 50;
 
   const char *vendor
       = reinterpret_cast<const char *> (glGetString (GL_VENDOR));
@@ -851,32 +844,6 @@ main (int argc, char **argv)
   initFloorDraw ();
   initTextDraw (shader, projection);
 
-  // Find set min and max
-  // double minX = 10000;
-  // double maxX = 0;
-  // double minY = 10000;
-  // double maxY = 0;
-  // for (int i = 0; i < dataVector.size (); i++)
-  //   {
-  //     double temp_minX = *std::min_element (dataVector[i].x.begin (),
-  //                                           dataVector[i].x.end ());
-  //     double temp_maxX = *std::max_element (dataVector[i].x.begin (),
-  //                                           dataVector[i].x.end ());
-  //     double temp_minY = *std::min_element (dataVector[i].y.begin (),
-  //                                           dataVector[i].y.end ());
-  //     double temp_maxY = *std::max_element (dataVector[i].y.begin (),
-  //                                           dataVector[i].y.end ());
-
-  //     if (temp_minX < minX)
-  //       minX = temp_minX;
-  //     if (temp_maxX > maxX)
-  //       maxX = temp_maxX;
-  //     if (temp_minY < minY)
-  //       minY = temp_minY;
-  //     if (temp_maxY > maxY)
-  //       maxY = temp_maxY;
-  //   }
-
   // Specify the color of the background
   glClearColor (0.07f, 0.13f, 0.17f, 1.0f);
   // Clean the back buffer and assign the new color to it
@@ -890,9 +857,9 @@ main (int argc, char **argv)
       bhc::run(params, outputs);
       // Update rays
       dataVector.clear ();
-      std::cout << "Getting rays..." << std::endl;
-      getRays(dataVector, outputs, minX, maxX, minY, maxY);
-      std::cout << "Got rays" << std::endl;
+      // std::cout << "Getting rays..." << std::endl;
+      getRays(dataVector, outputs);
+      // std::cout << "Got rays" << std::endl;
 
       if (showPlayback)
         glfwSwapInterval (enableVSync);
@@ -930,9 +897,9 @@ main (int argc, char **argv)
         for (int i = 0; i < dataVector[ray].vertices; i++)
         {
 
-          float x = (((dataVector[ray].x[i] - minX) / (maxX - minX)) * 1.7f)
+          float x = (((dataVector[ray].x[i] - 0) / (1000 - 0)) * 1.7f)
                     - 0.85f;
-          float y = (((dataVector[ray].y[i] - minY) / (maxY - minY)) * 1.7f)
+          float y = (((dataVector[ray].y[i] - 0) / (maxY - 0)) * 1.7f)
                     - 0.85f;
 
           vertices.push_back (x);
@@ -940,13 +907,13 @@ main (int argc, char **argv)
           vertices.push_back (0.0f);
         }
       }
-      std::cout << "Wave vertices size:\t" << vertices.size ()
-                << "\tRX x:\t" << rxStartPosX 
-                << "\tMin X:\t" << minX 
-                << "\tMax X:\t" << maxX
-                << "\tMin Y:\t" << minY 
-                << "\tMax Y:\t" << maxY << 
-                std::endl;
+      // std::cout << "Wave vertices size:\t" << vertices.size ()
+      //           << "\tRX x:\t" << rxStartPosX 
+      //           << "\tMin X:\t" << minX 
+      //           << "\tMax X:\t" << maxX
+      //           << "\tMin Y:\t" << minY 
+      //           << "\tMax Y:\t" << maxY << 
+      //           std::endl;
 
       if (!splineDrawn)
         {
@@ -992,9 +959,9 @@ main (int argc, char **argv)
         {
 
           float x
-              = (((floorVectorX[i] - minX) / (maxX - minX)) * 1.7f) - 0.85f;
+              = (((floorVectorX[i] - 0) / (1000 - 0)) * 1.7f) - 0.85f;
           float y
-              = (((floorVectorY[i] - minY) / (maxY - minY)) * 1.7f) - 0.85f;
+              = (((floorVectorY[i] - 0) / (maxY - 0)) * 1.7f) - 0.85f;
 
           floorVertices.push_back (x);
           floorVertices.push_back (y);
@@ -1090,7 +1057,7 @@ main (int argc, char **argv)
       {
         ImGui::Text ("Rays");
         ImGui::SameLine ();
-        ImGui::SliderInt("##rays", &numOfRays, 1, 5000);
+        ImGui::SliderInt("##rays", &numOfRays, 1, 1000);
       }
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
 
@@ -1098,7 +1065,7 @@ main (int argc, char **argv)
       ImGui::Spacing ();
       ImGui::Text ("X");
       ImGui::SameLine ();
-      ImGui::SliderFloat ("##rx_x", &rxStartPosX, minX < 0 ? 0 : minX, maxX);
+      ImGui::SliderFloat ("##rx_x", &rxStartPosX, 0.1, 1000);
       ImGui::SameLine ();
       ImGui::Text ("px");
       ImGui::Text ("Y");
@@ -1286,19 +1253,12 @@ main (int argc, char **argv)
         drawText(shader, "Distance (m)", 425.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
         drawText(shader, "Speed of Sound", 1175.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
         drawText(shader, "Speed (m/s)", 1225.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
-        char yMinStr[100];
         char yMaxStr[100];
-        char xMinStr[100];
-        char xMaxStr[100];
-        std::sprintf (yMinStr, "%f", minY);
-        std::sprintf (yMaxStr, "%f", maxY);
-        std::sprintf (xMinStr, "%f", minX);
-        std::sprintf (xMaxStr, "%f", maxX);
-        std::cout << "HERE" << std::endl;
-        drawText(shader, yMinStr, 15.0, 60.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // Y Max
-        drawText(shader, yMaxStr, 10.0, 735.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // Y Min
-        drawText(shader, xMinStr, 70.0, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // X Min
-        drawText(shader, xMaxStr, 840.0, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // X Max
+        std::sprintf (yMaxStr, "%.1f", maxY);
+        drawText(shader, yMaxStr, 15.0, 60.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // Y Max
+        drawText(shader, "0.0", 10.0, 735.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // Y Min
+        drawText(shader, "0.0", 70.0, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // X Min
+        drawText(shader, "1000.0", 840.0, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // X Max
 
         double sosMinX
             = *std::min_element (xSOSCurve.begin (), xSOSCurve.end ());
@@ -1320,23 +1280,6 @@ main (int argc, char **argv)
         drawText(shader, sosMaxYStr, 1525, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS X Max
         drawText(shader, sosMaxXStr, 950, 60.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS Y Max
         drawText(shader, sosMinXStr, 950, 735.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS Y Min
-
-
-
-
-      //   staticDrawAxes = true;
-      // }
-      // else
-      // {
-      //   if (staticDrawAxes)
-      //   {
-      //     drawText(shader, "Bellhop Algorithm", 350.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
-      //     drawText(shader, "Distance (m)", 425.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
-      //     drawText(shader, "Speed of Sound", 1175.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
-      //     drawText(shader, "Speed (m/s)", 1225.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
-      //     staticDrawAxes = false;
-      //   }
-      // }
 
       // Swap the back buffer with the front buffer
       glfwSwapBuffers (window);
@@ -1368,8 +1311,8 @@ main (int argc, char **argv)
         clearRegion (70, 50, 900, 700);
         glViewport (0, 0, 950, 800);
         params.Beam->RunType[0] = 'R';
-        params.Angles->alpha.n = 50;
-        bhc::extsetup_rayelevations<false>(params,50);
+        params.Angles->alpha.n = numOfRays;
+        bhc::extsetup_rayelevations<false>(params,numOfRays);
         params.Angles->alpha.inDegrees = true;
         // int n = params.Angles->alpha.n;
         // for(int32_t i = 0; i < n; ++i) {
