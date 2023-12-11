@@ -1307,34 +1307,31 @@ main (int argc, char **argv)
       // check to see if Ray mode needs to change
       if (params.Beam->RunType[0] =='E' && selectedRayMode == 1 ) {
         params.Beam->RunType[0] = 'R';
-        params.Angles->alpha.n = 50;
+        
         bhc::extsetup_rayelevations<false>(params,50);
+        params.Angles->alpha.n = 50;
         params.Angles->alpha.inDegrees = true;
-        // int n = params.Angles->alpha.n;
-        // for(int32_t i = 0; i < n; ++i) {
-        //         params.Angles->alpha.angles[i] = (float)(i * 360) / (float)(n);
-        //         params.Angles->alpha.inDegrees = 1;
+
         params.Angles->alpha.angles[0] = RL(-80.0);
-            params.Angles->alpha.angles[1] = RL(80.0);
-            params.Angles->alpha.angles[2] = FL(-999.9);
-            bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
+        params.Angles->alpha.angles[1] = RL(80.0);
+        params.Angles->alpha.angles[2] = FL(-999.9);
+        bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
             // }
       }
       if (params.Beam->RunType[0] =='R' && selectedRayMode == 0 ) {
         params.Beam->RunType[0] = 'E';
-        params.Angles->alpha.n = 5000;
+        // params.Angles->alpha.n = 5000;
         params.Angles->alpha.inDegrees = true;
         // int n = params.Angles->alpha.n;
         bhc::extsetup_rayelevations<false>(params,5000);
+        params.Angles->alpha.n = 5000;
         params.Angles->alpha.angles[0] = RL(-80.0);
-            params.Angles->alpha.angles[1] = RL(80.0);
-            params.Angles->alpha.angles[2] = FL(-999.9);
-            bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
-        // for(int32_t i = 0; i < n; ++i) {
-        //         params.Angles->alpha.angles[i] = (float)(i * 360) / (float)(n);
-        //         params.Angles->alpha.inDegrees = 1;
-        //     }
+        params.Angles->alpha.angles[1] = RL(80.0);
+        params.Angles->alpha.angles[2] = FL(-999.9);
+        bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
+ 
       }
+      
     }
 
   // free memory used by bellhop
