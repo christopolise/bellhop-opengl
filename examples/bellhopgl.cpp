@@ -731,6 +731,20 @@ main (int argc, char **argv)
         sosVectorX.push_back(params.ssp->z[i]);
         sosVectorY.push_back(params.ssp->alphaR[i]);
   }
+  std::cout << "\nOriginal Sound speed profile:\n";
+            std::cout
+                << "      z         alphaR      betaR     rho        alphaI     betaI\n";
+            std::cout
+                << "     (m)         (m/s)      (m/s)   (g/cm^3)      (m/s)     (m/s)\n";
+
+            for(int32_t i = 0; i < params.ssp->NPts; ++i) {
+                std::cout << std::setprecision(2) << params.ssp->z[i] << " ";
+                std::cout << params.ssp->alphaR[i] << " ";
+                std::cout << params.ssp->betaR[i] << " ";
+                std::cout << params.ssp->rho[i] << " ";
+                std::cout << std::setprecision(4) << params.ssp->alphaI[i] << " ";
+                std::cout << params.ssp->betaI[i] << "\n";
+            }
 
   // Bezier curve
   std::vector<double> xSOSCurve;
@@ -1353,14 +1367,15 @@ main (int argc, char **argv)
         for(int i = 0; i < params.ssp->NPts; ++i) {
           params.ssp->z[i] = sosVectorX[i];
           params.ssp->alphaR[i] = sosVectorY[i];
-          params.ssp->betaR[i] = 1;
-          params.ssp->rho[i] = 0;
+          params.ssp->betaR[i] = 0;
+          params.ssp->rho[i] = 1;
           params.ssp->alphaI[i] = 0;
         }
         params.ssp->rangeInKm = false;
         params.ssp->dirty = true;
-        std::cout <<"updating ssp"<<std::endl;
+        
       }
+
 
     }
 
