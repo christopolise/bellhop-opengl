@@ -20,6 +20,7 @@
 
 #include <bhc/bhc.hpp>
 #include "../src/common_run.hpp"
+#include "../src/common_setup.hpp"
 
 #include "spline.h"
 #include "shader.h"
@@ -810,7 +811,6 @@ main (int argc, char **argv)
   // Start TX Pos
   // float txStartPosX = params.Pos->Sx[0];
   float txStartPosY = params.Pos->Sz[0];
-
   // Start RX Pos
   float rxStartPosX = params.Pos->Rr[0];
   float rxStartPosY = params.Pos->Rz[0];
@@ -1364,14 +1364,40 @@ main (int argc, char **argv)
         }
 
       // check to see if Ray mode needs to change
-      if (params.Beam->RunType[0] =='E' && selectedRayMode == 1 )
-        {params.Beam->RunType[0] = 'R';
+      if (params.Beam->RunType[0] =='E' && selectedRayMode == 1 ) {
         clearRegion (70, 50, 900, 700);
-        glViewport (0, 0, 950, 800);}
-      if (params.Beam->RunType[0] =='R' && selectedRayMode == 0 )
-        {params.Beam->RunType[0] = 'E';
+        glViewport (0, 0, 950, 800);
+        params.Beam->RunType[0] = 'R';
+        params.Angles->alpha.n = 50;
+        bhc::extsetup_rayelevations<false>(params,50);
+        params.Angles->alpha.inDegrees = true;
+        // int n = params.Angles->alpha.n;
+        // for(int32_t i = 0; i < n; ++i) {
+        //         params.Angles->alpha.angles[i] = (float)(i * 360) / (float)(n);
+        //         params.Angles->alpha.inDegrees = 1;
+        params.Angles->alpha.angles[0] = RL(-80.0);
+            params.Angles->alpha.angles[1] = RL(80.0);
+            params.Angles->alpha.angles[2] = FL(-999.9);
+            bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
+            // }
+      }
+      if (params.Beam->RunType[0] =='R' && selectedRayMode == 0 ) {
         clearRegion (70, 50, 900, 700);
-         glViewport (0, 0, 950, 800);}
+        glViewport (0, 0, 950, 800);
+        params.Beam->RunType[0] = 'E';
+        params.Angles->alpha.n = 5000;
+        params.Angles->alpha.inDegrees = true;
+        // int n = params.Angles->alpha.n;
+        bhc::extsetup_rayelevations<false>(params,5000);
+        params.Angles->alpha.angles[0] = RL(-80.0);
+            params.Angles->alpha.angles[1] = RL(80.0);
+            params.Angles->alpha.angles[2] = FL(-999.9);
+            bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
+        // for(int32_t i = 0; i < n; ++i) {
+        //         params.Angles->alpha.angles[i] = (float)(i * 360) / (float)(n);
+        //         params.Angles->alpha.inDegrees = 1;
+        //     }
+      }
     }
 
   // free memory used by bellhop
