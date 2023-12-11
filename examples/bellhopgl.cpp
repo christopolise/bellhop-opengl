@@ -890,9 +890,9 @@ main (int argc, char **argv)
       bhc::run(params, outputs);
       // Update rays
       dataVector.clear ();
-      std::cout << "Getting rays..." << std::endl;
+      // std::cout << "Getting rays..." << std::endl;
       getRays(dataVector, outputs, minX, maxX, minY, maxY);
-      std::cout << "Got rays" << std::endl;
+      // std::cout << "Got rays" << std::endl;
 
       if (showPlayback)
         glfwSwapInterval (enableVSync);
@@ -940,13 +940,13 @@ main (int argc, char **argv)
           vertices.push_back (0.0f);
         }
       }
-      std::cout << "Wave vertices size:\t" << vertices.size ()
-                << "\tRX x:\t" << rxStartPosX 
-                << "\tMin X:\t" << minX 
-                << "\tMax X:\t" << maxX
-                << "\tMin Y:\t" << minY 
-                << "\tMax Y:\t" << maxY << 
-                std::endl;
+      // std::cout << "Wave vertices size:\t" << vertices.size ()
+      //           << "\tRX x:\t" << rxStartPosX 
+      //           << "\tMin X:\t" << minX 
+      //           << "\tMax X:\t" << maxX
+      //           << "\tMin Y:\t" << minY 
+      //           << "\tMax Y:\t" << maxY << 
+      //           std::endl;
 
       if (!splineDrawn)
         {
@@ -1294,7 +1294,7 @@ main (int argc, char **argv)
         std::sprintf (yMaxStr, "%f", maxY);
         std::sprintf (xMinStr, "%f", minX);
         std::sprintf (xMaxStr, "%f", maxX);
-        std::cout << "HERE" << std::endl;
+        // std::cout << "HERE" << std::endl;
         drawText(shader, yMinStr, 15.0, 60.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // Y Max
         drawText(shader, yMaxStr, 10.0, 735.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // Y Min
         drawText(shader, xMinStr, 70.0, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // X Min
@@ -1394,7 +1394,21 @@ main (int argc, char **argv)
         bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
  
       }
-      
+      if ( params.ssp->NPts != sosVectorX.size()) {
+        params.ssp->NPts = sosVectorX.size();
+        params.ssp->Nz = params.ssp->NPts;
+        for(int i = 0; i < params.ssp->NPts; ++i) {
+          params.ssp->z[i] = sosVectorX[i];
+          params.ssp->alphaR[i] = sosVectorY[i];
+          params.ssp->betaR[i] = 1;
+          params.ssp->rho[i] = 0;
+          params.ssp->alphaI[i] = 0;
+        }
+        params.ssp->rangeInKm = false;
+        params.ssp->dirty = true;
+        std::cout <<"updating ssp"<<std::endl;
+      }
+
     }
 
   // free memory used by bellhop
