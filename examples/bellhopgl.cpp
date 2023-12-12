@@ -955,7 +955,7 @@ main (int argc, char **argv)
             {
 
               float x
-                  = (((xSOSCurve[i] - sosMinX) / (sosMaxX - sosMinX)) * 1.7f)
+                  = (((xSOSCurve[i] - 0) / (sosMaxX - 0)) * 1.7f)
                     - .85f;
               float y
                   = (((ySOSCurve[i] - sosMinY) / (sosMaxY - sosMinY)) * 1.7f)
@@ -1066,7 +1066,7 @@ main (int argc, char **argv)
       ImGui::SameLine ();
       ImGui::SliderFloat ("##tx_y", &txStartPosY, 0, maxY - .1);
       ImGui::SameLine ();
-      ImGui::Text ("px");
+      ImGui::Text ("m");
       if (selectedRayMode == 1)
       {
         ImGui::Text ("Rays");
@@ -1081,12 +1081,12 @@ main (int argc, char **argv)
       ImGui::SameLine ();
       ImGui::SliderFloat ("##rx_x", &rxStartPosX, 0.1, 1000);
       ImGui::SameLine ();
-      ImGui::Text ("px");
+      ImGui::Text ("m");
       ImGui::Text ("Y");
       ImGui::SameLine ();
       ImGui::SliderFloat ("##rx_y", &rxStartPosY, 0, maxY - .1);
       ImGui::SameLine ();
-      ImGui::Text ("px");
+      ImGui::Text ("m");
 
       // New section
       ImGui::Dummy (ImVec2 (0.0f, 10.0f));
@@ -1289,8 +1289,8 @@ main (int argc, char **argv)
 
         double sosMinX
             = *std::min_element (xSOSCurve.begin (), xSOSCurve.end ());
-        double sosMaxX
-            = *std::max_element (xSOSCurve.begin (), xSOSCurve.end ());
+        // double sosMaxX
+        //     = *std::max_element (xSOSCurve.begin (), xSOSCurve.end ());
         double sosMinY
             = *std::min_element (ySOSCurve.begin (), ySOSCurve.end ());
         double sosMaxY
@@ -1300,13 +1300,13 @@ main (int argc, char **argv)
         char sosMinYStr[10];
         char sosMaxYStr[10];
         std::sprintf (sosMinXStr, "%.1f", sosMinX);
-        std::sprintf (sosMaxXStr, "%.1f", sosMaxX);
+        std::sprintf (sosMaxXStr, "%.1f", maxY);
         std::sprintf (sosMinYStr, "%.1f", sosMinY);
         std::sprintf (sosMaxYStr, "%.1f", sosMaxY);
         drawText(shader, sosMinYStr, 1000, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS X Min
         drawText(shader, sosMaxYStr, 1525, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS X Max
         drawText(shader, sosMaxXStr, 950, 60.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS Y Max
-        drawText(shader, sosMinXStr, 950, 735.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS Y Min
+        drawText(shader, "0.0", 950, 735.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS Y Min
 
       // Swap the back buffer with the front buffer
       glfwSwapBuffers (window);
