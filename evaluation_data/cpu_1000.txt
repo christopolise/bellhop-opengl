@@ -1,0 +1,6033 @@
+setup: 0.972164 ms
+Max Y:	30
+Preprocess: 0.069345 ms
+Run: 9.444402 ms
+24 eigenrays
+
+Postprocess: 0.228201 ms
+
+Original Sound speed profile:
+      z         alphaR      betaR     rho        alphaI     betaI
+     (m)         (m/s)      (m/s)   (g/cm^3)      (m/s)     (m/s)
+0 1.5e+03 0 1 0 0
+10 1.5e+03 0 1 0 0
+20 1.5e+03 0 1 0 0
+25 1.5e+03 0 1 0 0
+30 1.5e+03 0 1 0 0
+24
+VERT:	362
+TOP:	4
+BOT:	4
+X Sz:	362
+Y Sz:	362
+OpenGL Vendor: Intel
+OpenGL Renderer: Mesa Intel(R) Graphics (RKL GT1)
+
+Preprocess: 0.027347 ms
+Run: 2.275293 ms
+24 eigenrays
+
+Postprocess: 0.562161 ms
+Mem move_time: 0.05394 ms
+Spline
+0	1540
+10	1530
+20	1532
+25	1533
+30	1535
+Graph time: 18.19 ms
+
+Preprocess: 0.088134 ms
+Run: 2.181426 ms
+Postprocess: 0.000481 ms
+Mem move_time: 1.536 ms
+Graph time: 1.8 ms
+
+Preprocess: 2.007940 ms
+Run: 2.045886 ms
+Postprocess: 0.000520 ms
+Mem move_time: 1.358 ms
+Graph time: 2.226 ms
+
+Preprocess: 1.478462 ms
+Run: 1.591013 ms
+Postprocess: 0.000149 ms
+Mem move_time: 1.078 ms
+Graph time: 0.7222 ms
+
+Preprocess: 1.616051 ms
+Run: 1.930887 ms
+Postprocess: 0.000213 ms
+Mem move_time: 1.792 ms
+Graph time: 8.32 ms
+
+Preprocess: 1.635639 ms
+Run: 1.819888 ms
+Postprocess: 0.000363 ms
+Mem move_time: 1.13 ms
+Graph time: 1.971 ms
+
+Preprocess: 1.862364 ms
+Run: 1.722503 ms
+Postprocess: 0.000178 ms
+Mem move_time: 1.028 ms
+Graph time: 0.7246 ms
+
+Preprocess: 1.372855 ms
+Run: 1.585115 ms
+Postprocess: 0.000186 ms
+Mem move_time: 1.035 ms
+Graph time: 0.7212 ms
+
+Preprocess: 1.203047 ms
+Run: 1.530546 ms
+Postprocess: 0.000102 ms
+Mem move_time: 1.254 ms
+Graph time: 8.402 ms
+
+Preprocess: 2.769378 ms
+Run: 2.295233 ms
+Postprocess: 0.000182 ms
+Mem move_time: 1.223 ms
+Graph time: 0.7649 ms
+
+Preprocess: 1.614850 ms
+Run: 1.692935 ms
+Postprocess: 0.000182 ms
+Mem move_time: 1.278 ms
+Graph time: 0.7443 ms
+
+Preprocess: 1.461454 ms
+Run: 1.813339 ms
+Postprocess: 0.000169 ms
+Mem move_time: 1.084 ms
+Graph time: 0.6958 ms
+
+Preprocess: 1.560302 ms
+Run: 1.962235 ms
+Postprocess: 0.000109 ms
+Mem move_time: 1.098 ms
+Graph time: 11.94 ms
+
+Preprocess: 2.827067 ms
+Run: 2.079041 ms
+Postprocess: 0.000289 ms
+Mem move_time: 1.069 ms
+Graph time: 0.8238 ms
+
+Preprocess: 1.644641 ms
+Run: 1.850169 ms
+Postprocess: 0.000240 ms
+Mem move_time: 1.167 ms
+Graph time: 0.814 ms
+
+Preprocess: 1.443330 ms
+Run: 1.674461 ms
+Postprocess: 0.000360 ms
+Mem move_time: 1.127 ms
+Graph time: 1.062 ms
+
+Preprocess: 1.798583 ms
+Run: 1.757413 ms
+Postprocess: 0.000443 ms
+Mem move_time: 1.1 ms
+Graph time: 10.23 ms
+
+Preprocess: 2.693429 ms
+Run: 2.260238 ms
+Postprocess: 0.000271 ms
+Mem move_time: 1.111 ms
+Graph time: 0.8277 ms
+
+Preprocess: 1.368689 ms
+Run: 1.769710 ms
+Postprocess: 0.000161 ms
+Mem move_time: 1.342 ms
+Graph time: 0.757 ms
+
+Preprocess: 1.455839 ms
+Run: 1.655187 ms
+Postprocess: 0.000161 ms
+Mem move_time: 1.131 ms
+Graph time: 1.076 ms
+
+Preprocess: 1.738902 ms
+Run: 1.708230 ms
+Postprocess: 0.000191 ms
+Mem move_time: 1.099 ms
+Graph time: 9.856 ms
+
+Preprocess: 2.831437 ms
+Run: 1.869346 ms
+Postprocess: 0.000192 ms
+Mem move_time: 1.327 ms
+Graph time: 2.09 ms
+
+Preprocess: 1.633968 ms
+Run: 1.630067 ms
+Postprocess: 0.000221 ms
+Mem move_time: 1.025 ms
+Graph time: 0.7141 ms
+
+Preprocess: 1.414182 ms
+Run: 1.646948 ms
+Postprocess: 0.000148 ms
+Mem move_time: 1.274 ms
+Graph time: 1.102 ms
+
+Preprocess: 1.450024 ms
+Run: 1.725487 ms
+Postprocess: 0.000252 ms
+Mem move_time: 1.098 ms
+Graph time: 9.633 ms
+
+Preprocess: 2.857196 ms
+Run: 2.072978 ms
+Postprocess: 0.000350 ms
+Mem move_time: 1.233 ms
+Graph time: 0.7698 ms
+
+Preprocess: 1.687518 ms
+Run: 1.616506 ms
+Postprocess: 0.000169 ms
+Mem move_time: 1.127 ms
+Graph time: 0.8288 ms
+
+Preprocess: 1.612632 ms
+Run: 2.073037 ms
+Postprocess: 0.001317 ms
+Mem move_time: 1.125 ms
+Graph time: 0.6962 ms
+
+Preprocess: 1.618108 ms
+Run: 1.654890 ms
+Postprocess: 0.000197 ms
+Mem move_time: 1.016 ms
+Graph time: 0.7441 ms
+
+Preprocess: 1.395104 ms
+Run: 1.618405 ms
+Postprocess: 0.000058 ms
+Mem move_time: 1.235 ms
+Graph time: 6.311 ms
+
+Preprocess: 2.846129 ms
+Run: 1.797962 ms
+Postprocess: 0.000170 ms
+Mem move_time: 1.125 ms
+Graph time: 0.8259 ms
+
+Preprocess: 1.804162 ms
+Run: 1.667912 ms
+Postprocess: 0.000243 ms
+Mem move_time: 1.251 ms
+Graph time: 0.7811 ms
+
+Preprocess: 1.519372 ms
+Run: 1.823876 ms
+Postprocess: 0.000202 ms
+Mem move_time: 1.23 ms
+Graph time: 0.6897 ms
+
+Preprocess: 1.418962 ms
+Run: 1.553835 ms
+Postprocess: 0.000109 ms
+Mem move_time: 1.079 ms
+Graph time: 0.6641 ms
+
+Preprocess: 1.053705 ms
+Run: 1.564329 ms
+Postprocess: 0.000108 ms
+Mem move_time: 1.262 ms
+Graph time: 5.03 ms
+
+Preprocess: 2.546277 ms
+Run: 2.042093 ms
+Postprocess: 0.000366 ms
+Mem move_time: 1.069 ms
+Graph time: 0.7731 ms
+
+Preprocess: 1.517733 ms
+Run: 1.585508 ms
+Postprocess: 0.000141 ms
+Mem move_time: 1.025 ms
+Graph time: 0.6892 ms
+
+Preprocess: 1.312786 ms
+Run: 1.522677 ms
+Postprocess: 0.000104 ms
+Mem move_time: 1.065 ms
+Graph time: 0.7683 ms
+
+Preprocess: 2.027773 ms
+Run: 1.514051 ms
+Postprocess: 0.000242 ms
+Mem move_time: 1.021 ms
+Graph time: 0.7231 ms
+
+Preprocess: 1.333426 ms
+Run: 1.556839 ms
+Postprocess: 0.000172 ms
+Mem move_time: 1.105 ms
+Graph time: 7.263 ms
+
+Preprocess: 2.622356 ms
+Run: 2.089304 ms
+Postprocess: 0.000588 ms
+Mem move_time: 1.106 ms
+Graph time: 0.7011 ms
+
+Preprocess: 1.444331 ms
+Run: 1.472729 ms
+Postprocess: 0.000093 ms
+Mem move_time: 0.9665 ms
+Graph time: 0.6285 ms
+
+Preprocess: 1.180835 ms
+Run: 1.717756 ms
+Postprocess: 0.000172 ms
+Mem move_time: 0.9934 ms
+Graph time: 0.6962 ms
+
+Preprocess: 1.287505 ms
+Run: 1.529823 ms
+Postprocess: 0.000177 ms
+Mem move_time: 0.9974 ms
+Graph time: 0.6597 ms
+
+Preprocess: 1.151676 ms
+Run: 1.577327 ms
+Postprocess: 0.000173 ms
+Mem move_time: 1.037 ms
+Graph time: 8.211 ms
+
+Preprocess: 2.753503 ms
+Run: 2.357225 ms
+Postprocess: 0.000298 ms
+Mem move_time: 1.267 ms
+Graph time: 0.8521 ms
+
+Preprocess: 1.612164 ms
+Run: 1.545366 ms
+Postprocess: 0.000202 ms
+Mem move_time: 1.005 ms
+Graph time: 0.6844 ms
+
+Preprocess: 1.231687 ms
+Run: 1.367618 ms
+Postprocess: 0.000164 ms
+Mem move_time: 0.9733 ms
+Graph time: 0.7293 ms
+
+Preprocess: 1.213486 ms
+Run: 1.406259 ms
+Postprocess: 0.000151 ms
+Mem move_time: 1.018 ms
+Graph time: 0.6517 ms
+
+Preprocess: 1.168629 ms
+Run: 1.337387 ms
+Postprocess: 0.000137 ms
+Mem move_time: 1.021 ms
+Graph time: 8.883 ms
+
+Preprocess: 2.787294 ms
+Run: 2.407768 ms
+Postprocess: 0.000367 ms
+Mem move_time: 1.359 ms
+Graph time: 0.9367 ms
+
+Preprocess: 1.508222 ms
+Run: 1.905318 ms
+Postprocess: 0.000179 ms
+Mem move_time: 0.976 ms
+Graph time: 0.6495 ms
+
+Preprocess: 1.205136 ms
+Run: 1.668084 ms
+Postprocess: 0.000101 ms
+Mem move_time: 1.381 ms
+Graph time: 0.6935 ms
+
+Preprocess: 1.370930 ms
+Run: 1.401213 ms
+Postprocess: 0.000175 ms
+Mem move_time: 0.9913 ms
+Graph time: 0.6605 ms
+
+Preprocess: 1.207139 ms
+Run: 1.854647 ms
+Postprocess: 0.000096 ms
+Mem move_time: 1.123 ms
+Graph time: 6.023 ms
+
+Preprocess: 2.705200 ms
+Run: 2.064297 ms
+Postprocess: 0.000343 ms
+Mem move_time: 1.38 ms
+Graph time: 0.7116 ms
+
+Preprocess: 1.453505 ms
+Run: 1.446929 ms
+Postprocess: 0.000178 ms
+Mem move_time: 1.03 ms
+Graph time: 0.6871 ms
+
+Preprocess: 1.218996 ms
+Run: 1.838231 ms
+Postprocess: 0.000139 ms
+Mem move_time: 1.142 ms
+Graph time: 0.7473 ms
+
+Preprocess: 1.307226 ms
+Run: 1.346529 ms
+Postprocess: 0.000139 ms
+Mem move_time: 0.96 ms
+Graph time: 0.6663 ms
+
+Preprocess: 1.288120 ms
+Run: 1.409354 ms
+Postprocess: 0.000101 ms
+Mem move_time: 1.017 ms
+Graph time: 8.328 ms
+
+Preprocess: 2.891718 ms
+Run: 2.363240 ms
+Postprocess: 0.000171 ms
+Mem move_time: 1.146 ms
+Graph time: 0.8484 ms
+
+Preprocess: 1.725321 ms
+Run: 1.610788 ms
+Postprocess: 0.000203 ms
+Mem move_time: 1.061 ms
+Graph time: 0.8036 ms
+
+Preprocess: 1.380687 ms
+Run: 1.491081 ms
+Postprocess: 0.000235 ms
+Mem move_time: 1.406 ms
+Graph time: 0.8398 ms
+
+Preprocess: 1.595667 ms
+Run: 1.702270 ms
+Postprocess: 0.000236 ms
+Mem move_time: 1.016 ms
+Graph time: 0.7209 ms
+
+Preprocess: 1.566784 ms
+Run: 1.744746 ms
+Postprocess: 0.000110 ms
+Mem move_time: 1.27 ms
+Graph time: 6.75 ms
+
+Preprocess: 2.501250 ms
+Run: 1.558561 ms
+Postprocess: 0.000261 ms
+Mem move_time: 1.082 ms
+Graph time: 0.7173 ms
+
+Preprocess: 1.409057 ms
+Run: 1.559467 ms
+Postprocess: 0.000153 ms
+Mem move_time: 1.129 ms
+Graph time: 0.756 ms
+
+Preprocess: 1.784144 ms
+Run: 1.731461 ms
+Postprocess: 0.000221 ms
+Mem move_time: 1.43 ms
+Graph time: 0.9116 ms
+
+Preprocess: 1.436129 ms
+Run: 1.511301 ms
+Postprocess: 0.000247 ms
+Mem move_time: 1.009 ms
+Graph time: 0.7205 ms
+
+Preprocess: 1.479817 ms
+Run: 1.576379 ms
+Postprocess: 0.000228 ms
+Mem move_time: 1.249 ms
+Graph time: 5.87 ms
+
+Preprocess: 2.797446 ms
+Run: 1.671433 ms
+Postprocess: 0.000180 ms
+Mem move_time: 1.044 ms
+Graph time: 0.7743 ms
+
+Preprocess: 1.292728 ms
+Run: 1.517256 ms
+Postprocess: 0.000111 ms
+Mem move_time: 1.027 ms
+Graph time: 0.7255 ms
+
+Preprocess: 1.571534 ms
+Run: 1.739266 ms
+Postprocess: 0.000158 ms
+Mem move_time: 1.043 ms
+Graph time: 0.7559 ms
+
+Preprocess: 1.587507 ms
+Run: 1.533945 ms
+Postprocess: 0.000185 ms
+Mem move_time: 1.262 ms
+Graph time: 0.7988 ms
+
+Preprocess: 1.476868 ms
+Run: 1.609303 ms
+Postprocess: 0.000264 ms
+Mem move_time: 1.132 ms
+Graph time: 7.613 ms
+
+Preprocess: 2.620473 ms
+Run: 2.160749 ms
+Postprocess: 0.000189 ms
+Mem move_time: 1.13 ms
+Graph time: 0.7795 ms
+
+Preprocess: 1.324301 ms
+Run: 1.482963 ms
+Postprocess: 0.000184 ms
+Mem move_time: 1.058 ms
+Graph time: 0.757 ms
+
+Preprocess: 1.566357 ms
+Run: 1.519090 ms
+Postprocess: 0.000173 ms
+Mem move_time: 1.079 ms
+Graph time: 0.8362 ms
+
+Preprocess: 1.424996 ms
+Run: 1.489701 ms
+Postprocess: 0.000166 ms
+Mem move_time: 0.9965 ms
+Graph time: 0.6781 ms
+
+Preprocess: 1.200267 ms
+Run: 2.006104 ms
+Postprocess: 0.000100 ms
+Mem move_time: 1.124 ms
+Graph time: 7.251 ms
+
+Preprocess: 2.678870 ms
+Run: 2.362980 ms
+Postprocess: 0.000294 ms
+Mem move_time: 1.236 ms
+Graph time: 0.782 ms
+
+Preprocess: 1.348383 ms
+Run: 1.788333 ms
+Postprocess: 0.000179 ms
+Mem move_time: 1.296 ms
+Graph time: 0.9096 ms
+
+Preprocess: 1.482271 ms
+Run: 2.029992 ms
+Postprocess: 0.000563 ms
+Mem move_time: 1.345 ms
+Graph time: 0.7495 ms
+
+Preprocess: 1.356935 ms
+Run: 1.604686 ms
+Postprocess: 0.000054 ms
+Mem move_time: 0.9718 ms
+Graph time: 0.6564 ms
+
+Preprocess: 1.335629 ms
+Run: 1.660190 ms
+Postprocess: 0.000102 ms
+Mem move_time: 1.178 ms
+Graph time: 5.094 ms
+
+Preprocess: 2.569943 ms
+Run: 1.853469 ms
+Postprocess: 0.000167 ms
+Mem move_time: 1.015 ms
+Graph time: 0.6925 ms
+
+Preprocess: 1.264446 ms
+Run: 1.389073 ms
+Postprocess: 0.000165 ms
+Mem move_time: 0.9955 ms
+Graph time: 0.6797 ms
+
+Preprocess: 1.189658 ms
+Run: 1.424673 ms
+Postprocess: 0.000101 ms
+Mem move_time: 0.9839 ms
+Graph time: 0.6917 ms
+
+Preprocess: 1.328106 ms
+Run: 1.522879 ms
+Postprocess: 0.000181 ms
+Mem move_time: 0.9913 ms
+Graph time: 0.6807 ms
+
+Preprocess: 1.255847 ms
+Run: 1.608083 ms
+Postprocess: 0.000172 ms
+Mem move_time: 0.9994 ms
+Graph time: 0.6611 ms
+
+Preprocess: 1.105860 ms
+Run: 1.724416 ms
+Postprocess: 0.000177 ms
+Mem move_time: 1.107 ms
+Graph time: 4.824 ms
+
+Preprocess: 2.521194 ms
+Run: 2.059038 ms
+Postprocess: 0.000176 ms
+Mem move_time: 1.01 ms
+Graph time: 0.6839 ms
+
+Preprocess: 1.255540 ms
+Run: 1.438071 ms
+Postprocess: 0.000156 ms
+Mem move_time: 1.003 ms
+Graph time: 0.7151 ms
+
+Preprocess: 1.382141 ms
+Run: 1.378052 ms
+Postprocess: 0.000161 ms
+Mem move_time: 0.9804 ms
+Graph time: 0.7179 ms
+
+Preprocess: 1.459886 ms
+Run: 1.409934 ms
+Postprocess: 0.000172 ms
+Mem move_time: 1.005 ms
+Graph time: 0.6785 ms
+
+Preprocess: 1.329947 ms
+Run: 1.514936 ms
+Postprocess: 0.000090 ms
+Mem move_time: 1.023 ms
+Graph time: 9.296 ms
+
+Preprocess: 2.631719 ms
+Run: 2.360033 ms
+Postprocess: 0.000221 ms
+Mem move_time: 1.26 ms
+Graph time: 0.761 ms
+
+Preprocess: 1.317261 ms
+Run: 1.879133 ms
+Postprocess: 0.000160 ms
+Mem move_time: 1.244 ms
+Graph time: 0.8649 ms
+
+Preprocess: 1.457052 ms
+Run: 1.794246 ms
+Postprocess: 0.000153 ms
+Mem move_time: 1.302 ms
+Graph time: 0.6747 ms
+
+Preprocess: 1.289723 ms
+Run: 1.525241 ms
+Postprocess: 0.000168 ms
+Mem move_time: 0.9903 ms
+Graph time: 0.7136 ms
+
+Preprocess: 1.201012 ms
+Run: 1.578688 ms
+Postprocess: 0.000195 ms
+Mem move_time: 1.181 ms
+Graph time: 6.829 ms
+
+Preprocess: 2.668004 ms
+Run: 2.386028 ms
+Postprocess: 0.000190 ms
+Mem move_time: 1.282 ms
+Graph time: 1.035 ms
+
+Preprocess: 1.564621 ms
+Run: 2.147704 ms
+Postprocess: 0.000254 ms
+Mem move_time: 1.285 ms
+Graph time: 0.861 ms
+
+Preprocess: 1.350215 ms
+Run: 1.927892 ms
+Postprocess: 0.000169 ms
+Mem move_time: 1 ms
+Graph time: 0.666 ms
+
+Preprocess: 1.252821 ms
+Run: 1.408677 ms
+Postprocess: 0.000158 ms
+Mem move_time: 0.9597 ms
+Graph time: 0.6416 ms
+
+Preprocess: 1.229829 ms
+Run: 2.138789 ms
+Postprocess: 0.000188 ms
+Mem move_time: 1.104 ms
+Graph time: 5.173 ms
+
+Preprocess: 2.460656 ms
+Run: 1.990750 ms
+Postprocess: 0.000282 ms
+Mem move_time: 1.005 ms
+Graph time: 0.6877 ms
+
+Preprocess: 1.237798 ms
+Run: 1.555518 ms
+Postprocess: 0.000173 ms
+Mem move_time: 0.9904 ms
+Graph time: 0.695 ms
+
+Preprocess: 1.209156 ms
+Run: 1.395981 ms
+Postprocess: 0.000055 ms
+Mem move_time: 0.9648 ms
+Graph time: 0.6727 ms
+
+Preprocess: 1.496341 ms
+Run: 1.466457 ms
+Postprocess: 0.000160 ms
+Mem move_time: 0.9981 ms
+Graph time: 0.6707 ms
+
+Preprocess: 1.234547 ms
+Run: 1.411713 ms
+Postprocess: 0.000083 ms
+Mem move_time: 1.026 ms
+Graph time: 0.6141 ms
+
+Preprocess: 0.998072 ms
+Run: 1.658492 ms
+Postprocess: 0.000444 ms
+Mem move_time: 1.151 ms
+Graph time: 4.887 ms
+
+Preprocess: 2.446190 ms
+Run: 2.051559 ms
+Postprocess: 0.000145 ms
+Mem move_time: 0.9929 ms
+Graph time: 0.696 ms
+
+Preprocess: 1.429902 ms
+Run: 1.435931 ms
+Postprocess: 0.000154 ms
+Mem move_time: 0.996 ms
+Graph time: 0.82 ms
+
+Preprocess: 1.232116 ms
+Run: 1.391519 ms
+Postprocess: 0.000070 ms
+Mem move_time: 1.081 ms
+Graph time: 0.6639 ms
+
+Preprocess: 1.349459 ms
+Run: 1.449607 ms
+Postprocess: 0.000164 ms
+Mem move_time: 0.9651 ms
+Graph time: 0.708 ms
+
+Preprocess: 1.208879 ms
+Run: 1.499727 ms
+Postprocess: 0.000114 ms
+Mem move_time: 1.037 ms
+Graph time: 0.6289 ms
+
+Preprocess: 1.025815 ms
+Run: 1.545159 ms
+Postprocess: 0.000070 ms
+Mem move_time: 1.122 ms
+Graph time: 4.663 ms
+
+Preprocess: 2.554421 ms
+Run: 1.940576 ms
+Postprocess: 0.000157 ms
+Mem move_time: 1.007 ms
+Graph time: 0.7283 ms
+
+Preprocess: 1.380728 ms
+Run: 1.429903 ms
+Postprocess: 0.000107 ms
+Mem move_time: 0.9643 ms
+Graph time: 0.6647 ms
+
+Preprocess: 1.172612 ms
+Run: 1.547239 ms
+Postprocess: 0.000113 ms
+Mem move_time: 1.008 ms
+Graph time: 0.6522 ms
+
+Preprocess: 1.393824 ms
+Run: 1.455055 ms
+Postprocess: 0.000169 ms
+Mem move_time: 0.9852 ms
+Graph time: 0.6996 ms
+
+Preprocess: 1.188364 ms
+Run: 1.361947 ms
+Postprocess: 0.000150 ms
+Mem move_time: 0.9763 ms
+Graph time: 0.7049 ms
+
+Preprocess: 1.389222 ms
+Run: 1.573215 ms
+Postprocess: 0.000045 ms
+Mem move_time: 1.082 ms
+Graph time: 5.408 ms
+
+Preprocess: 2.429490 ms
+Run: 1.681857 ms
+Postprocess: 0.000306 ms
+Mem move_time: 1.04 ms
+Graph time: 0.7093 ms
+
+Preprocess: 1.248533 ms
+Run: 1.443554 ms
+Postprocess: 0.000153 ms
+Mem move_time: 0.9831 ms
+Graph time: 0.6774 ms
+
+Preprocess: 1.225497 ms
+Run: 1.584468 ms
+Postprocess: 0.000216 ms
+Mem move_time: 0.9595 ms
+Graph time: 0.6671 ms
+
+Preprocess: 1.453576 ms
+Run: 1.518142 ms
+Postprocess: 0.000173 ms
+Mem move_time: 1.037 ms
+Graph time: 0.7461 ms
+
+Preprocess: 1.241197 ms
+Run: 1.527885 ms
+Postprocess: 0.000101 ms
+Mem move_time: 1.004 ms
+Graph time: 9.088 ms
+
+Preprocess: 2.514002 ms
+Run: 2.636295 ms
+Postprocess: 0.000185 ms
+Mem move_time: 1.204 ms
+Graph time: 0.8247 ms
+
+Preprocess: 1.341382 ms
+Run: 1.456229 ms
+Postprocess: 0.000168 ms
+Mem move_time: 0.9798 ms
+Graph time: 0.6754 ms
+
+Preprocess: 1.220414 ms
+Run: 1.461342 ms
+Postprocess: 0.000084 ms
+Mem move_time: 0.9572 ms
+Graph time: 0.6163 ms
+
+Preprocess: 1.368278 ms
+Run: 1.468531 ms
+Postprocess: 0.000169 ms
+Mem move_time: 0.9995 ms
+Graph time: 0.672 ms
+
+Preprocess: 1.261813 ms
+Run: 1.521911 ms
+Postprocess: 0.000089 ms
+Mem move_time: 1.032 ms
+Graph time: 8.368 ms
+
+Preprocess: 2.788010 ms
+Run: 1.877956 ms
+Postprocess: 0.000187 ms
+Mem move_time: 1.103 ms
+Graph time: 0.7701 ms
+
+Preprocess: 1.275605 ms
+Run: 1.464197 ms
+Postprocess: 0.000117 ms
+Mem move_time: 1.006 ms
+Graph time: 0.6867 ms
+
+Preprocess: 1.196874 ms
+Run: 1.415804 ms
+Postprocess: 0.000154 ms
+Mem move_time: 0.9675 ms
+Graph time: 0.6696 ms
+
+Preprocess: 1.400651 ms
+Run: 1.865293 ms
+Postprocess: 0.000165 ms
+Mem move_time: 1.015 ms
+Graph time: 0.7076 ms
+
+Preprocess: 1.262469 ms
+Run: 1.512393 ms
+Postprocess: 0.000159 ms
+Mem move_time: 0.9997 ms
+Graph time: 8.773 ms
+
+Preprocess: 2.688831 ms
+Run: 2.204815 ms
+Postprocess: 0.000080 ms
+Mem move_time: 0.9982 ms
+Graph time: 0.6976 ms
+
+Preprocess: 1.324905 ms
+Run: 1.481508 ms
+Postprocess: 0.000214 ms
+Mem move_time: 0.9828 ms
+Graph time: 0.7022 ms
+
+Preprocess: 1.216117 ms
+Run: 1.568030 ms
+Postprocess: 0.000239 ms
+Mem move_time: 1.032 ms
+Graph time: 0.6951 ms
+
+Preprocess: 1.572394 ms
+Run: 1.538000 ms
+Postprocess: 0.000349 ms
+Mem move_time: 1.117 ms
+Graph time: 0.8849 ms
+
+Preprocess: 1.546024 ms
+Run: 1.640751 ms
+Postprocess: 0.000305 ms
+Mem move_time: 1.162 ms
+Graph time: 8.059 ms
+
+Preprocess: 2.658991 ms
+Run: 2.431236 ms
+Postprocess: 0.000313 ms
+Mem move_time: 1.16 ms
+Graph time: 0.7699 ms
+
+Preprocess: 1.367008 ms
+Run: 2.053473 ms
+Postprocess: 0.000269 ms
+Mem move_time: 1.233 ms
+Graph time: 0.828 ms
+
+Preprocess: 1.471062 ms
+Run: 2.329180 ms
+Postprocess: 0.000214 ms
+Mem move_time: 1.214 ms
+Graph time: 0.8343 ms
+
+Preprocess: 1.450147 ms
+Run: 1.834813 ms
+Postprocess: 0.000134 ms
+Mem move_time: 1.003 ms
+Graph time: 0.6378 ms
+
+Preprocess: 1.051660 ms
+Run: 1.726878 ms
+Postprocess: 0.000208 ms
+Mem move_time: 1.251 ms
+Graph time: 4.204 ms
+
+Preprocess: 2.659521 ms
+Run: 1.993080 ms
+Postprocess: 0.000482 ms
+Mem move_time: 1.04 ms
+Graph time: 0.7174 ms
+
+Preprocess: 1.334436 ms
+Run: 1.419767 ms
+Postprocess: 0.000099 ms
+Mem move_time: 1.152 ms
+Graph time: 0.7067 ms
+
+Preprocess: 1.441219 ms
+Run: 1.462751 ms
+Postprocess: 0.000228 ms
+Mem move_time: 0.9809 ms
+Graph time: 0.6923 ms
+
+Preprocess: 1.426005 ms
+Run: 1.562678 ms
+Postprocess: 0.000174 ms
+Mem move_time: 1.002 ms
+Graph time: 0.6895 ms
+
+Preprocess: 1.256841 ms
+Run: 1.436526 ms
+Postprocess: 0.000165 ms
+Mem move_time: 0.9904 ms
+Graph time: 8.596 ms
+
+Preprocess: 2.570140 ms
+Run: 2.413509 ms
+Postprocess: 0.000210 ms
+Mem move_time: 1.241 ms
+Graph time: 0.8414 ms
+
+Preprocess: 1.472048 ms
+Run: 1.554689 ms
+Postprocess: 0.000240 ms
+Mem move_time: 1.023 ms
+Graph time: 0.7049 ms
+
+Preprocess: 1.121896 ms
+Run: 1.522996 ms
+Postprocess: 0.000114 ms
+Mem move_time: 1.002 ms
+Graph time: 0.6633 ms
+
+Preprocess: 1.303093 ms
+Run: 1.490000 ms
+Postprocess: 0.000190 ms
+Mem move_time: 1.025 ms
+Graph time: 0.7088 ms
+
+Preprocess: 1.173850 ms
+Run: 1.401879 ms
+Postprocess: 0.000072 ms
+Mem move_time: 1.022 ms
+Graph time: 9.47 ms
+
+Preprocess: 2.628948 ms
+Run: 2.154970 ms
+Postprocess: 0.000215 ms
+Mem move_time: 1.161 ms
+Graph time: 0.7229 ms
+
+Preprocess: 1.281334 ms
+Run: 1.796784 ms
+Postprocess: 0.000170 ms
+Mem move_time: 1.24 ms
+Graph time: 0.8402 ms
+
+Preprocess: 1.471895 ms
+Run: 2.144952 ms
+Postprocess: 0.000503 ms
+Mem move_time: 1.437 ms
+Graph time: 0.8465 ms
+
+Preprocess: 1.447986 ms
+Run: 2.356708 ms
+Postprocess: 0.000190 ms
+Mem move_time: 1.211 ms
+Graph time: 0.7898 ms
+
+Preprocess: 1.217083 ms
+Run: 2.169980 ms
+Postprocess: 0.000157 ms
+Mem move_time: 1.281 ms
+Graph time: 3.335 ms
+
+Preprocess: 2.539327 ms
+Run: 2.092328 ms
+Postprocess: 0.000202 ms
+Mem move_time: 1.055 ms
+Graph time: 0.6993 ms
+
+Preprocess: 1.385217 ms
+Run: 1.468827 ms
+Postprocess: 0.000211 ms
+Mem move_time: 1.069 ms
+Graph time: 0.6614 ms
+
+Preprocess: 1.198524 ms
+Run: 1.424961 ms
+Postprocess: 0.000115 ms
+Mem move_time: 1.017 ms
+Graph time: 0.6429 ms
+
+Preprocess: 1.308509 ms
+Run: 1.607952 ms
+Postprocess: 0.000181 ms
+Mem move_time: 0.9973 ms
+Graph time: 0.7148 ms
+
+Preprocess: 1.256320 ms
+Run: 1.411187 ms
+Postprocess: 0.000140 ms
+Mem move_time: 1.007 ms
+Graph time: 0.6663 ms
+
+Preprocess: 1.004618 ms
+Run: 1.863960 ms
+Postprocess: 0.000049 ms
+Mem move_time: 1.099 ms
+Graph time: 4.581 ms
+
+Preprocess: 2.327487 ms
+Run: 1.720736 ms
+Postprocess: 0.000114 ms
+Mem move_time: 0.9776 ms
+Graph time: 0.665 ms
+
+Preprocess: 1.255819 ms
+Run: 1.469782 ms
+Postprocess: 0.000166 ms
+Mem move_time: 1.002 ms
+Graph time: 0.673 ms
+
+Preprocess: 1.276902 ms
+Run: 1.642823 ms
+Postprocess: 0.000109 ms
+Mem move_time: 0.9955 ms
+Graph time: 0.6635 ms
+
+Preprocess: 1.589266 ms
+Run: 1.406736 ms
+Postprocess: 0.000116 ms
+Mem move_time: 0.9971 ms
+Graph time: 0.697 ms
+
+Preprocess: 1.150459 ms
+Run: 1.476833 ms
+Postprocess: 0.000105 ms
+Mem move_time: 0.9738 ms
+Graph time: 0.5994 ms
+
+Preprocess: 1.231702 ms
+Run: 1.528707 ms
+Postprocess: 0.000114 ms
+Mem move_time: 1.102 ms
+Graph time: 5.528 ms
+
+Preprocess: 2.462548 ms
+Run: 1.909372 ms
+Postprocess: 0.000178 ms
+Mem move_time: 0.9997 ms
+Graph time: 0.6871 ms
+
+Preprocess: 1.293986 ms
+Run: 1.521763 ms
+Postprocess: 0.000109 ms
+Mem move_time: 1.101 ms
+Graph time: 0.6852 ms
+
+Preprocess: 1.297754 ms
+Run: 1.532324 ms
+Postprocess: 0.000173 ms
+Mem move_time: 0.9852 ms
+Graph time: 0.6395 ms
+
+Preprocess: 1.478824 ms
+Run: 1.489906 ms
+Postprocess: 0.000142 ms
+Mem move_time: 0.9802 ms
+Graph time: 0.6544 ms
+
+Preprocess: 1.196782 ms
+Run: 1.509759 ms
+Postprocess: 0.000173 ms
+Mem move_time: 0.9921 ms
+Graph time: 8.787 ms
+
+Preprocess: 2.520834 ms
+Run: 1.840959 ms
+Postprocess: 0.000321 ms
+Mem move_time: 1.031 ms
+Graph time: 0.7324 ms
+
+Preprocess: 1.320149 ms
+Run: 1.445031 ms
+Postprocess: 0.000108 ms
+Mem move_time: 0.9982 ms
+Graph time: 0.6795 ms
+
+Preprocess: 1.182716 ms
+Run: 1.397066 ms
+Postprocess: 0.000174 ms
+Mem move_time: 0.9835 ms
+Graph time: 0.7026 ms
+
+Preprocess: 1.592594 ms
+Run: 1.547899 ms
+Postprocess: 0.000168 ms
+Mem move_time: 0.9947 ms
+Graph time: 0.7129 ms
+
+Preprocess: 1.229982 ms
+Run: 1.413761 ms
+Postprocess: 0.000156 ms
+Mem move_time: 1.002 ms
+Graph time: 0.606 ms
+
+Preprocess: 1.089767 ms
+Run: 1.638662 ms
+Postprocess: 0.000195 ms
+Mem move_time: 1.11 ms
+Graph time: 4.819 ms
+
+Preprocess: 2.374606 ms
+Run: 1.792663 ms
+Postprocess: 0.000216 ms
+Mem move_time: 1.049 ms
+Graph time: 0.7066 ms
+
+Preprocess: 1.274052 ms
+Run: 1.455255 ms
+Postprocess: 0.000140 ms
+Mem move_time: 0.959 ms
+Graph time: 0.6486 ms
+
+Preprocess: 1.310436 ms
+Run: 1.590451 ms
+Postprocess: 0.000093 ms
+Mem move_time: 0.9675 ms
+Graph time: 0.6716 ms
+
+Preprocess: 1.391016 ms
+Run: 1.568740 ms
+Postprocess: 0.000226 ms
+Mem move_time: 0.9878 ms
+Graph time: 0.739 ms
+
+Preprocess: 1.203714 ms
+Run: 1.504097 ms
+Postprocess: 0.000110 ms
+Mem move_time: 1.007 ms
+Graph time: 0.6614 ms
+
+Preprocess: 1.015285 ms
+Run: 1.572300 ms
+Postprocess: 0.000122 ms
+Mem move_time: 1.207 ms
+Graph time: 4.885 ms
+
+Preprocess: 2.343585 ms
+Run: 1.885501 ms
+Postprocess: 0.000148 ms
+Mem move_time: 1.005 ms
+Graph time: 0.7263 ms
+
+Preprocess: 1.395659 ms
+Run: 1.425263 ms
+Postprocess: 0.000094 ms
+Mem move_time: 0.9619 ms
+Graph time: 0.6751 ms
+
+Preprocess: 1.176088 ms
+Run: 1.454937 ms
+Postprocess: 0.000145 ms
+Mem move_time: 0.9546 ms
+Graph time: 0.622 ms
+
+Preprocess: 1.297464 ms
+Run: 1.502776 ms
+Postprocess: 0.000171 ms
+Mem move_time: 0.9904 ms
+Graph time: 0.6741 ms
+
+Preprocess: 1.195954 ms
+Run: 1.363907 ms
+Postprocess: 0.000214 ms
+Mem move_time: 0.9938 ms
+Graph time: 0.7137 ms
+
+Preprocess: 1.237127 ms
+Run: 1.661916 ms
+Postprocess: 0.000122 ms
+Mem move_time: 1.129 ms
+Graph time: 5.219 ms
+
+Preprocess: 2.490879 ms
+Run: 2.009080 ms
+Postprocess: 0.000164 ms
+Mem move_time: 1.019 ms
+Graph time: 0.7107 ms
+
+Preprocess: 1.243989 ms
+Run: 1.475584 ms
+Postprocess: 0.000095 ms
+Mem move_time: 0.9782 ms
+Graph time: 0.6553 ms
+
+Preprocess: 1.135006 ms
+Run: 1.439508 ms
+Postprocess: 0.000116 ms
+Mem move_time: 0.9699 ms
+Graph time: 0.7062 ms
+
+Preprocess: 1.340763 ms
+Run: 1.491468 ms
+Postprocess: 0.000169 ms
+Mem move_time: 1.006 ms
+Graph time: 0.6789 ms
+
+Preprocess: 1.170946 ms
+Run: 1.445028 ms
+Postprocess: 0.000052 ms
+Mem move_time: 0.9801 ms
+Graph time: 0.6832 ms
+
+Preprocess: 1.157716 ms
+Run: 1.488044 ms
+Postprocess: 0.000201 ms
+Mem move_time: 1.096 ms
+Graph time: 5.602 ms
+
+Preprocess: 2.480070 ms
+Run: 1.769113 ms
+Postprocess: 0.000145 ms
+Mem move_time: 1.011 ms
+Graph time: 0.7145 ms
+
+Preprocess: 1.392441 ms
+Run: 1.541196 ms
+Postprocess: 0.000149 ms
+Mem move_time: 0.9812 ms
+Graph time: 0.6593 ms
+
+Preprocess: 1.199617 ms
+Run: 1.501900 ms
+Postprocess: 0.000110 ms
+Mem move_time: 0.9612 ms
+Graph time: 0.657 ms
+
+Preprocess: 1.427046 ms
+Run: 1.507016 ms
+Postprocess: 0.000175 ms
+Mem move_time: 1.035 ms
+Graph time: 0.6599 ms
+
+Preprocess: 1.188009 ms
+Run: 1.427249 ms
+Postprocess: 0.000090 ms
+Mem move_time: 0.9938 ms
+Graph time: 8.696 ms
+
+Preprocess: 2.551149 ms
+Run: 2.522315 ms
+Postprocess: 0.000228 ms
+Mem move_time: 1.198 ms
+Graph time: 0.8467 ms
+
+Preprocess: 1.443009 ms
+Run: 1.556240 ms
+Postprocess: 0.000110 ms
+Mem move_time: 1.044 ms
+Graph time: 0.6996 ms
+
+Preprocess: 1.229459 ms
+Run: 1.408748 ms
+Postprocess: 0.000178 ms
+Mem move_time: 1.024 ms
+Graph time: 0.7376 ms
+
+Preprocess: 1.399280 ms
+Run: 1.500380 ms
+Postprocess: 0.000102 ms
+Mem move_time: 0.9807 ms
+Graph time: 0.6604 ms
+
+Preprocess: 1.203452 ms
+Run: 1.638167 ms
+Postprocess: 0.000214 ms
+Mem move_time: 1.057 ms
+Graph time: 8.295 ms
+
+Preprocess: 2.684741 ms
+Run: 2.382515 ms
+Postprocess: 0.000269 ms
+Mem move_time: 1.163 ms
+Graph time: 0.7264 ms
+
+Preprocess: 1.286963 ms
+Run: 1.578423 ms
+Postprocess: 0.000086 ms
+Mem move_time: 0.9596 ms
+Graph time: 0.603 ms
+
+Preprocess: 1.330638 ms
+Run: 1.424650 ms
+Postprocess: 0.000166 ms
+Mem move_time: 0.9973 ms
+Graph time: 0.6955 ms
+
+Preprocess: 1.360440 ms
+Run: 1.449179 ms
+Postprocess: 0.000366 ms
+Mem move_time: 0.9805 ms
+Graph time: 0.6697 ms
+
+Preprocess: 1.244911 ms
+Run: 1.560232 ms
+Postprocess: 0.000191 ms
+Mem move_time: 1.078 ms
+Graph time: 8.801 ms
+
+Preprocess: 2.801779 ms
+Run: 2.531611 ms
+Postprocess: 0.000207 ms
+Mem move_time: 1.155 ms
+Graph time: 0.9248 ms
+
+Preprocess: 1.447968 ms
+Run: 2.058097 ms
+Postprocess: 0.000148 ms
+Mem move_time: 1.228 ms
+Graph time: 0.8621 ms
+
+Preprocess: 1.383128 ms
+Run: 1.835745 ms
+Postprocess: 0.000244 ms
+Mem move_time: 1.01 ms
+Graph time: 0.6673 ms
+
+Preprocess: 1.359605 ms
+Run: 1.393107 ms
+Postprocess: 0.000098 ms
+Mem move_time: 0.9661 ms
+Graph time: 0.6287 ms
+
+Preprocess: 1.206236 ms
+Run: 1.522457 ms
+Postprocess: 0.000111 ms
+Mem move_time: 1.091 ms
+Graph time: 6.27 ms
+
+Preprocess: 2.436817 ms
+Run: 1.858434 ms
+Postprocess: 0.000245 ms
+Mem move_time: 1.029 ms
+Graph time: 0.7195 ms
+
+Preprocess: 1.170216 ms
+Run: 1.486022 ms
+Postprocess: 0.000174 ms
+Mem move_time: 1.002 ms
+Graph time: 0.6762 ms
+
+Preprocess: 1.231777 ms
+Run: 1.409904 ms
+Postprocess: 0.000092 ms
+Mem move_time: 0.9921 ms
+Graph time: 0.6012 ms
+
+Preprocess: 1.410116 ms
+Run: 1.403143 ms
+Postprocess: 0.000152 ms
+Mem move_time: 1.012 ms
+Graph time: 0.6875 ms
+
+Preprocess: 1.191314 ms
+Run: 1.454782 ms
+Postprocess: 0.000120 ms
+Mem move_time: 1.018 ms
+Graph time: 0.6588 ms
+
+Preprocess: 1.220097 ms
+Run: 1.492358 ms
+Postprocess: 0.000098 ms
+Mem move_time: 1.102 ms
+Graph time: 5.402 ms
+
+Preprocess: 2.603119 ms
+Run: 1.700296 ms
+Postprocess: 0.000157 ms
+Mem move_time: 1.046 ms
+Graph time: 0.6639 ms
+
+Preprocess: 1.254511 ms
+Run: 1.404312 ms
+Postprocess: 0.000147 ms
+Mem move_time: 1.018 ms
+Graph time: 0.6859 ms
+
+Preprocess: 1.356020 ms
+Run: 1.465255 ms
+Postprocess: 0.000167 ms
+Mem move_time: 0.984 ms
+Graph time: 0.7098 ms
+
+Preprocess: 1.378136 ms
+Run: 1.446592 ms
+Postprocess: 0.000109 ms
+Mem move_time: 1.227 ms
+Graph time: 0.8136 ms
+
+Preprocess: 1.215984 ms
+Run: 1.515119 ms
+Postprocess: 0.000131 ms
+Mem move_time: 0.9631 ms
+Graph time: 8.905 ms
+
+Preprocess: 2.603964 ms
+Run: 1.678557 ms
+Postprocess: 0.000122 ms
+Mem move_time: 0.9877 ms
+Graph time: 0.6655 ms
+
+Preprocess: 1.289151 ms
+Run: 1.580183 ms
+Postprocess: 0.000145 ms
+Mem move_time: 1.01 ms
+Graph time: 0.7014 ms
+
+Preprocess: 1.142334 ms
+Run: 1.528063 ms
+Postprocess: 0.000172 ms
+Mem move_time: 0.9989 ms
+Graph time: 0.6847 ms
+
+Preprocess: 1.492389 ms
+Run: 1.397306 ms
+Postprocess: 0.000112 ms
+Mem move_time: 1.01 ms
+Graph time: 0.6584 ms
+
+Preprocess: 1.220489 ms
+Run: 1.504644 ms
+Postprocess: 0.000161 ms
+Mem move_time: 0.993 ms
+Graph time: 0.6607 ms
+
+Preprocess: 1.226934 ms
+Run: 1.669791 ms
+Postprocess: 0.000182 ms
+Mem move_time: 1.137 ms
+Graph time: 5.305 ms
+
+Preprocess: 2.638062 ms
+Run: 2.084375 ms
+Postprocess: 0.000103 ms
+Mem move_time: 0.9992 ms
+Graph time: 0.6831 ms
+
+Preprocess: 1.290410 ms
+Run: 1.484958 ms
+Postprocess: 0.000110 ms
+Mem move_time: 1.149 ms
+Graph time: 5.096 ms
+
+Preprocess: 2.059928 ms
+Run: 2.181699 ms
+Postprocess: 0.000219 ms
+Mem move_time: 1.231 ms
+Graph time: 0.9011 ms
+
+Preprocess: 1.445070 ms
+Run: 1.589557 ms
+Postprocess: 0.000106 ms
+Mem move_time: 1.181 ms
+Graph time: 6.352 ms
+
+Preprocess: 1.924478 ms
+Run: 2.093355 ms
+Postprocess: 0.000163 ms
+Mem move_time: 1.101 ms
+Graph time: 0.7362 ms
+
+Preprocess: 1.282363 ms
+Run: 1.818246 ms
+Postprocess: 0.000216 ms
+Mem move_time: 1.239 ms
+Graph time: 5.738 ms
+
+Preprocess: 2.082707 ms
+Run: 2.582076 ms
+Postprocess: 0.000198 ms
+Mem move_time: 1.309 ms
+Graph time: 0.9174 ms
+
+Preprocess: 1.565614 ms
+Run: 2.013111 ms
+Postprocess: 0.000219 ms
+Mem move_time: 1.212 ms
+Graph time: 4.388 ms
+
+Preprocess: 1.962065 ms
+Run: 1.773380 ms
+Postprocess: 0.000191 ms
+Mem move_time: 1.147 ms
+Graph time: 0.809 ms
+
+Preprocess: 1.258046 ms
+Run: 1.624679 ms
+Postprocess: 0.000093 ms
+Mem move_time: 1.057 ms
+Graph time: 7.454 ms
+
+Preprocess: 2.128075 ms
+Run: 1.785122 ms
+Postprocess: 0.000170 ms
+Mem move_time: 0.9394 ms
+Graph time: 0.7025 ms
+
+Preprocess: 1.257091 ms
+Run: 1.970273 ms
+Postprocess: 0.000097 ms
+Mem move_time: 1.097 ms
+Graph time: 6.071 ms
+
+Preprocess: 2.000339 ms
+Run: 1.540784 ms
+Postprocess: 0.000176 ms
+Mem move_time: 0.9712 ms
+Graph time: 0.709 ms
+
+Preprocess: 1.268885 ms
+Run: 1.413780 ms
+Postprocess: 0.000186 ms
+Mem move_time: 1.083 ms
+Graph time: 8.104 ms
+
+Preprocess: 2.035460 ms
+Run: 2.929073 ms
+Postprocess: 0.000237 ms
+Mem move_time: 1.309 ms
+Graph time: 0.9505 ms
+
+Preprocess: 1.514979 ms
+Run: 2.721157 ms
+Postprocess: 0.000183 ms
+Mem move_time: 1.31 ms
+Graph time: 2.898 ms
+
+Preprocess: 2.068236 ms
+Run: 2.148134 ms
+Postprocess: 0.000123 ms
+Mem move_time: 1.032 ms
+Graph time: 0.7091 ms
+
+Preprocess: 1.256426 ms
+Run: 1.699687 ms
+Postprocess: 0.000168 ms
+Mem move_time: 1.099 ms
+Graph time: 6.288 ms
+
+Preprocess: 2.114325 ms
+Run: 1.598182 ms
+Postprocess: 0.000153 ms
+Mem move_time: 0.9585 ms
+Graph time: 0.6783 ms
+
+Preprocess: 1.312135 ms
+Run: 1.447477 ms
+Postprocess: 0.000145 ms
+Mem move_time: 1.124 ms
+Graph time: 7.323 ms
+
+Preprocess: 1.966170 ms
+Run: 1.534934 ms
+Postprocess: 0.000100 ms
+Mem move_time: 0.9868 ms
+Graph time: 0.7108 ms
+
+Preprocess: 1.199053 ms
+Run: 1.457015 ms
+Postprocess: 0.000170 ms
+Mem move_time: 1.123 ms
+Graph time: 7.599 ms
+
+Preprocess: 1.765458 ms
+Run: 1.747595 ms
+Postprocess: 0.000239 ms
+Mem move_time: 0.9721 ms
+Graph time: 0.7231 ms
+
+Preprocess: 1.219583 ms
+Run: 1.936065 ms
+Postprocess: 0.000133 ms
+Mem move_time: 1.156 ms
+Graph time: 7.3 ms
+
+Preprocess: 2.231327 ms
+Run: 3.298249 ms
+Postprocess: 0.000234 ms
+Mem move_time: 1.193 ms
+Graph time: 9.641 ms
+
+Preprocess: 2.561263 ms
+Run: 3.273735 ms
+Postprocess: 0.000292 ms
+Mem move_time: 1.375 ms
+Graph time: 9.328 ms
+
+Preprocess: 3.469658 ms
+Run: 4.626435 ms
+Postprocess: 0.000348 ms
+Mem move_time: 1.866 ms
+Graph time: 6.333 ms
+
+Preprocess: 2.756985 ms
+Run: 3.582722 ms
+Postprocess: 0.000254 ms
+Mem move_time: 1.656 ms
+Graph time: 8.719 ms
+
+Preprocess: 3.118537 ms
+Run: 6.145051 ms
+Postprocess: 0.000440 ms
+Mem move_time: 2.279 ms
+Graph time: 4.895 ms
+
+Preprocess: 3.169255 ms
+Run: 3.420701 ms
+Postprocess: 0.000331 ms
+Mem move_time: 1.432 ms
+Graph time: 7.638 ms
+
+Preprocess: 2.373206 ms
+Run: 2.792255 ms
+Postprocess: 0.000224 ms
+Mem move_time: 1.241 ms
+Graph time: 0.8841 ms
+
+Preprocess: 1.616941 ms
+Run: 2.251861 ms
+Postprocess: 0.000260 ms
+Mem move_time: 1.464 ms
+Graph time: 4.069 ms
+
+Preprocess: 2.668738 ms
+Run: 3.397690 ms
+Postprocess: 0.000613 ms
+Mem move_time: 1.392 ms
+Graph time: 8.981 ms
+
+Preprocess: 2.425762 ms
+Run: 3.606513 ms
+Postprocess: 0.000358 ms
+Mem move_time: 1.838 ms
+Graph time: 8.622 ms
+
+Preprocess: 2.817908 ms
+Run: 3.558318 ms
+Postprocess: 0.000203 ms
+Mem move_time: 1.655 ms
+Graph time: 8.714 ms
+
+Preprocess: 3.712141 ms
+Run: 4.363607 ms
+Postprocess: 0.000265 ms
+Mem move_time: 1.942 ms
+Graph time: 6.423 ms
+
+Preprocess: 3.329568 ms
+Run: 4.542920 ms
+Postprocess: 0.000324 ms
+Mem move_time: 1.643 ms
+Graph time: 6.597 ms
+
+Preprocess: 3.072556 ms
+Run: 4.201803 ms
+Postprocess: 0.000303 ms
+Mem move_time: 1.798 ms
+Graph time: 7.421 ms
+
+Preprocess: 3.224249 ms
+Run: 3.773132 ms
+Postprocess: 0.000278 ms
+Mem move_time: 1.679 ms
+Graph time: 7.053 ms
+
+Preprocess: 2.525033 ms
+Run: 2.696935 ms
+Postprocess: 0.000215 ms
+Mem move_time: 1.239 ms
+Graph time: 0.8847 ms
+
+Preprocess: 1.413130 ms
+Run: 2.663575 ms
+Postprocess: 0.000275 ms
+Mem move_time: 1.495 ms
+Graph time: 4.071 ms
+
+Preprocess: 2.458407 ms
+Run: 3.187810 ms
+Postprocess: 0.000290 ms
+Mem move_time: 1.46 ms
+Graph time: 8.92 ms
+
+Preprocess: 2.874828 ms
+Run: 4.641683 ms
+Postprocess: 0.000307 ms
+Mem move_time: 1.742 ms
+Graph time: 7.106 ms
+
+Preprocess: 2.400715 ms
+Run: 3.257358 ms
+Postprocess: 0.000180 ms
+Mem move_time: 1.325 ms
+Graph time: 9.821 ms
+
+Preprocess: 2.527074 ms
+Run: 2.875273 ms
+Postprocess: 0.000355 ms
+Mem move_time: 1.237 ms
+Graph time: 9.836 ms
+
+Preprocess: 2.770474 ms
+Run: 5.141105 ms
+Postprocess: 0.000350 ms
+Mem move_time: 2.106 ms
+Graph time: 6.291 ms
+
+Preprocess: 3.033315 ms
+Run: 3.556428 ms
+Postprocess: 0.000312 ms
+Mem move_time: 1.718 ms
+Graph time: 8.721 ms
+
+Preprocess: 3.546976 ms
+Run: 5.491689 ms
+Postprocess: 0.000448 ms
+Mem move_time: 1.925 ms
+Graph time: 4.745 ms
+
+Preprocess: 3.153910 ms
+Run: 4.208262 ms
+Postprocess: 0.000332 ms
+Mem move_time: 1.914 ms
+Graph time: 8.394 ms
+
+Preprocess: 3.144483 ms
+Run: 4.120053 ms
+Postprocess: 0.000305 ms
+Mem move_time: 1.795 ms
+Graph time: 5.569 ms
+
+Preprocess: 2.518862 ms
+Run: 4.458290 ms
+Postprocess: 0.000296 ms
+Mem move_time: 1.754 ms
+Graph time: 8.652 ms
+
+Preprocess: 3.475684 ms
+Run: 4.738551 ms
+Postprocess: 0.000401 ms
+Mem move_time: 1.92 ms
+Graph time: 6.405 ms
+
+Preprocess: 2.914459 ms
+Run: 4.149331 ms
+Postprocess: 0.000296 ms
+Mem move_time: 1.692 ms
+Graph time: 7.004 ms
+
+Preprocess: 3.021110 ms
+Run: 4.850417 ms
+Postprocess: 0.000362 ms
+Mem move_time: 1.744 ms
+Graph time: 6.326 ms
+
+Preprocess: 2.296711 ms
+Run: 2.817323 ms
+Postprocess: 0.000227 ms
+Mem move_time: 1.294 ms
+Graph time: 0.8672 ms
+
+Preprocess: 1.397218 ms
+Run: 1.679562 ms
+Postprocess: 0.000193 ms
+Mem move_time: 1.141 ms
+Graph time: 4.849 ms
+
+Preprocess: 2.104588 ms
+Run: 1.542617 ms
+Postprocess: 0.000163 ms
+Mem move_time: 1 ms
+Graph time: 0.6632 ms
+
+Preprocess: 1.260663 ms
+Run: 1.552752 ms
+Postprocess: 0.000057 ms
+Mem move_time: 1.094 ms
+Graph time: 7.068 ms
+
+Preprocess: 1.897845 ms
+Run: 2.064810 ms
+Postprocess: 0.000217 ms
+Mem move_time: 0.9898 ms
+Graph time: 0.7011 ms
+
+Preprocess: 1.259184 ms
+Run: 1.703929 ms
+Postprocess: 0.000110 ms
+Mem move_time: 1.118 ms
+Graph time: 6.301 ms
+
+Preprocess: 2.001125 ms
+Run: 2.335300 ms
+Postprocess: 0.000250 ms
+Mem move_time: 1.125 ms
+Graph time: 0.827 ms
+
+Preprocess: 1.426566 ms
+Run: 1.431198 ms
+Postprocess: 0.000243 ms
+Mem move_time: 1.16 ms
+Graph time: 6.017 ms
+
+Preprocess: 2.026629 ms
+Run: 2.303034 ms
+Postprocess: 0.000234 ms
+Mem move_time: 1.398 ms
+Graph time: 0.9139 ms
+
+Preprocess: 1.432078 ms
+Run: 1.992094 ms
+Postprocess: 0.000189 ms
+Mem move_time: 1.114 ms
+Graph time: 4.925 ms
+
+Preprocess: 2.056784 ms
+Run: 2.053752 ms
+Postprocess: 0.000106 ms
+Mem move_time: 1.086 ms
+Graph time: 0.7217 ms
+
+Preprocess: 1.262081 ms
+Run: 1.618982 ms
+Postprocess: 0.000080 ms
+Mem move_time: 1.119 ms
+Graph time: 6.726 ms
+
+Preprocess: 1.976110 ms
+Run: 1.553512 ms
+Postprocess: 0.000090 ms
+Mem move_time: 0.9805 ms
+Graph time: 0.6941 ms
+
+Preprocess: 1.222817 ms
+Run: 1.440201 ms
+Postprocess: 0.000266 ms
+Mem move_time: 1.063 ms
+Graph time: 7.502 ms
+
+Preprocess: 2.056826 ms
+Run: 2.623791 ms
+Postprocess: 0.000256 ms
+Mem move_time: 1.249 ms
+Graph time: 0.9258 ms
+
+Preprocess: 1.459265 ms
+Run: 2.026422 ms
+Postprocess: 0.000201 ms
+Mem move_time: 1.149 ms
+Graph time: 4.419 ms
+
+Preprocess: 1.965645 ms
+Run: 1.678211 ms
+Postprocess: 0.000172 ms
+Mem move_time: 1.014 ms
+Graph time: 0.6845 ms
+
+Preprocess: 1.212376 ms
+Run: 1.425301 ms
+Postprocess: 0.000174 ms
+Mem move_time: 1.056 ms
+Graph time: 7.921 ms
+
+Preprocess: 1.819187 ms
+Run: 2.780659 ms
+Postprocess: 0.000194 ms
+Mem move_time: 1.172 ms
+Graph time: 0.8415 ms
+
+Preprocess: 1.442121 ms
+Run: 1.982426 ms
+Postprocess: 0.000208 ms
+Mem move_time: 1.123 ms
+Graph time: 4.542 ms
+
+Preprocess: 2.063636 ms
+Run: 1.824089 ms
+Postprocess: 0.000264 ms
+Mem move_time: 1.01 ms
+Graph time: 0.7442 ms
+
+Preprocess: 1.215374 ms
+Run: 1.412794 ms
+Postprocess: 0.000258 ms
+Mem move_time: 1.073 ms
+Graph time: 7.745 ms
+
+Preprocess: 2.071039 ms
+Run: 2.589050 ms
+Postprocess: 0.000274 ms
+Mem move_time: 0.9547 ms
+Graph time: 0.6894 ms
+
+Preprocess: 1.203480 ms
+Run: 1.812662 ms
+Postprocess: 0.000186 ms
+Mem move_time: 1.195 ms
+Graph time: 5.432 ms
+
+Preprocess: 2.089530 ms
+Run: 2.755160 ms
+Postprocess: 0.000286 ms
+Mem move_time: 1.3 ms
+Graph time: 0.9787 ms
+
+Preprocess: 1.342719 ms
+Run: 1.651234 ms
+Postprocess: 0.000109 ms
+Mem move_time: 1.108 ms
+Graph time: 5.464 ms
+
+Preprocess: 1.944181 ms
+Run: 2.313634 ms
+Postprocess: 0.000279 ms
+Mem move_time: 1.152 ms
+Graph time: 0.8016 ms
+
+Preprocess: 1.463056 ms
+Run: 1.714849 ms
+Postprocess: 0.000123 ms
+Mem move_time: 1.194 ms
+Graph time: 5.97 ms
+
+Preprocess: 1.818880 ms
+Run: 2.344516 ms
+Postprocess: 0.000195 ms
+Mem move_time: 1.109 ms
+Graph time: 0.7314 ms
+
+Preprocess: 1.329136 ms
+Run: 1.841683 ms
+Postprocess: 0.000154 ms
+Mem move_time: 1.315 ms
+Graph time: 5.236 ms
+
+Preprocess: 2.292074 ms
+Run: 2.847211 ms
+Postprocess: 0.000303 ms
+Mem move_time: 1.343 ms
+Graph time: 0.8984 ms
+
+Preprocess: 1.489821 ms
+Run: 1.930053 ms
+Postprocess: 0.000193 ms
+Mem move_time: 1.2 ms
+Graph time: 4.55 ms
+
+Preprocess: 2.035011 ms
+Run: 1.472508 ms
+Postprocess: 0.000198 ms
+Mem move_time: 0.9809 ms
+Graph time: 0.6969 ms
+
+Preprocess: 1.291002 ms
+Run: 1.508115 ms
+Postprocess: 0.000152 ms
+Mem move_time: 1.088 ms
+Graph time: 8.056 ms
+
+Preprocess: 1.874266 ms
+Run: 1.687254 ms
+Postprocess: 0.000168 ms
+Mem move_time: 0.9698 ms
+Graph time: 0.7185 ms
+
+Preprocess: 1.253508 ms
+Run: 1.791225 ms
+Postprocess: 0.000109 ms
+Mem move_time: 1.144 ms
+Graph time: 5.882 ms
+
+Preprocess: 2.332351 ms
+Run: 2.427917 ms
+Postprocess: 0.000199 ms
+Mem move_time: 1.269 ms
+Graph time: 0.7663 ms
+
+Preprocess: 1.347528 ms
+Run: 1.779593 ms
+Postprocess: 0.000174 ms
+Mem move_time: 1.095 ms
+Graph time: 5.366 ms
+
+Preprocess: 2.303343 ms
+Run: 2.549677 ms
+Postprocess: 0.000246 ms
+Mem move_time: 1.199 ms
+Graph time: 0.8472 ms
+
+Preprocess: 1.548504 ms
+Run: 1.778150 ms
+Postprocess: 0.000328 ms
+Mem move_time: 1.202 ms
+Graph time: 4.905 ms
+
+Preprocess: 1.945677 ms
+Run: 1.609600 ms
+Postprocess: 0.000157 ms
+Mem move_time: 0.9804 ms
+Graph time: 0.6684 ms
+
+Preprocess: 1.236670 ms
+Run: 1.680901 ms
+Postprocess: 0.000136 ms
+Mem move_time: 1.119 ms
+Graph time: 7.454 ms
+
+Preprocess: 2.115830 ms
+Run: 1.614460 ms
+Postprocess: 0.000169 ms
+Mem move_time: 1.029 ms
+Graph time: 0.7497 ms
+
+Preprocess: 1.311111 ms
+Run: 1.497777 ms
+Postprocess: 0.000110 ms
+Mem move_time: 1.301 ms
+Graph time: 6.519 ms
+
+Preprocess: 2.215960 ms
+Run: 1.929815 ms
+Postprocess: 0.000204 ms
+Mem move_time: 1.127 ms
+Graph time: 0.738 ms
+
+Preprocess: 1.247858 ms
+Run: 1.817966 ms
+Postprocess: 0.000195 ms
+Mem move_time: 1.156 ms
+Graph time: 5.761 ms
+
+Preprocess: 2.066396 ms
+Run: 1.667956 ms
+Postprocess: 0.000154 ms
+Mem move_time: 0.9729 ms
+Graph time: 0.6255 ms
+
+Preprocess: 1.200375 ms
+Run: 1.399281 ms
+Postprocess: 0.000109 ms
+Mem move_time: 1.107 ms
+Graph time: 7.651 ms
+
+Preprocess: 2.141000 ms
+Run: 1.436375 ms
+Postprocess: 0.000218 ms
+Mem move_time: 0.9761 ms
+Graph time: 0.6491 ms
+
+Preprocess: 1.184509 ms
+Run: 1.691915 ms
+Postprocess: 0.000158 ms
+Mem move_time: 1.071 ms
+Graph time: 7.367 ms
+
+Preprocess: 2.107273 ms
+Run: 2.404868 ms
+Postprocess: 0.000259 ms
+Mem move_time: 1.405 ms
+Graph time: 1.044 ms
+
+Preprocess: 1.741509 ms
+Run: 2.518302 ms
+Postprocess: 0.000454 ms
+Mem move_time: 1.381 ms
+Graph time: 3.8 ms
+
+Preprocess: 2.088464 ms
+Run: 2.619023 ms
+Postprocess: 0.000160 ms
+Mem move_time: 1.163 ms
+Graph time: 0.8647 ms
+
+Preprocess: 1.520338 ms
+Run: 1.722032 ms
+Postprocess: 0.000243 ms
+Mem move_time: 1.218 ms
+Graph time: 4.722 ms
+
+Preprocess: 2.081385 ms
+Run: 2.661256 ms
+Postprocess: 0.000313 ms
+Mem move_time: 1.461 ms
+Graph time: 1.2 ms
+
+Preprocess: 1.655202 ms
+Run: 2.613710 ms
+Postprocess: 0.000189 ms
+Mem move_time: 1.524 ms
+Graph time: 3.454 ms
+
+Preprocess: 2.269351 ms
+Run: 2.829267 ms
+Postprocess: 0.000237 ms
+Mem move_time: 1.329 ms
+Graph time: 0.8055 ms
+
+Preprocess: 1.304232 ms
+Run: 1.735232 ms
+Postprocess: 0.000105 ms
+Mem move_time: 1.128 ms
+Graph time: 5.103 ms
+
+Preprocess: 2.024065 ms
+Run: 2.246264 ms
+Postprocess: 0.000212 ms
+Mem move_time: 1.494 ms
+Graph time: 0.7583 ms
+
+Preprocess: 1.442476 ms
+Run: 1.643408 ms
+Postprocess: 0.000261 ms
+Mem move_time: 1.122 ms
+Graph time: 5.13 ms
+
+Preprocess: 2.099485 ms
+Run: 2.257970 ms
+Postprocess: 0.000224 ms
+Mem move_time: 1.293 ms
+Graph time: 0.9109 ms
+
+Preprocess: 1.597075 ms
+Run: 1.787652 ms
+Postprocess: 0.000177 ms
+Mem move_time: 1.204 ms
+Graph time: 5.099 ms
+
+Preprocess: 2.059347 ms
+Run: 2.102308 ms
+Postprocess: 0.000203 ms
+Mem move_time: 1.059 ms
+Graph time: 0.656 ms
+
+Preprocess: 1.225764 ms
+Run: 1.496998 ms
+Postprocess: 0.000124 ms
+Mem move_time: 1.159 ms
+Graph time: 7.021 ms
+
+Preprocess: 1.839105 ms
+Run: 2.175614 ms
+Postprocess: 0.000162 ms
+Mem move_time: 0.9688 ms
+Graph time: 0.6772 ms
+
+Preprocess: 1.327543 ms
+Run: 1.650961 ms
+Postprocess: 0.000109 ms
+Mem move_time: 1.102 ms
+Graph time: 6.407 ms
+
+Preprocess: 1.959636 ms
+Run: 1.922501 ms
+Postprocess: 0.000159 ms
+Mem move_time: 0.9882 ms
+Graph time: 0.7602 ms
+
+Preprocess: 1.191512 ms
+Run: 1.419063 ms
+Postprocess: 0.000104 ms
+Mem move_time: 1.144 ms
+Graph time: 6.976 ms
+
+Preprocess: 2.213694 ms
+Run: 1.547665 ms
+Postprocess: 0.000167 ms
+Mem move_time: 1.053 ms
+Graph time: 0.6616 ms
+
+Preprocess: 1.235101 ms
+Run: 1.469815 ms
+Postprocess: 0.000110 ms
+Mem move_time: 1.151 ms
+Graph time: 6.936 ms
+
+Preprocess: 2.149186 ms
+Run: 1.858233 ms
+Postprocess: 0.000180 ms
+Mem move_time: 1.106 ms
+Graph time: 0.7077 ms
+
+Preprocess: 1.298245 ms
+Run: 1.529906 ms
+Postprocess: 0.000174 ms
+Mem move_time: 1.116 ms
+Graph time: 6.737 ms
+
+Preprocess: 1.981955 ms
+Run: 1.965399 ms
+Postprocess: 0.000205 ms
+Mem move_time: 1.229 ms
+Graph time: 0.8504 ms
+
+Preprocess: 1.401916 ms
+Run: 1.663884 ms
+Postprocess: 0.000135 ms
+Mem move_time: 1.103 ms
+Graph time: 6.071 ms
+
+Preprocess: 2.144662 ms
+Run: 2.186476 ms
+Postprocess: 0.000125 ms
+Mem move_time: 1.134 ms
+Graph time: 0.8036 ms
+
+Preprocess: 1.290467 ms
+Run: 1.998551 ms
+Postprocess: 0.000226 ms
+Mem move_time: 1.29 ms
+Graph time: 5.581 ms
+
+Preprocess: 1.983393 ms
+Run: 2.439575 ms
+Postprocess: 0.000209 ms
+Mem move_time: 1.11 ms
+Graph time: 0.7614 ms
+
+Preprocess: 1.302477 ms
+Run: 1.776671 ms
+Postprocess: 0.000154 ms
+Mem move_time: 1.279 ms
+Graph time: 5.504 ms
+
+Preprocess: 2.240378 ms
+Run: 2.454157 ms
+Postprocess: 0.000141 ms
+Mem move_time: 1.193 ms
+Graph time: 0.8412 ms
+
+Preprocess: 1.355855 ms
+Run: 1.498788 ms
+Postprocess: 0.000172 ms
+Mem move_time: 1.112 ms
+Graph time: 5.382 ms
+
+Preprocess: 2.199566 ms
+Run: 1.598829 ms
+Postprocess: 0.000148 ms
+Mem move_time: 0.9599 ms
+Graph time: 0.7051 ms
+
+Preprocess: 1.284427 ms
+Run: 1.526618 ms
+Postprocess: 0.000160 ms
+Mem move_time: 1.092 ms
+Graph time: 7.475 ms
+
+Preprocess: 1.971314 ms
+Run: 1.448614 ms
+Postprocess: 0.000162 ms
+Mem move_time: 1.063 ms
+Graph time: 0.6884 ms
+
+Preprocess: 1.250356 ms
+Run: 1.454158 ms
+Postprocess: 0.000418 ms
+Mem move_time: 1.101 ms
+Graph time: 7.451 ms
+
+Preprocess: 2.024588 ms
+Run: 2.011607 ms
+Postprocess: 0.000063 ms
+Mem move_time: 1.185 ms
+Graph time: 0.8139 ms
+
+Preprocess: 1.470904 ms
+Run: 1.566764 ms
+Postprocess: 0.000117 ms
+Mem move_time: 1.124 ms
+Graph time: 6.905 ms
+
+Preprocess: 1.800536 ms
+Run: 2.838942 ms
+Postprocess: 0.000175 ms
+Mem move_time: 1.413 ms
+Graph time: 0.9768 ms
+
+Preprocess: 1.516848 ms
+Run: 2.132233 ms
+Postprocess: 0.000213 ms
+Mem move_time: 1.301 ms
+Graph time: 4.018 ms
+
+Preprocess: 2.093607 ms
+Run: 2.728362 ms
+Postprocess: 0.000191 ms
+Mem move_time: 1.212 ms
+Graph time: 0.7605 ms
+
+Preprocess: 1.350542 ms
+Run: 1.641819 ms
+Postprocess: 0.000125 ms
+Mem move_time: 1.123 ms
+Graph time: 5.045 ms
+
+Preprocess: 2.051625 ms
+Run: 2.234039 ms
+Postprocess: 0.000198 ms
+Mem move_time: 1.202 ms
+Graph time: 0.8442 ms
+
+Preprocess: 1.373210 ms
+Run: 1.617897 ms
+Postprocess: 0.000193 ms
+Mem move_time: 1.136 ms
+Graph time: 5.474 ms
+
+Preprocess: 2.076675 ms
+Run: 2.386943 ms
+Postprocess: 0.000145 ms
+Mem move_time: 1.359 ms
+Graph time: 0.8611 ms
+
+Preprocess: 1.278569 ms
+Run: 1.633787 ms
+Postprocess: 0.000179 ms
+Mem move_time: 1.106 ms
+Graph time: 6.692 ms
+
+Preprocess: 2.048541 ms
+Run: 2.114576 ms
+Postprocess: 0.000161 ms
+Mem move_time: 1.125 ms
+Graph time: 0.7683 ms
+
+Preprocess: 1.400694 ms
+Run: 1.849953 ms
+Postprocess: 0.000121 ms
+Mem move_time: 1.127 ms
+Graph time: 5.32 ms
+
+Preprocess: 2.125026 ms
+Run: 2.711648 ms
+Postprocess: 0.000223 ms
+Mem move_time: 1.322 ms
+Graph time: 0.8132 ms
+
+Preprocess: 1.369006 ms
+Run: 1.643338 ms
+Postprocess: 0.000224 ms
+Mem move_time: 1.13 ms
+Graph time: 5.175 ms
+
+Preprocess: 2.092992 ms
+Run: 1.567372 ms
+Postprocess: 0.000228 ms
+Mem move_time: 0.9627 ms
+Graph time: 0.6934 ms
+
+Preprocess: 1.203587 ms
+Run: 1.543910 ms
+Postprocess: 0.000174 ms
+Mem move_time: 1.097 ms
+Graph time: 7.548 ms
+
+Preprocess: 1.947425 ms
+Run: 2.320351 ms
+Postprocess: 0.000146 ms
+Mem move_time: 1.205 ms
+Graph time: 0.8211 ms
+
+Preprocess: 1.464612 ms
+Run: 1.521002 ms
+Postprocess: 0.000117 ms
+Mem move_time: 1.127 ms
+Graph time: 5.295 ms
+
+Preprocess: 2.081985 ms
+Run: 1.843251 ms
+Postprocess: 0.000151 ms
+Mem move_time: 0.9915 ms
+Graph time: 0.6682 ms
+
+Preprocess: 1.291803 ms
+Run: 1.456947 ms
+Postprocess: 0.000158 ms
+Mem move_time: 1.095 ms
+Graph time: 7.423 ms
+
+Preprocess: 2.028150 ms
+Run: 2.255382 ms
+Postprocess: 0.000190 ms
+Mem move_time: 1.279 ms
+Graph time: 0.9395 ms
+
+Preprocess: 1.600943 ms
+Run: 2.131440 ms
+Postprocess: 0.000171 ms
+Mem move_time: 1.113 ms
+Graph time: 4.683 ms
+
+Preprocess: 2.037528 ms
+Run: 1.879555 ms
+Postprocess: 0.000193 ms
+Mem move_time: 1.065 ms
+Graph time: 0.7297 ms
+
+Preprocess: 1.261793 ms
+Run: 1.760784 ms
+Postprocess: 0.000204 ms
+Mem move_time: 1.214 ms
+Graph time: 6.584 ms
+
+Preprocess: 2.222925 ms
+Run: 3.340164 ms
+Postprocess: 0.000329 ms
+Mem move_time: 1.853 ms
+Graph time: 10.55 ms
+
+Preprocess: 3.399957 ms
+Run: 4.175639 ms
+Postprocess: 0.000321 ms
+Mem move_time: 1.744 ms
+Graph time: 6.162 ms
+
+Preprocess: 2.955714 ms
+Run: 4.270161 ms
+Postprocess: 0.000281 ms
+Mem move_time: 1.73 ms
+Graph time: 7.336 ms
+
+Preprocess: 2.442595 ms
+Run: 2.961547 ms
+Postprocess: 0.000295 ms
+Mem move_time: 1.412 ms
+Graph time: 0.7731 ms
+
+Preprocess: 1.220008 ms
+Run: 1.999310 ms
+Postprocess: 0.000221 ms
+Mem move_time: 1.114 ms
+Graph time: 3.812 ms
+
+Preprocess: 2.015026 ms
+Run: 1.763499 ms
+Postprocess: 0.000093 ms
+Mem move_time: 1.006 ms
+Graph time: 0.7021 ms
+
+Preprocess: 1.219075 ms
+Run: 1.388312 ms
+Postprocess: 0.000172 ms
+Mem move_time: 1.118 ms
+Graph time: 7.644 ms
+
+Preprocess: 2.058796 ms
+Run: 2.045657 ms
+Postprocess: 0.000216 ms
+Mem move_time: 1.202 ms
+Graph time: 0.7963 ms
+
+Preprocess: 1.383804 ms
+Run: 2.219625 ms
+Postprocess: 0.000218 ms
+Mem move_time: 1.397 ms
+Graph time: 4.561 ms
+
+Preprocess: 1.994882 ms
+Run: 1.870271 ms
+Postprocess: 0.000223 ms
+Mem move_time: 0.9773 ms
+Graph time: 0.6925 ms
+
+Preprocess: 1.238216 ms
+Run: 1.537750 ms
+Postprocess: 0.000650 ms
+Mem move_time: 1.14 ms
+Graph time: 7.265 ms
+
+Preprocess: 2.026875 ms
+Run: 2.340558 ms
+Postprocess: 0.000214 ms
+Mem move_time: 1.22 ms
+Graph time: 0.8384 ms
+
+Preprocess: 1.622809 ms
+Run: 2.172303 ms
+Postprocess: 0.000260 ms
+Mem move_time: 1.444 ms
+Graph time: 4.375 ms
+
+Preprocess: 2.321450 ms
+Run: 3.138646 ms
+Postprocess: 0.000246 ms
+Mem move_time: 1.357 ms
+Graph time: 0.9533 ms
+
+Preprocess: 1.396523 ms
+Run: 1.754264 ms
+Postprocess: 0.000176 ms
+Mem move_time: 1.138 ms
+Graph time: 5.158 ms
+
+Preprocess: 2.115356 ms
+Run: 1.819622 ms
+Postprocess: 0.000185 ms
+Mem move_time: 1.037 ms
+Graph time: 0.6735 ms
+
+Preprocess: 1.201046 ms
+Run: 1.621270 ms
+Postprocess: 0.000176 ms
+Mem move_time: 1.209 ms
+Graph time: 5.667 ms
+
+Preprocess: 2.181576 ms
+Run: 1.982043 ms
+Postprocess: 0.000186 ms
+Mem move_time: 1.183 ms
+Graph time: 0.7621 ms
+
+Preprocess: 1.196329 ms
+Run: 1.515829 ms
+Postprocess: 0.000180 ms
+Mem move_time: 1.124 ms
+Graph time: 7.071 ms
+
+Preprocess: 2.243295 ms
+Run: 2.725287 ms
+Postprocess: 0.000178 ms
+Mem move_time: 1.308 ms
+Graph time: 0.8115 ms
+
+Preprocess: 1.540446 ms
+Run: 1.742562 ms
+Postprocess: 0.000194 ms
+Mem move_time: 1.252 ms
+Graph time: 4.889 ms
+
+Preprocess: 1.870043 ms
+Run: 1.807121 ms
+Postprocess: 0.000124 ms
+Mem move_time: 0.9765 ms
+Graph time: 0.6724 ms
+
+Preprocess: 1.210509 ms
+Run: 1.912654 ms
+Postprocess: 0.000107 ms
+Mem move_time: 1.115 ms
+Graph time: 7.19 ms
+
+Preprocess: 1.997940 ms
+Run: 2.516793 ms
+Postprocess: 0.000222 ms
+Mem move_time: 1.209 ms
+Graph time: 0.8563 ms
+
+Preprocess: 1.436089 ms
+Run: 1.732487 ms
+Postprocess: 0.000103 ms
+Mem move_time: 1.101 ms
+Graph time: 4.913 ms
+
+Preprocess: 2.090634 ms
+Run: 1.631020 ms
+Postprocess: 0.000143 ms
+Mem move_time: 1.024 ms
+Graph time: 0.7327 ms
+
+Preprocess: 1.322336 ms
+Run: 1.802433 ms
+Postprocess: 0.000185 ms
+Mem move_time: 1.158 ms
+Graph time: 6.103 ms
+
+Preprocess: 1.951084 ms
+Run: 2.618457 ms
+Postprocess: 0.000240 ms
+Mem move_time: 1.322 ms
+Graph time: 0.9111 ms
+
+Preprocess: 1.401723 ms
+Run: 1.639720 ms
+Postprocess: 0.000100 ms
+Mem move_time: 1.101 ms
+Graph time: 4.979 ms
+
+Preprocess: 2.046969 ms
+Run: 2.252324 ms
+Postprocess: 0.000205 ms
+Mem move_time: 1.26 ms
+Graph time: 0.884 ms
+
+Preprocess: 1.533664 ms
+Run: 1.963474 ms
+Postprocess: 0.000211 ms
+Mem move_time: 1.131 ms
+Graph time: 5.945 ms
+
+Preprocess: 2.209134 ms
+Run: 2.540905 ms
+Postprocess: 0.000171 ms
+Mem move_time: 1.025 ms
+Graph time: 0.9289 ms
+
+Preprocess: 1.611270 ms
+Run: 2.613846 ms
+Postprocess: 0.000245 ms
+Mem move_time: 1.409 ms
+Graph time: 3.573 ms
+
+Preprocess: 2.060654 ms
+Run: 1.800070 ms
+Postprocess: 0.000168 ms
+Mem move_time: 1.001 ms
+Graph time: 0.6674 ms
+
+Preprocess: 1.266628 ms
+Run: 1.400316 ms
+Postprocess: 0.000123 ms
+Mem move_time: 1.135 ms
+Graph time: 7.443 ms
+
+Preprocess: 2.248609 ms
+Run: 3.353129 ms
+Postprocess: 0.000261 ms
+Mem move_time: 1.418 ms
+Graph time: 0.988 ms
+
+Preprocess: 1.434981 ms
+Run: 2.267494 ms
+Postprocess: 0.000150 ms
+Mem move_time: 1.354 ms
+Graph time: 3.057 ms
+
+Preprocess: 1.927272 ms
+Run: 1.940501 ms
+Postprocess: 0.000155 ms
+Mem move_time: 0.957 ms
+Graph time: 0.655 ms
+
+Preprocess: 1.347011 ms
+Run: 1.482717 ms
+Postprocess: 0.000187 ms
+Mem move_time: 1.144 ms
+Graph time: 6.903 ms
+
+Preprocess: 2.000233 ms
+Run: 2.185454 ms
+Postprocess: 0.000233 ms
+Mem move_time: 1.315 ms
+Graph time: 0.9166 ms
+
+Preprocess: 1.434711 ms
+Run: 1.490154 ms
+Postprocess: 0.000466 ms
+Mem move_time: 1.178 ms
+Graph time: 5.96 ms
+
+Preprocess: 2.200545 ms
+Run: 2.537610 ms
+Postprocess: 0.000206 ms
+Mem move_time: 1.267 ms
+Graph time: 0.8612 ms
+
+Preprocess: 1.314268 ms
+Run: 1.726672 ms
+Postprocess: 0.000168 ms
+Mem move_time: 1.089 ms
+Graph time: 5.526 ms
+
+Preprocess: 2.127499 ms
+Run: 2.079577 ms
+Postprocess: 0.000240 ms
+Mem move_time: 1.077 ms
+Graph time: 0.7756 ms
+
+Preprocess: 1.370590 ms
+Run: 1.852512 ms
+Postprocess: 0.000212 ms
+Mem move_time: 1.15 ms
+Graph time: 5.37 ms
+
+Preprocess: 2.014398 ms
+Run: 1.624050 ms
+Postprocess: 0.000263 ms
+Mem move_time: 1.002 ms
+Graph time: 0.6908 ms
+
+Preprocess: 1.415966 ms
+Run: 1.623288 ms
+Postprocess: 0.000217 ms
+Mem move_time: 1.17 ms
+Graph time: 7.193 ms
+
+Preprocess: 1.895438 ms
+Run: 1.665373 ms
+Postprocess: 0.000167 ms
+Mem move_time: 1.02 ms
+Graph time: 0.7205 ms
+
+Preprocess: 1.518258 ms
+Run: 1.726032 ms
+Postprocess: 0.000201 ms
+Mem move_time: 1.19 ms
+Graph time: 6.832 ms
+
+Preprocess: 1.866269 ms
+Run: 1.678738 ms
+Postprocess: 0.000164 ms
+Mem move_time: 0.9782 ms
+Graph time: 0.7054 ms
+
+Preprocess: 1.199483 ms
+Run: 1.540502 ms
+Postprocess: 0.000150 ms
+Mem move_time: 1.11 ms
+Graph time: 6.42 ms
+
+Preprocess: 1.994318 ms
+Run: 1.781827 ms
+Postprocess: 0.000195 ms
+Mem move_time: 1.077 ms
+Graph time: 0.7596 ms
+
+Preprocess: 1.300885 ms
+Run: 1.476022 ms
+Postprocess: 0.000172 ms
+Mem move_time: 1.185 ms
+Graph time: 7.701 ms
+
+Preprocess: 2.049227 ms
+Run: 2.422135 ms
+Postprocess: 0.000231 ms
+Mem move_time: 1.285 ms
+Graph time: 0.8783 ms
+
+Preprocess: 1.523156 ms
+Run: 2.089639 ms
+Postprocess: 0.000192 ms
+Mem move_time: 1.149 ms
+Graph time: 4.663 ms
+
+Preprocess: 2.098862 ms
+Run: 2.110517 ms
+Postprocess: 0.000175 ms
+Mem move_time: 1.008 ms
+Graph time: 0.6717 ms
+
+Preprocess: 1.249138 ms
+Run: 1.663786 ms
+Postprocess: 0.000306 ms
+Mem move_time: 1.12 ms
+Graph time: 5.926 ms
+
+Preprocess: 2.063282 ms
+Run: 1.617894 ms
+Postprocess: 0.000156 ms
+Mem move_time: 0.972 ms
+Graph time: 0.6863 ms
+
+Preprocess: 1.323685 ms
+Run: 1.447488 ms
+Postprocess: 0.000176 ms
+Mem move_time: 1.07 ms
+Graph time: 7.686 ms
+
+Preprocess: 1.840671 ms
+Run: 1.894542 ms
+Postprocess: 0.000205 ms
+Mem move_time: 1.064 ms
+Graph time: 0.6771 ms
+
+Preprocess: 1.234554 ms
+Run: 1.768049 ms
+Postprocess: 0.000228 ms
+Mem move_time: 1.417 ms
+Graph time: 6.212 ms
+
+Preprocess: 2.125057 ms
+Run: 2.476907 ms
+Postprocess: 0.000239 ms
+Mem move_time: 1.092 ms
+Graph time: 0.7761 ms
+
+Preprocess: 1.311916 ms
+Run: 1.898500 ms
+Postprocess: 0.000158 ms
+Mem move_time: 1.265 ms
+Graph time: 5.288 ms
+
+Preprocess: 2.232377 ms
+Run: 2.849576 ms
+Postprocess: 0.000234 ms
+Mem move_time: 1.336 ms
+Graph time: 0.8223 ms
+
+Preprocess: 1.427420 ms
+Run: 1.644243 ms
+Postprocess: 0.000102 ms
+Mem move_time: 1.15 ms
+Graph time: 4.841 ms
+
+Preprocess: 2.154458 ms
+Run: 1.587575 ms
+Postprocess: 0.000175 ms
+Mem move_time: 1.033 ms
+Graph time: 0.6473 ms
+
+Preprocess: 1.239342 ms
+Run: 1.455623 ms
+Postprocess: 0.000110 ms
+Mem move_time: 1.154 ms
+Graph time: 7.371 ms
+
+Preprocess: 1.941398 ms
+Run: 2.382232 ms
+Postprocess: 0.000226 ms
+Mem move_time: 1.248 ms
+Graph time: 0.9015 ms
+
+Preprocess: 1.460150 ms
+Run: 1.924507 ms
+Postprocess: 0.000119 ms
+Mem move_time: 1.135 ms
+Graph time: 5.281 ms
+
+Preprocess: 2.152032 ms
+Run: 2.747898 ms
+Postprocess: 0.000197 ms
+Mem move_time: 1.29 ms
+Graph time: 0.9186 ms
+
+Preprocess: 1.458239 ms
+Run: 1.653451 ms
+Postprocess: 0.000182 ms
+Mem move_time: 1.159 ms
+Graph time: 5.333 ms
+
+Preprocess: 1.862646 ms
+Run: 2.842361 ms
+Postprocess: 0.000238 ms
+Mem move_time: 1.425 ms
+Graph time: 0.9838 ms
+
+Preprocess: 1.629182 ms
+Run: 2.163446 ms
+Postprocess: 0.000233 ms
+Mem move_time: 1.297 ms
+Graph time: 4.15 ms
+
+Preprocess: 2.067881 ms
+Run: 2.315049 ms
+Postprocess: 0.000126 ms
+Mem move_time: 1.088 ms
+Graph time: 0.7416 ms
+
+Preprocess: 1.266178 ms
+Run: 1.706956 ms
+Postprocess: 0.000113 ms
+Mem move_time: 1.13 ms
+Graph time: 4.995 ms
+
+Preprocess: 2.215286 ms
+Run: 1.774518 ms
+Postprocess: 0.000163 ms
+Mem move_time: 1.001 ms
+Graph time: 0.647 ms
+
+Preprocess: 1.291464 ms
+Run: 1.485642 ms
+Postprocess: 0.000109 ms
+Mem move_time: 1.126 ms
+Graph time: 9.108 ms
+
+Preprocess: 2.069588 ms
+Run: 2.763622 ms
+Postprocess: 0.000239 ms
+Mem move_time: 1.322 ms
+Graph time: 25.55 ms
+
+Preprocess: 3.336579 ms
+Run: 6.335084 ms
+Postprocess: 0.000330 ms
+Mem move_time: 2.303 ms
+Graph time: 11.88 ms
+
+Preprocess: 3.824472 ms
+Run: 5.036052 ms
+Postprocess: 0.000375 ms
+Mem move_time: 1.838 ms
+Graph time: 1.244 ms
+
+Preprocess: 2.221592 ms
+Run: 4.071406 ms
+Postprocess: 0.000340 ms
+Mem move_time: 1.833 ms
+Graph time: 5.971 ms
+
+Preprocess: 3.837453 ms
+Run: 5.406794 ms
+Postprocess: 0.000457 ms
+Mem move_time: 1.882 ms
+Graph time: 5.584 ms
+
+Preprocess: 2.646187 ms
+Run: 3.461481 ms
+Postprocess: 0.000244 ms
+Mem move_time: 1.555 ms
+Graph time: 8.742 ms
+
+Preprocess: 2.569044 ms
+Run: 3.420704 ms
+Postprocess: 0.000161 ms
+Mem move_time: 1.058 ms
+Graph time: 10.38 ms
+
+Preprocess: 2.752101 ms
+Run: 3.475614 ms
+Postprocess: 0.000264 ms
+Mem move_time: 1.523 ms
+Graph time: 8.518 ms
+
+Preprocess: 2.495131 ms
+Run: 3.199785 ms
+Postprocess: 0.000187 ms
+Mem move_time: 1.395 ms
+Graph time: 17.14 ms
+
+Preprocess: 3.130172 ms
+Run: 6.230697 ms
+Postprocess: 0.000428 ms
+Mem move_time: 2.661 ms
+Graph time: 1.85 ms
+
+Preprocess: 3.113660 ms
+Run: 6.126741 ms
+Postprocess: 0.000246 ms
+Mem move_time: 1.424 ms
+Graph time: 11.94 ms
+
+Preprocess: 3.207187 ms
+Run: 4.743421 ms
+Postprocess: 0.000453 ms
+Mem move_time: 1.579 ms
+Graph time: 1.216 ms
+
+Preprocess: 2.030472 ms
+Run: 4.311225 ms
+Postprocess: 0.000367 ms
+Mem move_time: 1.87 ms
+Graph time: 12.04 ms
+
+Preprocess: 3.252139 ms
+Run: 5.960996 ms
+Postprocess: 0.000353 ms
+Mem move_time: 1.983 ms
+Graph time: 1.405 ms
+
+Preprocess: 2.057988 ms
+Run: 3.481724 ms
+Postprocess: 0.000212 ms
+Mem move_time: 1.589 ms
+Graph time: 12.78 ms
+
+Preprocess: 3.510721 ms
+Run: 5.338552 ms
+Postprocess: 0.000353 ms
+Mem move_time: 1.884 ms
+Graph time: 1.465 ms
+
+Preprocess: 2.149604 ms
+Run: 3.511699 ms
+Postprocess: 0.000327 ms
+Mem move_time: 1.454 ms
+Graph time: 15.3 ms
+
+Preprocess: 3.228622 ms
+Run: 5.408571 ms
+Postprocess: 0.000452 ms
+Mem move_time: 1.805 ms
+Graph time: 1.334 ms
+
+Preprocess: 2.301744 ms
+Run: 3.690819 ms
+Postprocess: 0.000192 ms
+Mem move_time: 1.662 ms
+Graph time: 14.9 ms
+
+Preprocess: 3.434868 ms
+Run: 5.885810 ms
+Postprocess: 0.000647 ms
+Mem move_time: 1.85 ms
+Graph time: 20.12 ms
+
+Preprocess: 3.436614 ms
+Run: 5.813826 ms
+Postprocess: 0.000362 ms
+Mem move_time: 2.314 ms
+Graph time: 21.71 ms
+
+Preprocess: 3.381670 ms
+Run: 6.324659 ms
+Postprocess: 0.000391 ms
+Mem move_time: 2.242 ms
+Graph time: 20.09 ms
+
+Preprocess: 3.159985 ms
+Run: 6.036266 ms
+Postprocess: 0.000480 ms
+Mem move_time: 2.32 ms
+Graph time: 22.5 ms
+
+Preprocess: 3.323758 ms
+Run: 5.867419 ms
+Postprocess: 0.000422 ms
+Mem move_time: 2.287 ms
+Graph time: 21.35 ms
+
+Preprocess: 3.232866 ms
+Run: 6.177977 ms
+Postprocess: 0.000445 ms
+Mem move_time: 2.454 ms
+Graph time: 21.02 ms
+
+Preprocess: 3.391391 ms
+Run: 6.194499 ms
+Postprocess: 0.000441 ms
+Mem move_time: 2.22 ms
+Graph time: 22.94 ms
+
+Preprocess: 3.086723 ms
+Run: 6.456634 ms
+Postprocess: 0.000492 ms
+Mem move_time: 2.357 ms
+Graph time: 21.65 ms
+
+Preprocess: 3.223398 ms
+Run: 6.289158 ms
+Postprocess: 0.000468 ms
+Mem move_time: 2.426 ms
+Graph time: 20.64 ms
+
+Preprocess: 3.420928 ms
+Run: 6.626374 ms
+Postprocess: 0.000335 ms
+Mem move_time: 2.311 ms
+Graph time: 20.89 ms
+
+Preprocess: 3.191485 ms
+Run: 6.524306 ms
+Postprocess: 0.000556 ms
+Mem move_time: 2.755 ms
+Graph time: 19.56 ms
+
+Preprocess: 3.394494 ms
+Run: 7.065799 ms
+Postprocess: 0.000430 ms
+Mem move_time: 2.401 ms
+Graph time: 18.71 ms
+
+Preprocess: 3.217818 ms
+Run: 6.268869 ms
+Postprocess: 0.000465 ms
+Mem move_time: 2.529 ms
+Graph time: 22.26 ms
+
+Preprocess: 3.086555 ms
+Run: 6.495369 ms
+Postprocess: 0.000541 ms
+Mem move_time: 2.849 ms
+Graph time: 24.24 ms
+
+Preprocess: 3.179399 ms
+Run: 6.498953 ms
+Postprocess: 0.000551 ms
+Mem move_time: 2.466 ms
+Graph time: 19.14 ms
+
+Preprocess: 3.318391 ms
+Run: 6.035557 ms
+Postprocess: 0.000426 ms
+Mem move_time: 2.093 ms
+Graph time: 18.06 ms
+
+Preprocess: 3.051412 ms
+Run: 5.632012 ms
+Postprocess: 0.000434 ms
+Mem move_time: 2.172 ms
+Graph time: 24.67 ms
+
+Preprocess: 3.156041 ms
+Run: 5.974198 ms
+Postprocess: 0.000555 ms
+Mem move_time: 2.741 ms
+Graph time: 21.32 ms
+
+Preprocess: 3.091147 ms
+Run: 5.849656 ms
+Postprocess: 0.000507 ms
+Mem move_time: 2.46 ms
+Graph time: 21.33 ms
+
+Preprocess: 3.161977 ms
+Run: 6.413761 ms
+Postprocess: 0.000551 ms
+Mem move_time: 2.789 ms
+Graph time: 18.44 ms
+
+Preprocess: 3.219301 ms
+Run: 6.314357 ms
+Postprocess: 0.000570 ms
+Mem move_time: 2.619 ms
+Graph time: 20.92 ms
+
+Preprocess: 3.337603 ms
+Run: 6.219213 ms
+Postprocess: 0.000474 ms
+Mem move_time: 2.707 ms
+Graph time: 21.53 ms
+
+Preprocess: 3.073776 ms
+Run: 6.536536 ms
+Postprocess: 0.000472 ms
+Mem move_time: 2.843 ms
+Graph time: 24.41 ms
+
+Preprocess: 3.240786 ms
+Run: 6.391769 ms
+Postprocess: 0.000386 ms
+Mem move_time: 2.62 ms
+Graph time: 18.01 ms
+
+Preprocess: 3.424264 ms
+Run: 6.394003 ms
+Postprocess: 0.000488 ms
+Mem move_time: 2.442 ms
+Graph time: 20.4 ms
+
+Preprocess: 3.163881 ms
+Run: 6.361458 ms
+Postprocess: 0.000527 ms
+Mem move_time: 2.348 ms
+Graph time: 17.21 ms
+
+Preprocess: 3.377963 ms
+Run: 5.584147 ms
+Postprocess: 0.000379 ms
+Mem move_time: 2.008 ms
+Graph time: 1.232 ms
+
+Preprocess: 1.897205 ms
+Run: 2.755669 ms
+Postprocess: 0.000294 ms
+Mem move_time: 1.42 ms
+Graph time: 18.18 ms
+
+Preprocess: 3.388235 ms
+Run: 6.569808 ms
+Postprocess: 0.000700 ms
+Mem move_time: 2.546 ms
+Graph time: 18.63 ms
+
+Preprocess: 3.431721 ms
+Run: 6.391620 ms
+Postprocess: 0.000425 ms
+Mem move_time: 2.241 ms
+Graph time: 14.28 ms
+
+Preprocess: 3.521628 ms
+Run: 5.590412 ms
+Postprocess: 0.000451 ms
+Mem move_time: 2.216 ms
+Graph time: 1.574 ms
+
+Preprocess: 2.813652 ms
+Run: 3.972217 ms
+Postprocess: 0.000300 ms
+Mem move_time: 1.824 ms
+Graph time: 13.7 ms
+
+Preprocess: 3.892014 ms
+Run: 5.515593 ms
+Postprocess: 0.000411 ms
+Mem move_time: 1.941 ms
+Graph time: 1.416 ms
+
+Preprocess: 2.651031 ms
+Run: 3.718616 ms
+Postprocess: 0.000291 ms
+Mem move_time: 1.538 ms
+Graph time: 11.36 ms
+
+Preprocess: 3.292283 ms
+Run: 4.365824 ms
+Postprocess: 0.000316 ms
+Mem move_time: 1.682 ms
+Graph time: 1.077 ms
+
+Preprocess: 1.862454 ms
+Run: 3.527210 ms
+Postprocess: 0.000392 ms
+Mem move_time: 1.662 ms
+Graph time: 16.91 ms
+
+Preprocess: 3.488561 ms
+Run: 5.620273 ms
+Postprocess: 0.000301 ms
+Mem move_time: 1.831 ms
+Graph time: 1.557 ms
+
+Preprocess: 2.287639 ms
+Run: 3.687007 ms
+Postprocess: 0.000156 ms
+Mem move_time: 1.477 ms
+Graph time: 12.74 ms
+
+Preprocess: 3.178044 ms
+Run: 3.717723 ms
+Postprocess: 0.000288 ms
+Mem move_time: 1.656 ms
+Graph time: 1.146 ms
+
+Preprocess: 1.678625 ms
+Run: 2.739582 ms
+Postprocess: 0.000201 ms
+Mem move_time: 1.25 ms
+Graph time: 20.9 ms
+
+Preprocess: 3.148239 ms
+Run: 4.985554 ms
+Postprocess: 0.000358 ms
+Mem move_time: 1.842 ms
+Graph time: 1.136 ms
+
+Preprocess: 1.573579 ms
+Run: 2.789110 ms
+Postprocess: 0.000157 ms
+Mem move_time: 1.201 ms
+Graph time: 19.96 ms
+
+Preprocess: 3.273607 ms
+Run: 6.900707 ms
+Postprocess: 0.000523 ms
+Mem move_time: 2.786 ms
+Graph time: 18.7 ms
+
+Preprocess: 3.658947 ms
+Run: 6.227796 ms
+Postprocess: 0.000411 ms
+Mem move_time: 2.082 ms
+Graph time: 16.7 ms
+
+Preprocess: 3.134156 ms
+Run: 5.691378 ms
+Postprocess: 0.000358 ms
+Mem move_time: 1.853 ms
+Graph time: 1.604 ms
+
+Preprocess: 2.548935 ms
+Run: 4.411624 ms
+Postprocess: 0.000311 ms
+Mem move_time: 1.849 ms
+Graph time: 12.91 ms
+
+Preprocess: 3.620741 ms
+Run: 5.703791 ms
+Postprocess: 0.000391 ms
+Mem move_time: 1.85 ms
+Graph time: 1.334 ms
+
+Preprocess: 2.333265 ms
+Run: 3.630734 ms
+Postprocess: 0.000314 ms
+Mem move_time: 1.648 ms
+Graph time: 11.97 ms
+
+Preprocess: 3.771511 ms
+Run: 5.748670 ms
+Postprocess: 0.000238 ms
+Mem move_time: 1.869 ms
+Graph time: 1.443 ms
+
+Preprocess: 1.538299 ms
+Run: 2.264321 ms
+Postprocess: 0.000163 ms
+Mem move_time: 1.302 ms
+Graph time: 18.16 ms
+
+Preprocess: 3.689847 ms
+Run: 5.715721 ms
+Postprocess: 0.000489 ms
+Mem move_time: 1.946 ms
+Graph time: 20.19 ms
+
+Preprocess: 3.554584 ms
+Run: 6.380203 ms
+Postprocess: 0.000386 ms
+Mem move_time: 2.422 ms
+Graph time: 19.57 ms
+
+Preprocess: 2.414738 ms
+Run: 3.293245 ms
+Postprocess: 0.000362 ms
+Mem move_time: 1.214 ms
+Graph time: 0.8814 ms
+
+Preprocess: 1.253219 ms
+Run: 1.590203 ms
+Postprocess: 0.000180 ms
+Mem move_time: 1.052 ms
+Graph time: 21.56 ms
+
+Preprocess: 1.825915 ms
+Run: 2.220063 ms
+Postprocess: 0.000211 ms
+Mem move_time: 1.175 ms
+Graph time: 0.7771 ms
+
+Preprocess: 1.164341 ms
+Run: 1.524545 ms
+Postprocess: 0.000233 ms
+Mem move_time: 0.9983 ms
+Graph time: 0.6918 ms
+
+Preprocess: 1.129506 ms
+Run: 1.476696 ms
+Postprocess: 0.000184 ms
+Mem move_time: 1.107 ms
+Graph time: 18.64 ms
+
+Preprocess: 2.111812 ms
+Run: 1.780030 ms
+Postprocess: 0.000184 ms
+Mem move_time: 1.259 ms
+Graph time: 0.787 ms
+
+Preprocess: 1.101862 ms
+Run: 1.496586 ms
+Postprocess: 0.000169 ms
+Mem move_time: 1.037 ms
+Graph time: 0.6574 ms
+
+Preprocess: 1.079056 ms
+Run: 1.590769 ms
+Postprocess: 0.000170 ms
+Mem move_time: 1.07 ms
+Graph time: 15.11 ms
+
+Preprocess: 1.684954 ms
+Run: 1.804577 ms
+Postprocess: 0.000182 ms
+Mem move_time: 1.222 ms
+Graph time: 0.7585 ms
+
+Preprocess: 1.212934 ms
+Run: 1.938100 ms
+Postprocess: 0.000157 ms
+Mem move_time: 1.013 ms
+Graph time: 0.6673 ms
+
+Preprocess: 1.014118 ms
+Run: 1.570508 ms
+Postprocess: 0.000168 ms
+Mem move_time: 1.073 ms
+Graph time: 0.6359 ms
+
+Preprocess: 1.145634 ms
+Run: 1.542124 ms
+Postprocess: 0.000095 ms
+Mem move_time: 1.087 ms
+Graph time: 16.49 ms
+
+Preprocess: 1.792530 ms
+Run: 1.828082 ms
+Postprocess: 0.000362 ms
+Mem move_time: 1.1 ms
+Graph time: 0.7512 ms
+
+Preprocess: 1.086702 ms
+Run: 1.653351 ms
+Postprocess: 0.000105 ms
+Mem move_time: 1.034 ms
+Graph time: 0.7287 ms
+
+Preprocess: 1.075063 ms
+Run: 1.560755 ms
+Postprocess: 0.000102 ms
+Mem move_time: 1.052 ms
+Graph time: 17.73 ms
+
+Preprocess: 1.953232 ms
+Run: 1.795919 ms
+Postprocess: 0.000762 ms
+Mem move_time: 1.227 ms
+Graph time: 0.7189 ms
+
+Preprocess: 1.099565 ms
+Run: 1.591708 ms
+Postprocess: 0.000169 ms
+Mem move_time: 0.992 ms
+Graph time: 0.6754 ms
+
+Preprocess: 1.102058 ms
+Run: 1.560904 ms
+Postprocess: 0.000172 ms
+Mem move_time: 1.041 ms
+Graph time: 0.7958 ms
+
+Preprocess: 1.064401 ms
+Run: 1.518734 ms
+Postprocess: 0.000111 ms
+Mem move_time: 1.071 ms
+Graph time: 14.1 ms
+
+Preprocess: 2.390732 ms
+Run: 2.257193 ms
+Postprocess: 0.000157 ms
+Mem move_time: 1.175 ms
+Graph time: 1.162 ms
+
+Preprocess: 1.168485 ms
+Run: 1.567581 ms
+Postprocess: 0.000111 ms
+Mem move_time: 1.029 ms
+Graph time: 0.7817 ms
+
+Preprocess: 1.056230 ms
+Run: 1.503460 ms
+Postprocess: 0.000105 ms
+Mem move_time: 1.063 ms
+Graph time: 18.07 ms
+
+Preprocess: 1.870679 ms
+Run: 1.967263 ms
+Postprocess: 0.000169 ms
+Mem move_time: 1.21 ms
+Graph time: 0.7065 ms
+
+Preprocess: 1.162320 ms
+Run: 1.643682 ms
+Postprocess: 0.000105 ms
+Mem move_time: 0.9968 ms
+Graph time: 0.7107 ms
+
+Preprocess: 1.182328 ms
+Run: 1.638469 ms
+Postprocess: 0.000159 ms
+Mem move_time: 1.098 ms
+Graph time: 17.36 ms
+
+Preprocess: 2.003504 ms
+Run: 1.928136 ms
+Postprocess: 0.000419 ms
+Mem move_time: 1.146 ms
+Graph time: 0.8778 ms
+
+Preprocess: 1.725843 ms
+Run: 1.924643 ms
+Postprocess: 0.000340 ms
+Mem move_time: 1.047 ms
+Graph time: 0.7475 ms
+
+Preprocess: 1.202309 ms
+Run: 1.842680 ms
+Postprocess: 0.000319 ms
+Mem move_time: 1.052 ms
+Graph time: 24.8 ms
+
+Preprocess: 1.848521 ms
+Run: 1.905926 ms
+Postprocess: 0.000189 ms
+Mem move_time: 1.189 ms
+Graph time: 0.7385 ms
+
+Preprocess: 1.177657 ms
+Run: 1.703761 ms
+Postprocess: 0.000091 ms
+Mem move_time: 1.05 ms
+Graph time: 15.96 ms
+
+Preprocess: 1.795631 ms
+Run: 2.244926 ms
+Postprocess: 0.000197 ms
+Mem move_time: 1.117 ms
+Graph time: 0.7793 ms
+
+Preprocess: 1.402096 ms
+Run: 1.994151 ms
+Postprocess: 0.000167 ms
+Mem move_time: 1.006 ms
+Graph time: 0.7525 ms
+
+Preprocess: 1.222431 ms
+Run: 1.764194 ms
+Postprocess: 0.000098 ms
+Mem move_time: 1.017 ms
+Graph time: 0.6404 ms
+
+Preprocess: 1.006778 ms
+Run: 2.207674 ms
+Postprocess: 0.000242 ms
+Mem move_time: 1.288 ms
+Graph time: 10.79 ms
+
+Preprocess: 2.714778 ms
+Run: 4.493440 ms
+Postprocess: 0.000361 ms
+Mem move_time: 1.653 ms
+Graph time: 1.265 ms
+
+Preprocess: 1.949668 ms
+Run: 3.358008 ms
+Postprocess: 0.000248 ms
+Mem move_time: 1.619 ms
+Graph time: 17.47 ms
+
+Preprocess: 3.719072 ms
+Run: 5.226402 ms
+Postprocess: 0.000750 ms
+Mem move_time: 1.898 ms
+Graph time: 1.377 ms
+
+Preprocess: 2.547874 ms
+Run: 4.319650 ms
+Postprocess: 0.000249 ms
+Mem move_time: 1.636 ms
+Graph time: 12.7 ms
+
+Preprocess: 2.957801 ms
+Run: 4.154491 ms
+Postprocess: 0.000339 ms
+Mem move_time: 1.707 ms
+Graph time: 0.9741 ms
+
+Preprocess: 1.500836 ms
+Run: 1.871112 ms
+Postprocess: 0.000205 ms
+Mem move_time: 1.129 ms
+Graph time: 0.6645 ms
+
+Preprocess: 0.971766 ms
+Run: 1.434941 ms
+Postprocess: 0.000108 ms
+Mem move_time: 1.117 ms
+Graph time: 18.26 ms
+
+Preprocess: 3.274325 ms
+Run: 4.450615 ms
+Postprocess: 0.000381 ms
+Mem move_time: 1.729 ms
+Graph time: 1.255 ms
+
+Preprocess: 1.931225 ms
+Run: 4.416925 ms
+Postprocess: 0.000435 ms
+Mem move_time: 2.041 ms
+Graph time: 13.46 ms
+
+Preprocess: 1.856732 ms
+Run: 1.811697 ms
+Postprocess: 0.000591 ms
+Mem move_time: 1.088 ms
+Graph time: 0.7933 ms
+
+Preprocess: 1.303274 ms
+Run: 1.710840 ms
+Postprocess: 0.000216 ms
+Mem move_time: 1.09 ms
+Graph time: 0.777 ms
+
+Preprocess: 1.455867 ms
+Run: 1.675719 ms
+Postprocess: 0.000160 ms
+Mem move_time: 1.169 ms
+Graph time: 21.25 ms
+
+Preprocess: 3.184987 ms
+Run: 2.004011 ms
+Postprocess: 0.000584 ms
+Mem move_time: 1.282 ms
+Graph time: 0.7773 ms
+
+Preprocess: 1.252797 ms
+Run: 1.510387 ms
+Postprocess: 0.000252 ms
+Mem move_time: 1.122 ms
+Graph time: 19.49 ms
+
+Preprocess: 1.942843 ms
+Run: 2.313601 ms
+Postprocess: 0.000213 ms
+Mem move_time: 1.328 ms
+Graph time: 0.7419 ms
+
+Preprocess: 1.257911 ms
+Run: 1.594270 ms
+Postprocess: 0.000153 ms
+Mem move_time: 1.084 ms
+Graph time: 21.71 ms
+
+Preprocess: 3.126658 ms
+Run: 3.720331 ms
+Postprocess: 0.000334 ms
+Mem move_time: 1.5 ms
+Graph time: 1.137 ms
+
+Preprocess: 1.591451 ms
+Run: 2.806637 ms
+Postprocess: 0.000385 ms
+Mem move_time: 1.619 ms
+Graph time: 18.14 ms
+
+Preprocess: 3.725122 ms
+Run: 6.280027 ms
+Postprocess: 0.000376 ms
+Mem move_time: 2.212 ms
+Graph time: 21.48 ms
+
+Preprocess: 3.694276 ms
+Run: 6.622240 ms
+Postprocess: 0.000330 ms
+Mem move_time: 2.239 ms
+Graph time: 19.52 ms
+
+Preprocess: 3.219201 ms
+Run: 5.921689 ms
+Postprocess: 0.000499 ms
+Mem move_time: 2.479 ms
+Graph time: 24.82 ms
+
+Preprocess: 3.249843 ms
+Run: 5.567313 ms
+Postprocess: 0.000491 ms
+Mem move_time: 2.518 ms
+Graph time: 21.72 ms
+
+Preprocess: 3.109164 ms
+Run: 6.341862 ms
+Postprocess: 0.000455 ms
+Mem move_time: 2.779 ms
+Graph time: 19.58 ms
+
+Preprocess: 3.344166 ms
+Run: 6.406126 ms
+Postprocess: 0.000447 ms
+Mem move_time: 2.545 ms
+Graph time: 19.56 ms
+
+Preprocess: 3.263952 ms
+Run: 6.347826 ms
+Postprocess: 0.000358 ms
+Mem move_time: 2.432 ms
+Graph time: 20.57 ms
+
+Preprocess: 3.133911 ms
+Run: 6.166309 ms
+Postprocess: 0.000411 ms
+Mem move_time: 2.212 ms
+Graph time: 19.72 ms
+
+Preprocess: 3.337864 ms
+Run: 6.003504 ms
+Postprocess: 0.000406 ms
+Mem move_time: 2.222 ms
+Graph time: 21.5 ms
+
+Preprocess: 3.190010 ms
+Run: 6.296172 ms
+Postprocess: 0.000390 ms
+Mem move_time: 2.234 ms
+Graph time: 23.37 ms
+
+Preprocess: 3.343882 ms
+Run: 6.561754 ms
+Postprocess: 0.000390 ms
+Mem move_time: 2.404 ms
+Graph time: 20.88 ms
+
+Preprocess: 3.810354 ms
+Run: 6.238809 ms
+Postprocess: 0.000508 ms
+Mem move_time: 1.947 ms
+Graph time: 21.43 ms
+
+Preprocess: 3.171323 ms
+Run: 6.428359 ms
+Postprocess: 0.000480 ms
+Mem move_time: 2.369 ms
+Graph time: 17.3 ms
+
+Preprocess: 3.153660 ms
+Run: 5.592713 ms
+Postprocess: 0.000458 ms
+Mem move_time: 2.308 ms
+Graph time: 1.81 ms
+
+Preprocess: 2.773919 ms
+Run: 4.541327 ms
+Postprocess: 0.000259 ms
+Mem move_time: 1.745 ms
+Graph time: 10.83 ms
+
+Preprocess: 3.125260 ms
+Run: 5.631771 ms
+Postprocess: 0.000300 ms
+Mem move_time: 1.892 ms
+Graph time: 1.226 ms
+
+Preprocess: 1.626635 ms
+Run: 2.266115 ms
+Postprocess: 0.000292 ms
+Mem move_time: 1.219 ms
+Graph time: 16.15 ms
+
+Preprocess: 3.327944 ms
+Run: 5.822244 ms
+Postprocess: 0.000492 ms
+Mem move_time: 2.115 ms
+Graph time: 1.514 ms
+
+Preprocess: 2.236315 ms
+Run: 4.363789 ms
+Postprocess: 0.000359 ms
+Mem move_time: 1.81 ms
+Graph time: 8.152 ms
+
+Preprocess: 3.175699 ms
+Run: 4.368571 ms
+Postprocess: 0.000155 ms
+Mem move_time: 1.752 ms
+Graph time: 1.087 ms
+
+Preprocess: 1.619503 ms
+Run: 2.073444 ms
+Postprocess: 0.000273 ms
+Mem move_time: 1.082 ms
+Graph time: 18.03 ms
+
+Preprocess: 3.451229 ms
+Run: 6.214807 ms
+Postprocess: 0.000392 ms
+Mem move_time: 2.409 ms
+Graph time: 1.976 ms
+
+Preprocess: 2.675783 ms
+Run: 3.349396 ms
+Postprocess: 0.000295 ms
+Mem move_time: 1.554 ms
+Graph time: 11.92 ms
+
+Preprocess: 3.280045 ms
+Run: 6.019641 ms
+Postprocess: 0.000386 ms
+Mem move_time: 1.865 ms
+Graph time: 1.411 ms
+
+Preprocess: 2.414065 ms
+Run: 3.807933 ms
+Postprocess: 0.000383 ms
+Mem move_time: 1.453 ms
+Graph time: 10.85 ms
+
+Preprocess: 2.923527 ms
+Run: 4.064988 ms
+Postprocess: 0.000210 ms
+Mem move_time: 1.473 ms
+Graph time: 0.987 ms
+
+Preprocess: 1.652467 ms
+Run: 2.081743 ms
+Postprocess: 0.000238 ms
+Mem move_time: 1.161 ms
+Graph time: 0.6925 ms
+
+Preprocess: 1.077458 ms
+Run: 1.762192 ms
+Postprocess: 0.000173 ms
+Mem move_time: 1.08 ms
+Graph time: 18.47 ms
+
+Preprocess: 3.488232 ms
+Run: 5.612592 ms
+Postprocess: 0.000352 ms
+Mem move_time: 2.012 ms
+Graph time: 1.449 ms
+
+Preprocess: 2.287318 ms
+Run: 4.318128 ms
+Postprocess: 0.000352 ms
+Mem move_time: 1.66 ms
+Graph time: 12.35 ms
+
+Preprocess: 3.200462 ms
+Run: 4.903740 ms
+Postprocess: 0.000335 ms
+Mem move_time: 1.754 ms
+Graph time: 1.23 ms
+
+Preprocess: 1.527760 ms
+Run: 2.341691 ms
+Postprocess: 0.000184 ms
+Mem move_time: 1.119 ms
+Graph time: 17.75 ms
+
+Preprocess: 3.184116 ms
+Run: 6.433755 ms
+Postprocess: 0.000479 ms
+Mem move_time: 2.538 ms
+Graph time: 19.35 ms
+
+Preprocess: 3.310710 ms
+Run: 6.386859 ms
+Postprocess: 0.000535 ms
+Mem move_time: 2.317 ms
+Graph time: 20.99 ms
+
+Preprocess: 3.135424 ms
+Run: 6.102471 ms
+Postprocess: 0.000445 ms
+Mem move_time: 2.364 ms
+Graph time: 25.62 ms
+
+Preprocess: 3.313967 ms
+Run: 6.106200 ms
+Postprocess: 0.000430 ms
+Mem move_time: 2.667 ms
+Graph time: 20.1 ms
+
+Preprocess: 3.139734 ms
+Run: 6.398696 ms
+Postprocess: 0.000405 ms
+Mem move_time: 2.43 ms
+Graph time: 20 ms
+
+Preprocess: 3.562074 ms
+Run: 6.546266 ms
+Postprocess: 0.000451 ms
+Mem move_time: 2.393 ms
+Graph time: 21.12 ms
+
+Preprocess: 3.200841 ms
+Run: 5.962087 ms
+Postprocess: 0.000538 ms
+Mem move_time: 2.648 ms
+Graph time: 22.48 ms
+
+Preprocess: 3.146293 ms
+Run: 6.416212 ms
+Postprocess: 0.000452 ms
+Mem move_time: 2.467 ms
+Graph time: 20.83 ms
+
+Preprocess: 3.129661 ms
+Run: 6.210133 ms
+Postprocess: 0.000580 ms
+Mem move_time: 2.75 ms
+Graph time: 19.38 ms
+
+Preprocess: 3.316285 ms
+Run: 5.744884 ms
+Postprocess: 0.000582 ms
+Mem move_time: 2.447 ms
+Graph time: 19.12 ms
+
+Preprocess: 3.166481 ms
+Run: 6.439954 ms
+Postprocess: 0.000528 ms
+Mem move_time: 2.59 ms
+Graph time: 22.46 ms
+
+Preprocess: 3.116326 ms
+Run: 6.224779 ms
+Postprocess: 0.000578 ms
+Mem move_time: 2.712 ms
+Graph time: 22.88 ms
+
+Preprocess: 3.102179 ms
+Run: 6.238891 ms
+Postprocess: 0.000395 ms
+Mem move_time: 2.398 ms
+Graph time: 20.93 ms
+
+Preprocess: 3.392911 ms
+Run: 6.121531 ms
+Postprocess: 0.000452 ms
+Mem move_time: 1.934 ms
+Graph time: 17.9 ms
+
+Preprocess: 3.276590 ms
+Run: 5.415369 ms
+Postprocess: 0.000421 ms
+Mem move_time: 2.009 ms
+Graph time: 1.132 ms
+
+Preprocess: 1.680623 ms
+Run: 2.765664 ms
+Postprocess: 0.000212 ms
+Mem move_time: 1.198 ms
+Graph time: 15.83 ms
+
+Preprocess: 3.174663 ms
+Run: 6.158804 ms
+Postprocess: 0.000404 ms
+Mem move_time: 2.261 ms
+Graph time: 21.01 ms
+
+Preprocess: 3.185292 ms
+Run: 6.062999 ms
+Postprocess: 0.000382 ms
+Mem move_time: 2.11 ms
+Graph time: 18.92 ms
+
+Preprocess: 3.262410 ms
+Run: 6.539565 ms
+Postprocess: 0.000511 ms
+Mem move_time: 2.408 ms
+Graph time: 2.141 ms
+
+Preprocess: 3.126320 ms
+Run: 5.116297 ms
+Postprocess: 0.000380 ms
+Mem move_time: 2.002 ms
+Graph time: 8.188 ms
+
+Preprocess: 3.524462 ms
+Run: 5.364420 ms
+Postprocess: 0.000365 ms
+Mem move_time: 1.984 ms
+Graph time: 1.394 ms
+
+Preprocess: 2.424355 ms
+Run: 3.759330 ms
+Postprocess: 0.000348 ms
+Mem move_time: 1.628 ms
+Graph time: 13.48 ms
+
+Preprocess: 3.327185 ms
+Run: 5.304488 ms
+Postprocess: 0.000473 ms
+Mem move_time: 2.144 ms
+Graph time: 1.512 ms
+
+Preprocess: 2.279044 ms
+Run: 3.167717 ms
+Postprocess: 0.000263 ms
+Mem move_time: 1.488 ms
+Graph time: 11.31 ms
+
+Preprocess: 2.554951 ms
+Run: 3.196092 ms
+Postprocess: 0.000222 ms
+Mem move_time: 1.485 ms
+Graph time: 1.095 ms
+
+Preprocess: 1.674697 ms
+Run: 2.754259 ms
+Postprocess: 0.000348 ms
+Mem move_time: 1.578 ms
+Graph time: 0.9655 ms
+
+Preprocess: 1.359610 ms
+Run: 2.137869 ms
+Postprocess: 0.000175 ms
+Mem move_time: 1.07 ms
+Graph time: 13.58 ms
+
+Preprocess: 3.469265 ms
+Run: 3.461954 ms
+Postprocess: 0.000153 ms
+Mem move_time: 0.9928 ms
+Graph time: 0.6871 ms
+
+Preprocess: 1.192267 ms
+Run: 2.282078 ms
+Postprocess: 0.000101 ms
+Mem move_time: 1.038 ms
+Graph time: 0.6974 ms
+
+Preprocess: 1.113876 ms
+Run: 1.596942 ms
+Postprocess: 0.000189 ms
+Mem move_time: 1.185 ms
+Graph time: 17.48 ms
+
+Preprocess: 3.220771 ms
+Run: 4.560182 ms
+Postprocess: 0.000372 ms
+Mem move_time: 1.758 ms
+Graph time: 1.257 ms
+
+Preprocess: 1.890652 ms
+Run: 3.168373 ms
+Postprocess: 0.000297 ms
+Mem move_time: 1.51 ms
+Graph time: 15.73 ms
+
+Preprocess: 3.632076 ms
+Run: 6.159085 ms
+Postprocess: 0.000337 ms
+Mem move_time: 2.008 ms
+Graph time: 23.25 ms
+
+Preprocess: 3.202040 ms
+Run: 6.200298 ms
+Postprocess: 0.000483 ms
+Mem move_time: 2.689 ms
+Graph time: 24.1 ms
+
+Preprocess: 3.761427 ms
+Run: 6.049753 ms
+Postprocess: 0.000474 ms
+Mem move_time: 2.324 ms
+Graph time: 16.21 ms
+
+Preprocess: 3.113525 ms
+Run: 5.797998 ms
+Postprocess: 0.000600 ms
+Mem move_time: 2.267 ms
+Graph time: 25.27 ms
+
+Preprocess: 3.689294 ms
+Run: 6.344504 ms
+Postprocess: 0.000415 ms
+Mem move_time: 2.146 ms
+Graph time: 20.64 ms
+
+Preprocess: 3.089017 ms
+Run: 6.516964 ms
+Postprocess: 0.000383 ms
+Mem move_time: 2.175 ms
+Graph time: 18.28 ms
+
+Preprocess: 3.145832 ms
+Run: 5.438717 ms
+Postprocess: 0.000381 ms
+Mem move_time: 2.001 ms
+Graph time: 1.68 ms
+
+Preprocess: 2.727731 ms
+Run: 5.170326 ms
+Postprocess: 0.000396 ms
+Mem move_time: 1.71 ms
+Graph time: 13.25 ms
+
+Preprocess: 3.302647 ms
+Run: 5.354490 ms
+Postprocess: 0.000377 ms
+Mem move_time: 1.793 ms
+Graph time: 21.11 ms
+
+Preprocess: 3.503351 ms
+Run: 5.855718 ms
+Postprocess: 0.000569 ms
+Mem move_time: 2.21 ms
+Graph time: 20.58 ms
+
+Preprocess: 3.395198 ms
+Run: 6.001030 ms
+Postprocess: 0.000464 ms
+Mem move_time: 2.578 ms
+Graph time: 20.41 ms
+
+Preprocess: 3.155115 ms
+Run: 5.951131 ms
+Postprocess: 0.000420 ms
+Mem move_time: 2.497 ms
+Graph time: 20.89 ms
+
+Preprocess: 3.420894 ms
+Run: 6.801877 ms
+Postprocess: 0.000453 ms
+Mem move_time: 2.622 ms
+Graph time: 18.48 ms
+
+Preprocess: 4.149028 ms
+Run: 5.757065 ms
+Postprocess: 0.000372 ms
+Mem move_time: 2.107 ms
+Graph time: 1.806 ms
+
+Preprocess: 2.915269 ms
+Run: 5.815683 ms
+Postprocess: 0.000432 ms
+Mem move_time: 2.354 ms
+Graph time: 7.017 ms
+
+Preprocess: 2.812792 ms
+Run: 3.423807 ms
+Postprocess: 0.000257 ms
+Mem move_time: 1.507 ms
+Graph time: 1.017 ms
+
+Preprocess: 1.415251 ms
+Run: 2.999024 ms
+Postprocess: 0.000325 ms
+Mem move_time: 1.683 ms
+Graph time: 21.24 ms
+
+Preprocess: 3.386312 ms
+Run: 6.132010 ms
+Postprocess: 0.000496 ms
+Mem move_time: 2.424 ms
+Graph time: 22.02 ms
+
+Preprocess: 3.340136 ms
+Run: 6.309285 ms
+Postprocess: 0.000517 ms
+Mem move_time: 2.431 ms
+Graph time: 20.52 ms
+
+Preprocess: 3.208550 ms
+Run: 6.914707 ms
+Postprocess: 0.000434 ms
+Mem move_time: 2.565 ms
+Graph time: 19.36 ms
+
+Preprocess: 3.238285 ms
+Run: 6.412688 ms
+Postprocess: 0.000415 ms
+Mem move_time: 2.411 ms
+Graph time: 21.85 ms
+
+Preprocess: 3.201611 ms
+Run: 5.768468 ms
+Postprocess: 0.000539 ms
+Mem move_time: 2.694 ms
+Graph time: 20.84 ms
+
+Preprocess: 3.096835 ms
+Run: 6.307945 ms
+Postprocess: 0.000397 ms
+Mem move_time: 2.286 ms
+Graph time: 21.08 ms
+
+Preprocess: 3.171993 ms
+Run: 6.052129 ms
+Postprocess: 0.000420 ms
+Mem move_time: 2.036 ms
+Graph time: 22.59 ms
+
+Preprocess: 3.181108 ms
+Run: 5.838261 ms
+Postprocess: 0.000459 ms
+Mem move_time: 2.495 ms
+Graph time: 20.89 ms
+
+Preprocess: 3.040258 ms
+Run: 6.169163 ms
+Postprocess: 0.000446 ms
+Mem move_time: 2.513 ms
+Graph time: 21.08 ms
+
+Preprocess: 3.124234 ms
+Run: 6.115908 ms
+Postprocess: 0.000486 ms
+Mem move_time: 2.656 ms
+Graph time: 23.43 ms
+
+Preprocess: 3.354235 ms
+Run: 6.233702 ms
+Postprocess: 0.000458 ms
+Mem move_time: 2.583 ms
+Graph time: 23.3 ms
+
+Preprocess: 3.320719 ms
+Run: 6.151521 ms
+Postprocess: 0.000477 ms
+Mem move_time: 2.513 ms
+Graph time: 1.551 ms
+
+Preprocess: 2.117112 ms
+Run: 2.900805 ms
+Postprocess: 0.000252 ms
+Mem move_time: 1.353 ms
+Graph time: 0.9281 ms
+
+Preprocess: 1.361041 ms
+Run: 2.703258 ms
+Postprocess: 0.000282 ms
+Mem move_time: 1.491 ms
+Graph time: 21.88 ms
+
+Preprocess: 3.779954 ms
+Run: 7.320648 ms
+Postprocess: 0.000543 ms
+Mem move_time: 2.097 ms
+Graph time: 14.4 ms
+
+Preprocess: 2.207114 ms
+Run: 3.668185 ms
+Postprocess: 0.000275 ms
+Mem move_time: 1.489 ms
+Graph time: 1.147 ms
+
+Preprocess: 1.836495 ms
+Run: 3.252274 ms
+Postprocess: 0.000344 ms
+Mem move_time: 1.614 ms
+Graph time: 20.21 ms
+
+Preprocess: 3.363446 ms
+Run: 6.293101 ms
+Postprocess: 0.000550 ms
+Mem move_time: 2.173 ms
+Graph time: 22.54 ms
+
+Preprocess: 3.095005 ms
+Run: 7.002694 ms
+Postprocess: 0.000430 ms
+Mem move_time: 2.698 ms
+Graph time: 21.25 ms
+
+Preprocess: 3.287906 ms
+Run: 6.190665 ms
+Postprocess: 0.000574 ms
+Mem move_time: 2.362 ms
+Graph time: 16.82 ms
+
+Preprocess: 3.323064 ms
+Run: 6.320317 ms
+Postprocess: 0.000762 ms
+Mem move_time: 2.31 ms
+Graph time: 22.55 ms
+
+Preprocess: 3.692762 ms
+Run: 6.636623 ms
+Postprocess: 0.000652 ms
+Mem move_time: 2.583 ms
+Graph time: 21.48 ms
+
+Preprocess: 3.202811 ms
+Run: 6.267093 ms
+Postprocess: 0.000428 ms
+Mem move_time: 2.407 ms
+Graph time: 21.16 ms
+
+Preprocess: 3.142957 ms
+Run: 6.016589 ms
+Postprocess: 0.000499 ms
+Mem move_time: 2.459 ms
+Graph time: 24.2 ms
+
+Preprocess: 3.179016 ms
+Run: 5.707773 ms
+Postprocess: 0.000551 ms
+Mem move_time: 2.523 ms
+Graph time: 18.76 ms
+
+Preprocess: 3.287133 ms
+Run: 6.141271 ms
+Postprocess: 0.000477 ms
+Mem move_time: 2.533 ms
+Graph time: 22.23 ms
+
+Preprocess: 3.184764 ms
+Run: 6.498132 ms
+Postprocess: 0.000535 ms
+Mem move_time: 2.404 ms
+Graph time: 17.06 ms
+
+Preprocess: 3.181908 ms
+Run: 6.331451 ms
+Postprocess: 0.000485 ms
+Mem move_time: 2.505 ms
+Graph time: 21.02 ms
+
+Preprocess: 3.329492 ms
+Run: 6.078556 ms
+Postprocess: 0.000499 ms
+Mem move_time: 2.312 ms
+Graph time: 25.21 ms
+
+Preprocess: 4.036400 ms
+Run: 6.877033 ms
+Postprocess: 0.000588 ms
+Mem move_time: 2.584 ms
+Graph time: 19.02 ms
+
+Preprocess: 3.273348 ms
+Run: 6.323147 ms
+Postprocess: 0.000394 ms
+Mem move_time: 2.262 ms
+Graph time: 21.4 ms
+
+Preprocess: 3.394333 ms
+Run: 5.241705 ms
+Postprocess: 0.000399 ms
+Mem move_time: 1.681 ms
+Graph time: 22.78 ms
+
+Preprocess: 3.105955 ms
+Run: 6.472141 ms
+Postprocess: 0.000431 ms
+Mem move_time: 2.569 ms
+Graph time: 20.43 ms
+
+Preprocess: 3.197071 ms
+Run: 6.342167 ms
+Postprocess: 0.000442 ms
+Mem move_time: 2.571 ms
+Graph time: 21.49 ms
+
+Preprocess: 3.158455 ms
+Run: 5.886999 ms
+Postprocess: 0.000433 ms
+Mem move_time: 2.535 ms
+Graph time: 20.62 ms
+
+Preprocess: 3.205830 ms
+Run: 6.230509 ms
+Postprocess: 0.000469 ms
+Mem move_time: 2.774 ms
+Graph time: 17.2 ms
+
+Preprocess: 3.134924 ms
+Run: 5.787111 ms
+Postprocess: 0.000395 ms
+Mem move_time: 2.298 ms
+Graph time: 22 ms
+
+Preprocess: 3.343409 ms
+Run: 5.974995 ms
+Postprocess: 0.000468 ms
+Mem move_time: 2.161 ms
+Graph time: 21.5 ms
+
+Preprocess: 3.065329 ms
+Run: 6.440782 ms
+Postprocess: 0.000622 ms
+Mem move_time: 2.748 ms
+Graph time: 21.33 ms
+
+Preprocess: 3.230809 ms
+Run: 5.842045 ms
+Postprocess: 0.000475 ms
+Mem move_time: 2.666 ms
+Graph time: 22.01 ms
+
+Preprocess: 3.144946 ms
+Run: 6.445715 ms
+Postprocess: 0.000492 ms
+Mem move_time: 2.608 ms
+Graph time: 23 ms
+
+Preprocess: 3.133127 ms
+Run: 6.316825 ms
+Postprocess: 0.000437 ms
+Mem move_time: 2.665 ms
+Graph time: 22.11 ms
+
+Preprocess: 3.135114 ms
+Run: 5.886345 ms
+Postprocess: 0.000446 ms
+Mem move_time: 2.376 ms
+Graph time: 20.47 ms
+
+Preprocess: 3.329784 ms
+Run: 6.019035 ms
+Postprocess: 0.000478 ms
+Mem move_time: 2.266 ms
+Graph time: 21.51 ms
+
+Preprocess: 3.112561 ms
+Run: 6.347196 ms
+Postprocess: 0.000448 ms
+Mem move_time: 2.415 ms
+Graph time: 20.69 ms
+
+Preprocess: 3.200145 ms
+Run: 6.764497 ms
+Postprocess: 0.000542 ms
+Mem move_time: 2.748 ms
+Graph time: 19.27 ms
+
+Preprocess: 3.476147 ms
+Run: 6.150167 ms
+Postprocess: 0.000404 ms
+Mem move_time: 2.16 ms
+Graph time: 20.75 ms
+
+Preprocess: 3.101921 ms
+Run: 6.113901 ms
+Postprocess: 0.000469 ms
+Mem move_time: 2.153 ms
+Graph time: 18.57 ms
+
+Preprocess: 3.106230 ms
+Run: 6.019949 ms
+Postprocess: 0.000488 ms
+Mem move_time: 1.918 ms
+Graph time: 1.319 ms
+
+Preprocess: 1.701241 ms
+Run: 2.409412 ms
+Postprocess: 0.000228 ms
+Mem move_time: 1.189 ms
+Graph time: 15.64 ms
+
+Preprocess: 3.182979 ms
+Run: 5.616913 ms
+Postprocess: 0.000398 ms
+Mem move_time: 2.19 ms
+Graph time: 1.811 ms
+
+Preprocess: 2.653335 ms
+Run: 4.468629 ms
+Postprocess: 0.000381 ms
+Mem move_time: 1.719 ms
+Graph time: 8.222 ms
+
+Preprocess: 3.372466 ms
+Run: 5.221292 ms
+Postprocess: 0.000385 ms
+Mem move_time: 1.761 ms
+Graph time: 1.215 ms
+
+Preprocess: 1.736665 ms
+Run: 2.801859 ms
+Postprocess: 0.000299 ms
+Mem move_time: 1.615 ms
+Graph time: 15.77 ms
+
+Preprocess: 3.168860 ms
+Run: 5.079912 ms
+Postprocess: 0.000471 ms
+Mem move_time: 1.882 ms
+Graph time: 1.556 ms
+
+Preprocess: 2.438116 ms
+Run: 3.631218 ms
+Postprocess: 0.000264 ms
+Mem move_time: 1.575 ms
+Graph time: 14.2 ms
+
+Preprocess: 3.097393 ms
+Run: 4.588203 ms
+Postprocess: 0.000322 ms
+Mem move_time: 1.861 ms
+Graph time: 1.003 ms
+
+Preprocess: 1.664306 ms
+Run: 2.067893 ms
+Postprocess: 0.000184 ms
+Mem move_time: 1.179 ms
+Graph time: 17.21 ms
+
+Preprocess: 3.257926 ms
+Run: 4.812872 ms
+Postprocess: 0.000287 ms
+Mem move_time: 1.701 ms
+Graph time: 1.246 ms
+
+Preprocess: 1.836132 ms
+Run: 3.792272 ms
+Postprocess: 0.000331 ms
+Mem move_time: 1.778 ms
+Graph time: 14.7 ms
+
+Preprocess: 3.317988 ms
+Run: 4.898186 ms
+Postprocess: 0.000341 ms
+Mem move_time: 1.648 ms
+Graph time: 1.163 ms
+
+Preprocess: 1.730382 ms
+Run: 2.119495 ms
+Postprocess: 0.000145 ms
+Mem move_time: 1.063 ms
+Graph time: 16.59 ms
+
+Preprocess: 2.712243 ms
+Run: 3.763513 ms
+Postprocess: 0.000262 ms
+Mem move_time: 1.416 ms
+Graph time: 0.9555 ms
+
+Preprocess: 1.345756 ms
+Run: 1.933398 ms
+Postprocess: 0.000203 ms
+Mem move_time: 1.092 ms
+Graph time: 24.26 ms
+
+Preprocess: 3.461173 ms
+Run: 6.411978 ms
+Postprocess: 0.000465 ms
+Mem move_time: 2.149 ms
+Graph time: 21.4 ms
+
+Preprocess: 3.818960 ms
+Run: 6.145227 ms
+Postprocess: 0.000361 ms
+Mem move_time: 2.099 ms
+Graph time: 20.6 ms
+
+Preprocess: 3.357898 ms
+Run: 6.368139 ms
+Postprocess: 0.000455 ms
+Mem move_time: 2.388 ms
+Graph time: 20.93 ms
+
+Preprocess: 3.571963 ms
+Run: 6.378104 ms
+Postprocess: 0.000480 ms
+Mem move_time: 2.529 ms
+Graph time: 21.85 ms
+
+Preprocess: 3.302784 ms
+Run: 6.353269 ms
+Postprocess: 0.000475 ms
+Mem move_time: 2.583 ms
+Graph time: 17.44 ms
+
+Preprocess: 3.550793 ms
+Run: 6.779073 ms
+Postprocess: 0.000602 ms
+Mem move_time: 2.614 ms
+Graph time: 19.24 ms
+
+Preprocess: 3.615617 ms
+Run: 6.489521 ms
+Postprocess: 0.000401 ms
+Mem move_time: 2.298 ms
+Graph time: 20.45 ms
+
+Preprocess: 3.365337 ms
+Run: 6.153916 ms
+Postprocess: 0.000377 ms
+Mem move_time: 2.336 ms
+Graph time: 22.08 ms
+
+Preprocess: 3.302260 ms
+Run: 6.066870 ms
+Postprocess: 0.000488 ms
+Mem move_time: 2.406 ms
+Graph time: 23.47 ms
+
+Preprocess: 3.725090 ms
+Run: 6.992698 ms
+Postprocess: 0.000524 ms
+Mem move_time: 2.541 ms
+Graph time: 20.07 ms
+
+Preprocess: 3.218896 ms
+Run: 6.469744 ms
+Postprocess: 0.000377 ms
+Mem move_time: 2.231 ms
+Graph time: 18.23 ms
+
+Preprocess: 3.262317 ms
+Run: 5.916230 ms
+Postprocess: 0.000423 ms
+Mem move_time: 1.894 ms
+Graph time: 21.11 ms
+
+Preprocess: 3.253950 ms
+Run: 5.881711 ms
+Postprocess: 0.000306 ms
+Mem move_time: 1.924 ms
+Graph time: 1.686 ms
+
+Preprocess: 2.615726 ms
+Run: 5.111577 ms
+Postprocess: 0.000428 ms
+Mem move_time: 1.75 ms
+Graph time: 11.19 ms
+
+Preprocess: 3.203365 ms
+Run: 5.327978 ms
+Postprocess: 0.000362 ms
+Mem move_time: 1.955 ms
+Graph time: 20.33 ms
+
+Preprocess: 3.157051 ms
+Run: 6.410489 ms
+Postprocess: 0.000444 ms
+Mem move_time: 2.234 ms
+Graph time: 1.516 ms
+
+Preprocess: 2.713388 ms
+Run: 3.741690 ms
+Postprocess: 0.000296 ms
+Mem move_time: 1.551 ms
+Graph time: 8.636 ms
+
+Preprocess: 3.222453 ms
+Run: 5.213199 ms
+Postprocess: 0.000590 ms
+Mem move_time: 1.735 ms
+Graph time: 1.427 ms
+
+Preprocess: 2.118080 ms
+Run: 2.928726 ms
+Postprocess: 0.000220 ms
+Mem move_time: 1.321 ms
+Graph time: 13.45 ms
+
+Preprocess: 3.672396 ms
+Run: 5.612979 ms
+Postprocess: 0.000367 ms
+Mem move_time: 1.801 ms
+Graph time: 1.313 ms
+
+Preprocess: 1.689507 ms
+Run: 2.981527 ms
+Postprocess: 0.000372 ms
+Mem move_time: 1.657 ms
+Graph time: 18.69 ms
+
+Preprocess: 3.724713 ms
+Run: 5.941607 ms
+Postprocess: 0.000462 ms
+Mem move_time: 2.19 ms
+Graph time: 1.811 ms
+
+Preprocess: 2.379716 ms
+Run: 3.513168 ms
+Postprocess: 0.000279 ms
+Mem move_time: 1.64 ms
+Graph time: 8.513 ms
+
+Preprocess: 2.809025 ms
+Run: 3.292914 ms
+Postprocess: 0.000245 ms
+Mem move_time: 1.485 ms
+Graph time: 1.01 ms
+
+Preprocess: 1.748611 ms
+Run: 3.111472 ms
+Postprocess: 0.000316 ms
+Mem move_time: 1.532 ms
+Graph time: 1.026 ms
+
+Preprocess: 1.407689 ms
+Run: 2.996613 ms
+Postprocess: 0.000317 ms
+Mem move_time: 1.367 ms
+Graph time: 11.09 ms
+
+Preprocess: 2.460110 ms
+Run: 3.291348 ms
+Postprocess: 0.000312 ms
+Mem move_time: 1.362 ms
+Graph time: 0.9734 ms
+
+Preprocess: 1.327834 ms
+Run: 1.879535 ms
+Postprocess: 0.000188 ms
+Mem move_time: 1.034 ms
+Graph time: 0.6802 ms
+
+Preprocess: 1.127875 ms
+Run: 1.380296 ms
+Postprocess: 0.000093 ms
+Mem move_time: 1.01 ms
+Graph time: 17.91 ms
+
+Preprocess: 2.310210 ms
+Run: 3.047452 ms
+Postprocess: 0.000263 ms
+Mem move_time: 1.454 ms
+Graph time: 1.007 ms
+
+Preprocess: 1.421647 ms
+Run: 3.066552 ms
+Postprocess: 0.000259 ms
+Mem move_time: 1.396 ms
+Graph time: 22.71 ms
+
+Preprocess: 3.504361 ms
+Run: 5.469320 ms
+Postprocess: 0.000432 ms
+Mem move_time: 1.861 ms
+Graph time: 22.78 ms
+
+Preprocess: 3.622864 ms
+Run: 5.998070 ms
+Postprocess: 0.000386 ms
+Mem move_time: 1.925 ms
+Graph time: 22.3 ms
+
+Preprocess: 3.245606 ms
+Run: 6.437999 ms
+Postprocess: 0.000336 ms
+Mem move_time: 2.292 ms
+Graph time: 21.26 ms
+
+Preprocess: 3.144608 ms
+Run: 6.279168 ms
+Postprocess: 0.000401 ms
+Mem move_time: 2.44 ms
+Graph time: 21.17 ms
+
+Preprocess: 3.063473 ms
+Run: 6.463223 ms
+Postprocess: 0.000504 ms
+Mem move_time: 2.235 ms
+Graph time: 20.3 ms
+
+Preprocess: 3.128549 ms
+Run: 6.224889 ms
+Postprocess: 0.000561 ms
+Mem move_time: 2.54 ms
+Graph time: 19.03 ms
+
+Preprocess: 3.045973 ms
+Run: 6.174869 ms
+Postprocess: 0.000521 ms
+Mem move_time: 2.43 ms
+Graph time: 20.26 ms
+
+Preprocess: 3.294096 ms
+Run: 6.497194 ms
+Postprocess: 0.000562 ms
+Mem move_time: 2.532 ms
+Graph time: 23.7 ms
+
+Preprocess: 3.165914 ms
+Run: 6.955804 ms
+Postprocess: 0.000445 ms
+Mem move_time: 2.394 ms
+Graph time: 20.89 ms
+
+Preprocess: 3.326851 ms
+Run: 6.239814 ms
+Postprocess: 0.000381 ms
+Mem move_time: 2.035 ms
+Graph time: 19.39 ms
+
+Preprocess: 3.063522 ms
+Run: 5.899009 ms
+Postprocess: 0.000420 ms
+Mem move_time: 2.194 ms
+Graph time: 22.68 ms
+
+Preprocess: 3.155935 ms
+Run: 6.196448 ms
+Postprocess: 0.000532 ms
+Mem move_time: 2.673 ms
+Graph time: 20.42 ms
+
+Preprocess: 3.208271 ms
+Run: 6.644878 ms
+Postprocess: 0.000454 ms
+Mem move_time: 2.749 ms
+Graph time: 19.95 ms
+
+Preprocess: 3.111229 ms
+Run: 6.381005 ms
+Postprocess: 0.000398 ms
+Mem move_time: 2.324 ms
+Graph time: 21.1 ms
+
+Preprocess: 3.127456 ms
+Run: 5.853089 ms
+Postprocess: 0.000349 ms
+Mem move_time: 2.212 ms
+Graph time: 22.56 ms
+
+Preprocess: 3.366133 ms
+Run: 7.092087 ms
+Postprocess: 0.000525 ms
+Mem move_time: 2.798 ms
+Graph time: 19.57 ms
+
+Preprocess: 3.254500 ms
+Run: 6.158524 ms
+Postprocess: 0.000442 ms
+Mem move_time: 2.427 ms
+Graph time: 22.2 ms
+
+Preprocess: 3.339414 ms
+Run: 5.933074 ms
+Postprocess: 0.000493 ms
+Mem move_time: 2.233 ms
+Graph time: 20.28 ms
+
+Preprocess: 3.352394 ms
+Run: 5.996507 ms
+Postprocess: 0.000389 ms
+Mem move_time: 2.083 ms
+Graph time: 21.44 ms
+
+Preprocess: 3.128524 ms
+Run: 5.910214 ms
+Postprocess: 0.000371 ms
+Mem move_time: 2.193 ms
+Graph time: 22.02 ms
+
+Preprocess: 3.119613 ms
+Run: 5.990519 ms
+Postprocess: 0.000375 ms
+Mem move_time: 2.498 ms
+Graph time: 21.23 ms
+
+Preprocess: 3.403609 ms
+Run: 6.170156 ms
+Postprocess: 0.000478 ms
+Mem move_time: 2.676 ms
+Graph time: 19.84 ms
+
+Preprocess: 3.272061 ms
+Run: 6.373171 ms
+Postprocess: 0.000378 ms
+Mem move_time: 2.057 ms
+Graph time: 21.02 ms
+
+Preprocess: 3.478940 ms
+Run: 5.218105 ms
+Postprocess: 0.000312 ms
+Mem move_time: 1.92 ms
+Graph time: 1.579 ms
+
+Preprocess: 2.421585 ms
+Run: 3.382340 ms
+Postprocess: 0.000300 ms
+Mem move_time: 1.421 ms
+Graph time: 12.12 ms
+
+Preprocess: 3.187082 ms
+Run: 5.647345 ms
+Postprocess: 0.000406 ms
+Mem move_time: 1.99 ms
+Graph time: 1.353 ms
+
+Preprocess: 1.638377 ms
+Run: 2.315197 ms
+Postprocess: 0.000184 ms
+Mem move_time: 1.24 ms
+Graph time: 19.83 ms
+
+Preprocess: 3.290614 ms
+Run: 5.904670 ms
+Postprocess: 0.000461 ms
+Mem move_time: 2.127 ms
+Graph time: 20.76 ms
+
+Preprocess: 3.966183 ms
+Run: 6.223322 ms
+Postprocess: 0.000491 ms
+Mem move_time: 2.364 ms
+Graph time: 10.44 ms
+
+Preprocess: 3.842248 ms
+Run: 5.554516 ms
+Postprocess: 0.000288 ms
+Mem move_time: 1.903 ms
+Graph time: 3.388 ms
+
+Preprocess: 2.182600 ms
+Run: 2.197944 ms
+Postprocess: 0.000357 ms
+Mem move_time: 1.303 ms
+Graph time: 11.22 ms
+
+Preprocess: 2.726925 ms
+Run: 4.665563 ms
+Postprocess: 0.000323 ms
+Mem move_time: 1.956 ms
+Graph time: 7.809 ms
+
+Preprocess: 3.244331 ms
+Run: 5.253108 ms
+Postprocess: 0.000311 ms
+Mem move_time: 2.037 ms
+Graph time: 6.16 ms
+
+Preprocess: 3.249884 ms
+Run: 5.372204 ms
+Postprocess: 0.000410 ms
+Mem move_time: 1.881 ms
+Graph time: 5.639 ms
+
+Preprocess: 3.170520 ms
+Run: 5.090359 ms
+Postprocess: 0.000405 ms
+Mem move_time: 1.759 ms
+Graph time: 6.388 ms
+
+Preprocess: 3.477761 ms
+Run: 5.706253 ms
+Postprocess: 0.000445 ms
+Mem move_time: 2.015 ms
+Graph time: 6.206 ms
+
+Preprocess: 3.376967 ms
+Run: 4.638076 ms
+Postprocess: 0.000289 ms
+Mem move_time: 1.688 ms
+Graph time: 1.013 ms
+
+Preprocess: 1.509169 ms
+Run: 2.483102 ms
+Postprocess: 0.000267 ms
+Mem move_time: 1.409 ms
+Graph time: 0.8868 ms
+
+Preprocess: 1.463560 ms
+Run: 2.137968 ms
+Postprocess: 0.000225 ms
+Mem move_time: 1.271 ms
+Graph time: 16.78 ms
+
+Preprocess: 3.744192 ms
+Run: 5.285962 ms
+Postprocess: 0.000376 ms
+Mem move_time: 1.834 ms
+Graph time: 1.208 ms
+
+Preprocess: 1.648592 ms
+Run: 2.395162 ms
+Postprocess: 0.000294 ms
+Mem move_time: 1.157 ms
+Graph time: 10.53 ms
+
+Preprocess: 2.827961 ms
+Run: 4.865725 ms
+Postprocess: 0.000326 ms
+Mem move_time: 1.855 ms
+Graph time: 1.357 ms
+
+Preprocess: 2.062640 ms
+Run: 3.358071 ms
+Postprocess: 0.000330 ms
+Mem move_time: 1.547 ms
+Graph time: 20.22 ms
+
+Preprocess: 3.368155 ms
+Run: 5.905145 ms
+Postprocess: 0.000498 ms
+Mem move_time: 1.975 ms
+Graph time: 1.763 ms
+
+Preprocess: 2.800124 ms
+Run: 4.212317 ms
+Postprocess: 0.000256 ms
+Mem move_time: 1.651 ms
+Graph time: 8.95 ms
+
+Preprocess: 3.515310 ms
+Run: 2.812243 ms
+Postprocess: 0.000167 ms
+Mem move_time: 1.323 ms
+Graph time: 2.116 ms
+
+Preprocess: 2.580999 ms
+Run: 3.861848 ms
+Postprocess: 0.000166 ms
+Mem move_time: 1.052 ms
+Graph time: 17.6 ms
+
+Preprocess: 3.348589 ms
+Run: 5.915697 ms
+Postprocess: 0.000368 ms
+Mem move_time: 2.089 ms
+Graph time: 1.873 ms
+
+Preprocess: 2.529748 ms
+Run: 3.444345 ms
+Postprocess: 0.000286 ms
+Mem move_time: 1.62 ms
+Graph time: 12.67 ms
+
+Preprocess: 3.525932 ms
+Run: 6.561176 ms
+Postprocess: 0.000466 ms
+Mem move_time: 2.457 ms
+Graph time: 20.2 ms
+
+Preprocess: 3.779857 ms
+Run: 6.666272 ms
+Postprocess: 0.000599 ms
+Mem move_time: 2.558 ms
+Graph time: 18.24 ms
+
+Preprocess: 3.377209 ms
+Run: 6.201995 ms
+Postprocess: 0.000395 ms
+Mem move_time: 2.354 ms
+Graph time: 1.72 ms
+
+Preprocess: 3.068245 ms
+Run: 4.335933 ms
+Postprocess: 0.000285 ms
+Mem move_time: 1.79 ms
+Graph time: 14.04 ms
+
+Preprocess: 3.518078 ms
+Run: 4.500293 ms
+Postprocess: 0.000308 ms
+Mem move_time: 1.678 ms
+Graph time: 1.053 ms
+
+Preprocess: 1.518250 ms
+Run: 1.926194 ms
+Postprocess: 0.000183 ms
+Mem move_time: 1.078 ms
+Graph time: 18.97 ms
+
+Preprocess: 3.577588 ms
+Run: 6.423555 ms
+Postprocess: 0.000476 ms
+Mem move_time: 2.109 ms
+Graph time: 19.91 ms
+
+Preprocess: 3.280267 ms
+Run: 6.810860 ms
+Postprocess: 0.000536 ms
+Mem move_time: 2.863 ms
+Graph time: 20.25 ms
+
+Preprocess: 3.418262 ms
+Run: 6.344834 ms
+Postprocess: 0.000472 ms
+Mem move_time: 2.222 ms
+Graph time: 17.16 ms
+
+Preprocess: 3.480255 ms
+Run: 6.832980 ms
+Postprocess: 0.000469 ms
+Mem move_time: 2.307 ms
+Graph time: 1.791 ms
+
+Preprocess: 2.584646 ms
+Run: 3.973900 ms
+Postprocess: 0.000349 ms
+Mem move_time: 1.669 ms
+Graph time: 10.27 ms
+
+Preprocess: 3.242822 ms
+Run: 5.901828 ms
+Postprocess: 0.000400 ms
+Mem move_time: 2.278 ms
+Graph time: 1.495 ms
+
+Preprocess: 2.304120 ms
+Run: 2.893944 ms
+Postprocess: 0.000210 ms
+Mem move_time: 1.343 ms
+Graph time: 13.87 ms
+
+Preprocess: 2.591638 ms
+Run: 3.166986 ms
+Postprocess: 0.000283 ms
+Mem move_time: 1.468 ms
+Graph time: 1.074 ms
+
+Preprocess: 1.686670 ms
+Run: 2.700364 ms
+Postprocess: 0.000280 ms
+Mem move_time: 1.469 ms
+Graph time: 21.6 ms
+
+Preprocess: 3.562051 ms
+Run: 5.998148 ms
+Postprocess: 0.000335 ms
+Mem move_time: 1.803 ms
+Graph time: 17.9 ms
+
+Preprocess: 3.249769 ms
+Run: 6.519192 ms
+Postprocess: 0.000575 ms
+Mem move_time: 2.717 ms
+Graph time: 1.993 ms
+
+Preprocess: 2.350827 ms
+Run: 3.309869 ms
+Postprocess: 0.000300 ms
+Mem move_time: 1.601 ms
+Graph time: 13.63 ms
+
+Preprocess: 3.285721 ms
+Run: 4.361935 ms
+Postprocess: 0.000301 ms
+Mem move_time: 1.687 ms
+Graph time: 1.287 ms
+
+Preprocess: 1.849354 ms
+Run: 3.751588 ms
+Postprocess: 0.000396 ms
+Mem move_time: 1.865 ms
+Graph time: 16.94 ms
+
+Preprocess: 3.387605 ms
+Run: 6.036033 ms
+Postprocess: 0.000513 ms
+Mem move_time: 2.263 ms
+Graph time: 23.35 ms
+
+Preprocess: 3.360288 ms
+Run: 6.536437 ms
+Postprocess: 0.000480 ms
+Mem move_time: 2.568 ms
+Graph time: 19.11 ms
+
+Preprocess: 3.368774 ms
+Run: 6.586299 ms
+Postprocess: 0.000408 ms
+Mem move_time: 2.255 ms
+Graph time: 21.15 ms
+
+Preprocess: 3.180338 ms
+Run: 6.560748 ms
+Postprocess: 0.000782 ms
+Mem move_time: 2.698 ms
+Graph time: 21.13 ms
+
+Preprocess: 3.140131 ms
+Run: 9.121259 ms
+Postprocess: 0.000539 ms
+Mem move_time: 2.716 ms
+Graph time: 16.58 ms
+
+Preprocess: 3.087629 ms
+Run: 5.842038 ms
+Postprocess: 0.000400 ms
+Mem move_time: 2.087 ms
+Graph time: 21.21 ms
+
+Preprocess: 3.392090 ms
+Run: 6.270598 ms
+Postprocess: 0.000402 ms
+Mem move_time: 2.139 ms
+Graph time: 20.92 ms
+
+Preprocess: 3.238144 ms
+Run: 6.269449 ms
+Postprocess: 0.000473 ms
+Mem move_time: 3.185 ms
+Graph time: 18.04 ms
+
+Preprocess: 2.938445 ms
+Run: 3.773643 ms
+Postprocess: 0.000580 ms
+Mem move_time: 1.497 ms
+Graph time: 0.9611 ms
+
+Preprocess: 1.397554 ms
+Run: 1.911860 ms
+Postprocess: 0.000178 ms
+Mem move_time: 1.007 ms
+Graph time: 22.09 ms
+
+Preprocess: 3.337585 ms
+Run: 6.029912 ms
+Postprocess: 0.000401 ms
+Mem move_time: 2.162 ms
+Graph time: 21.88 ms
+
+Preprocess: 3.425024 ms
+Run: 6.356328 ms
+Postprocess: 0.000367 ms
+Mem move_time: 2.079 ms
+Graph time: 17.37 ms
+
+Preprocess: 3.235045 ms
+Run: 8.499630 ms
+Postprocess: 0.000399 ms
+Mem move_time: 1.871 ms
+Graph time: 18.97 ms
+
+Preprocess: 3.157669 ms
+Run: 6.169035 ms
+Postprocess: 0.000454 ms
+Mem move_time: 2.448 ms
+Graph time: 1.889 ms
+
+Preprocess: 2.665962 ms
+Run: 3.904198 ms
+Postprocess: 0.000575 ms
+Mem move_time: 1.52 ms
+Graph time: 10.07 ms
+
+Preprocess: 2.779162 ms
+Run: 3.870045 ms
+Postprocess: 0.000312 ms
+Mem move_time: 1.471 ms
+Graph time: 0.9464 ms
+
+Preprocess: 1.358633 ms
+Run: 1.898839 ms
+Postprocess: 0.000161 ms
+Mem move_time: 0.9979 ms
+Graph time: 0.6462 ms
+
+Preprocess: 0.990609 ms
+Run: 1.678599 ms
+Postprocess: 0.000204 ms
+Mem move_time: 1.183 ms
+Graph time: 16.18 ms
+
+Preprocess: 3.280000 ms
+Run: 5.704603 ms
+Postprocess: 0.000478 ms
+Mem move_time: 1.831 ms
+Graph time: 1.594 ms
+
+Preprocess: 2.613475 ms
+Run: 4.345484 ms
+Postprocess: 0.000378 ms
+Mem move_time: 1.92 ms
+Graph time: 14.32 ms
+
+Preprocess: 3.428612 ms
+Run: 5.720425 ms
+Postprocess: 0.000443 ms
+Mem move_time: 1.832 ms
+Graph time: 21.2 ms
+
+Preprocess: 3.108696 ms
+Run: 6.321633 ms
+Postprocess: 0.000536 ms
+Mem move_time: 2.561 ms
+Graph time: 20.54 ms
+
+Preprocess: 3.471244 ms
+Run: 8.926433 ms
+Postprocess: 0.000617 ms
+Mem move_time: 2.882 ms
+Graph time: 15.43 ms
+
+Preprocess: 3.133836 ms
+Run: 6.380848 ms
+Postprocess: 0.000481 ms
+Mem move_time: 2.47 ms
+Graph time: 1.923 ms
+
+Preprocess: 2.755164 ms
+Run: 4.066371 ms
+Postprocess: 0.000282 ms
+Mem move_time: 1.564 ms
+Graph time: 12.47 ms
+
+Preprocess: 3.247706 ms
+Run: 3.724442 ms
+Postprocess: 0.000290 ms
+Mem move_time: 1.506 ms
+Graph time: 1.175 ms
+
+Preprocess: 1.823264 ms
+Run: 3.688962 ms
+Postprocess: 0.000262 ms
+Mem move_time: 1.553 ms
+Graph time: 18.64 ms
+
+Preprocess: 3.465898 ms
+Run: 5.100558 ms
+Postprocess: 0.000353 ms
+Mem move_time: 1.842 ms
+Graph time: 24.81 ms
+
+Preprocess: 3.425109 ms
+Run: 6.302881 ms
+Postprocess: 0.000548 ms
+Mem move_time: 2.056 ms
+Graph time: 1.567 ms
+
+Preprocess: 2.739099 ms
+Run: 3.791049 ms
+Postprocess: 0.000165 ms
+Mem move_time: 0.9984 ms
+Graph time: 0.6923 ms
+
+Preprocess: 1.005034 ms
+Run: 1.416869 ms
+Postprocess: 0.000206 ms
+Mem move_time: 1.047 ms
+Graph time: 24.12 ms
+
+Preprocess: 3.388701 ms
+Run: 6.165793 ms
+Postprocess: 0.000472 ms
+Mem move_time: 2.053 ms
+Graph time: 1.465 ms
+
+Preprocess: 2.233917 ms
+Run: 3.090695 ms
+Postprocess: 0.000254 ms
+Mem move_time: 1.412 ms
+Graph time: 0.9104 ms
+
+Preprocess: 1.326806 ms
+Run: 2.148331 ms
+Postprocess: 0.000165 ms
+Mem move_time: 1.02 ms
+Graph time: 24.24 ms
+
+Preprocess: 3.476634 ms
+Run: 5.970787 ms
+Postprocess: 0.000395 ms
+Mem move_time: 2.169 ms
+Graph time: 1.721 ms
+
+Preprocess: 3.063414 ms
+Run: 6.037002 ms
+Postprocess: 0.000481 ms
+Mem move_time: 2.001 ms
+Graph time: 24.43 ms
+
+Preprocess: 4.014592 ms
+Run: 6.821753 ms
+Postprocess: 0.000394 ms
+Mem move_time: 2.372 ms
+Graph time: 1.986 ms
+
+Preprocess: 2.736813 ms
+Run: 4.270423 ms
+Postprocess: 0.000295 ms
+Mem move_time: 1.713 ms
+Graph time: 26.27 ms
+
+Preprocess: 3.405594 ms
+Run: 6.142695 ms
+Postprocess: 0.000586 ms
+Mem move_time: 2.249 ms
+Graph time: 2.116 ms
+
+Preprocess: 2.716681 ms
+Run: 3.834179 ms
+Postprocess: 0.000175 ms
+Mem move_time: 0.9758 ms
+Graph time: 0.6928 ms
+
+Preprocess: 1.026352 ms
+Run: 1.528175 ms
+Postprocess: 0.000277 ms
+Mem move_time: 1.395 ms
+Graph time: 23.98 ms
+
+Preprocess: 3.424720 ms
+Run: 5.691169 ms
+Postprocess: 0.000287 ms
+Mem move_time: 1.955 ms
+Graph time: 1.602 ms
+
+Preprocess: 2.406756 ms
+Run: 4.224505 ms
+Postprocess: 0.000327 ms
+Mem move_time: 1.718 ms
+Graph time: 1.149 ms
+
+Preprocess: 1.784144 ms
+Run: 3.045345 ms
+Postprocess: 0.000557 ms
+Mem move_time: 1.465 ms
+Graph time: 18.37 ms
+
+Preprocess: 3.625397 ms
+Run: 5.384746 ms
+Postprocess: 0.000491 ms
+Mem move_time: 1.926 ms
+Graph time: 22.03 ms
+
+Preprocess: 3.172822 ms
+Run: 6.315458 ms
+Postprocess: 0.000448 ms
+Mem move_time: 2.429 ms
+Graph time: 21.75 ms
+
+Preprocess: 3.736230 ms
+Run: 6.447588 ms
+Postprocess: 0.000411 ms
+Mem move_time: 2.138 ms
+Graph time: 1.342 ms
+
+Preprocess: 1.853795 ms
+Run: 2.484715 ms
+Postprocess: 0.000205 ms
+Mem move_time: 1.211 ms
+Graph time: 0.7488 ms
+
+Preprocess: 1.161848 ms
+Run: 1.427240 ms
+Postprocess: 0.000280 ms
+Mem move_time: 0.9743 ms
+Graph time: 26.48 ms
+
+Preprocess: 3.299862 ms
+Run: 6.014591 ms
+Postprocess: 0.000520 ms
+Mem move_time: 2.275 ms
+Graph time: 1.947 ms
+
+Preprocess: 2.652811 ms
+Run: 3.676795 ms
+Postprocess: 0.000269 ms
+Mem move_time: 1.445 ms
+Graph time: 0.8896 ms
+
+Preprocess: 1.398000 ms
+Run: 1.836077 ms
+Postprocess: 0.000168 ms
+Mem move_time: 1.071 ms
+Graph time: 24.14 ms
+
+Preprocess: 3.512330 ms
+Run: 5.888278 ms
+Postprocess: 0.000377 ms
+Mem move_time: 2.191 ms
+Graph time: 1.344 ms
+
+Preprocess: 1.973828 ms
+Run: 3.362921 ms
+Postprocess: 0.000317 ms
+Mem move_time: 1.569 ms
+Graph time: 1.236 ms
+
+Preprocess: 1.970556 ms
+Run: 3.265105 ms
+Postprocess: 0.000279 ms
+Mem move_time: 1.386 ms
+Graph time: 21.54 ms
+
+Preprocess: 3.431250 ms
+Run: 5.905657 ms
+Postprocess: 0.000434 ms
+Mem move_time: 2.097 ms
+Graph time: 1.493 ms
+
+Preprocess: 2.237718 ms
+Run: 2.914048 ms
+Postprocess: 0.000235 ms
+Mem move_time: 1.423 ms
+Graph time: 0.7694 ms
+
+Preprocess: 1.184336 ms
+Run: 1.784334 ms
+Postprocess: 0.000171 ms
+Mem move_time: 1.055 ms
+Graph time: 16.71 ms
+
+Preprocess: 3.525267 ms
+Run: 5.146451 ms
+Postprocess: 0.000353 ms
+Mem move_time: 1.818 ms
+Graph time: 1.297 ms
+
+Preprocess: 2.351561 ms
+Run: 4.146774 ms
+Postprocess: 0.000270 ms
+Mem move_time: 1.529 ms
+Graph time: 12.19 ms
+
+Preprocess: 3.011811 ms
+Run: 3.833420 ms
+Postprocess: 0.000305 ms
+Mem move_time: 1.622 ms
+Graph time: 0.9831 ms
+
+Preprocess: 1.565747 ms
+Run: 1.811596 ms
+Postprocess: 0.000195 ms
+Mem move_time: 1.104 ms
+Graph time: 0.6655 ms
+
+Preprocess: 0.993786 ms
+Run: 1.383651 ms
+Postprocess: 0.000155 ms
+Mem move_time: 1.211 ms
+Graph time: 17.13 ms
+
+Preprocess: 3.729104 ms
+Run: 6.000199 ms
+Postprocess: 0.000499 ms
+Mem move_time: 2.365 ms
+Graph time: 22.51 ms
+
+Preprocess: 3.590246 ms
+Run: 6.198400 ms
+Postprocess: 0.000459 ms
+Mem move_time: 2.331 ms
+Graph time: 22.59 ms
+
+Preprocess: 3.423250 ms
+Run: 6.952171 ms
+Postprocess: 0.000522 ms
+Mem move_time: 2.335 ms
+Graph time: 20.7 ms
+
+Preprocess: 3.112334 ms
+Run: 5.857610 ms
+Postprocess: 0.000555 ms
+Mem move_time: 2.768 ms
+Graph time: 22.2 ms
+
+Preprocess: 3.290647 ms
+Run: 6.143885 ms
+Postprocess: 0.000465 ms
+Mem move_time: 2.527 ms
+Graph time: 1.553 ms
+
+Preprocess: 2.109869 ms
+Run: 2.862959 ms
+Postprocess: 0.000227 ms
+Mem move_time: 1.155 ms
+Graph time: 0.7842 ms
+
+Preprocess: 1.245395 ms
+Run: 2.622896 ms
+Postprocess: 0.000175 ms
+Mem move_time: 1.406 ms
+Graph time: 24.1 ms
+
+Preprocess: 3.401479 ms
+Run: 6.162425 ms
+Postprocess: 0.000518 ms
+Mem move_time: 2.382 ms
+Graph time: 1.792 ms
+
+Preprocess: 3.039875 ms
+Run: 4.164803 ms
+Postprocess: 0.000300 ms
+Mem move_time: 1.723 ms
+Graph time: 1.02 ms
+
+Preprocess: 1.448035 ms
+Run: 1.991710 ms
+Postprocess: 0.000176 ms
+Mem move_time: 1.082 ms
+Graph time: 22.21 ms
+
+Preprocess: 3.255283 ms
+Run: 4.841545 ms
+Postprocess: 0.000266 ms
+Mem move_time: 1.714 ms
+Graph time: 1.203 ms
+
+Preprocess: 2.120064 ms
+Run: 4.334876 ms
+Postprocess: 0.000472 ms
+Mem move_time: 1.623 ms
+Graph time: 1.164 ms
+
+Preprocess: 1.599974 ms
+Run: 2.231538 ms
+Postprocess: 0.000155 ms
+Mem move_time: 1.115 ms
+Graph time: 21.17 ms
+
+Preprocess: 3.464156 ms
+Run: 5.046730 ms
+Postprocess: 0.000323 ms
+Mem move_time: 1.779 ms
+Graph time: 20.6 ms
+
+Preprocess: 3.586158 ms
+Run: 6.471576 ms
+Postprocess: 0.000365 ms
+Mem move_time: 2.137 ms
+Graph time: 19.88 ms
+
+Preprocess: 1.725107 ms
+Run: 1.689914 ms
+Postprocess: 0.000164 ms
+Mem move_time: 1.418 ms
+Graph time: 0.7191 ms
+
+Preprocess: 1.131707 ms
+Run: 1.850412 ms
+Postprocess: 0.000257 ms
+Mem move_time: 1.109 ms
+Graph time: 0.7674 ms
+
+Preprocess: 0.991688 ms
+Run: 1.447810 ms
+Postprocess: 0.000170 ms
+Mem move_time: 1.091 ms
+Graph time: 20.91 ms
+
+Preprocess: 3.394996 ms
+Run: 5.734147 ms
+Postprocess: 0.000378 ms
+Mem move_time: 2.188 ms
+Graph time: 19.76 ms
+
+Preprocess: 3.519974 ms
+Run: 5.943309 ms
+Postprocess: 0.000365 ms
+Mem move_time: 1.982 ms
+Graph time: 22.08 ms
+
+Preprocess: 3.152268 ms
+Run: 5.941455 ms
+Postprocess: 0.000440 ms
+Mem move_time: 2.214 ms
+Graph time: 24.1 ms
+
+Preprocess: 3.274814 ms
+Run: 6.472517 ms
+Postprocess: 0.000480 ms
+Mem move_time: 2.545 ms
+Graph time: 21.95 ms
+
+Preprocess: 3.214057 ms
+Run: 6.305120 ms
+Postprocess: 0.000478 ms
+Mem move_time: 2.362 ms
+Graph time: 1.796 ms
+
+Preprocess: 2.672652 ms
+Run: 4.091607 ms
+Postprocess: 0.000316 ms
+Mem move_time: 1.518 ms
+Graph time: 1.055 ms
+
+Preprocess: 1.667229 ms
+Run: 3.162965 ms
+Postprocess: 0.000359 ms
+Mem move_time: 1.63 ms
+Graph time: 21.37 ms
+
+Preprocess: 3.218484 ms
+Run: 6.721480 ms
+Postprocess: 0.000424 ms
+Mem move_time: 2.184 ms
+Graph time: 1.849 ms
+
+Preprocess: 2.795749 ms
+Run: 4.102415 ms
+Postprocess: 0.000314 ms
+Mem move_time: 1.825 ms
+Graph time: 21.6 ms
+
+Preprocess: 3.530596 ms
+Run: 6.167497 ms
+Postprocess: 0.000902 ms
+Mem move_time: 2.208 ms
+Graph time: 21.11 ms
+
+Preprocess: 3.082984 ms
+Run: 6.229856 ms
+Postprocess: 0.000629 ms
+Mem move_time: 2.559 ms
+Graph time: 20.18 ms
+
+Preprocess: 3.102034 ms
+Run: 6.164869 ms
+Postprocess: 0.000512 ms
+Mem move_time: 2.587 ms
+Graph time: 21.56 ms
+
+Preprocess: 3.334223 ms
+Run: 6.409393 ms
+Postprocess: 0.000420 ms
+Mem move_time: 2.378 ms
+Graph time: 20.83 ms
+
+Preprocess: 3.221305 ms
+Run: 6.255142 ms
+Postprocess: 0.000542 ms
+Mem move_time: 2.547 ms
+Graph time: 21.05 ms
+
+Preprocess: 3.355689 ms
+Run: 5.823854 ms
+Postprocess: 0.000383 ms
+Mem move_time: 2.136 ms
+Graph time: 25.09 ms
+
+Preprocess: 3.105230 ms
+Run: 6.130851 ms
+Postprocess: 0.000421 ms
+Mem move_time: 2.32 ms
+Graph time: 1.361 ms
+
+Preprocess: 1.916178 ms
+Run: 2.784814 ms
+Postprocess: 0.000252 ms
+Mem move_time: 1.234 ms
+Graph time: 0.7153 ms
+
+Preprocess: 1.076774 ms
+Run: 1.405753 ms
+Postprocess: 0.000160 ms
+Mem move_time: 0.9646 ms
+Graph time: 0.6696 ms
+
+Preprocess: 0.958660 ms
+Run: 1.432043 ms
+Postprocess: 0.000290 ms
+Mem move_time: 1.087 ms
+Graph time: 25.05 ms
+
+Preprocess: 3.348649 ms
+Run: 6.385295 ms
+Postprocess: 0.000523 ms
+Mem move_time: 2.166 ms
+Graph time: 1.493 ms
+
+Preprocess: 1.953833 ms
+Run: 2.457634 ms
+Postprocess: 0.000165 ms
+Mem move_time: 1.137 ms
+Graph time: 0.9164 ms
+
+Preprocess: 1.395808 ms
+Run: 2.168271 ms
+Postprocess: 0.000198 ms
+Mem move_time: 1.423 ms
+Graph time: 22.84 ms
+
+Preprocess: 3.676367 ms
+Run: 5.806058 ms
+Postprocess: 0.000363 ms
+Mem move_time: 2.046 ms
+Graph time: 1.453 ms
+
+Preprocess: 2.441532 ms
+Run: 3.370951 ms
+Postprocess: 0.000294 ms
+Mem move_time: 1.511 ms
+Graph time: 0.984 ms
+
+Preprocess: 1.547167 ms
+Run: 2.908509 ms
+Postprocess: 0.000315 ms
+Mem move_time: 1.385 ms
+Graph time: 20.09 ms
+
+Preprocess: 3.535261 ms
+Run: 5.705030 ms
+Postprocess: 0.000715 ms
+Mem move_time: 1.902 ms
+Graph time: 20.62 ms
+
+Preprocess: 3.457003 ms
+Run: 6.317545 ms
+Postprocess: 0.000409 ms
+Mem move_time: 2.082 ms
+Graph time: 23.11 ms
+
+Preprocess: 3.668709 ms
+Run: 6.558063 ms
+Postprocess: 0.000801 ms
+Mem move_time: 2.142 ms
+Graph time: 20.5 ms
+
+Preprocess: 3.274935 ms
+Run: 6.035898 ms
+Postprocess: 0.000473 ms
+Mem move_time: 2.332 ms
+Graph time: 1.663 ms
+
+Preprocess: 2.922617 ms
+Run: 4.601505 ms
+Postprocess: 0.000342 ms
+Mem move_time: 1.826 ms
+Graph time: 1.036 ms
+
+Preprocess: 1.477587 ms
+Run: 2.198275 ms
+Postprocess: 0.000209 ms
+Mem move_time: 1.16 ms
+Graph time: 23.95 ms
+
+Preprocess: 3.306555 ms
+Run: 5.435745 ms
+Postprocess: 0.000308 ms
+Mem move_time: 1.806 ms
+Graph time: 1.367 ms
+
+Preprocess: 1.663901 ms
+Run: 2.689343 ms
+Postprocess: 0.000184 ms
+Mem move_time: 1.087 ms
+Graph time: 0.6941 ms
+
+Preprocess: 1.136670 ms
+Run: 1.837877 ms
+Postprocess: 0.000291 ms
+Mem move_time: 1.255 ms
+Graph time: 25.71 ms
+
+Preprocess: 3.238117 ms
+Run: 5.537837 ms
+Postprocess: 0.000469 ms
+Mem move_time: 2.093 ms
+Graph time: 1.564 ms
+
+Preprocess: 2.735387 ms
+Run: 3.783419 ms
+Postprocess: 0.000275 ms
+Mem move_time: 1.648 ms
+Graph time: 1.202 ms
+
+Preprocess: 1.815417 ms
+Run: 3.580818 ms
+Postprocess: 0.000275 ms
+Mem move_time: 1.595 ms
+Graph time: 20.27 ms
+
+Preprocess: 3.352124 ms
+Run: 6.009502 ms
+Postprocess: 0.000336 ms
+Mem move_time: 1.954 ms
+Graph time: 1.268 ms
+
+Preprocess: 1.863748 ms
+Run: 2.396656 ms
+Postprocess: 0.000208 ms
+Mem move_time: 1.103 ms
+Graph time: 0.7174 ms
+
+Preprocess: 1.095258 ms
+Run: 1.552987 ms
+Postprocess: 0.000160 ms
+Mem move_time: 0.9819 ms
+Graph time: 27.14 ms
+
+Preprocess: 3.531863 ms
+Run: 6.556302 ms
+Postprocess: 0.000518 ms
+Mem move_time: 2.259 ms
+Graph time: 1.967 ms
+
+Preprocess: 3.034932 ms
+Run: 4.871307 ms
+Postprocess: 0.000335 ms
+Mem move_time: 1.678 ms
+Graph time: 24.71 ms
+
+Preprocess: 3.355616 ms
+Run: 6.678937 ms
+Postprocess: 0.000541 ms
+Mem move_time: 2.386 ms
+Graph time: 1.573 ms
+
+Preprocess: 1.904032 ms
+Run: 2.986438 ms
+Postprocess: 0.000322 ms
+Mem move_time: 1.313 ms
+Graph time: 0.7678 ms
+
+Preprocess: 1.174231 ms
+Run: 2.150288 ms
+Postprocess: 0.000286 ms
+Mem move_time: 1.523 ms
+Graph time: 23.5 ms
+
+Preprocess: 3.633888 ms
+Run: 5.797297 ms
+Postprocess: 0.000472 ms
+Mem move_time: 2.334 ms
+Graph time: 1.88 ms
+
+Preprocess: 2.700805 ms
+Run: 4.855017 ms
+Postprocess: 0.000363 ms
+Mem move_time: 1.649 ms
+Graph time: 25.28 ms
+
+Preprocess: 3.437672 ms
+Run: 6.910258 ms
+Postprocess: 0.000448 ms
+Mem move_time: 2.713 ms
+Graph time: 12.35 ms
+
+Preprocess: 3.175862 ms
+Run: 5.882580 ms
+Postprocess: 0.000426 ms
+Mem move_time: 1.872 ms
+Graph time: 1.356 ms
+
+Preprocess: 1.553006 ms
+Run: 2.498815 ms
+Postprocess: 0.000222 ms
+Mem move_time: 1.194 ms
+Graph time: 16.71 ms
+
+Preprocess: 3.156904 ms
+Run: 6.157910 ms
+Postprocess: 0.000490 ms
+Mem move_time: 1.936 ms
+Graph time: 1.718 ms
+
+Preprocess: 2.662162 ms
+Run: 4.098804 ms
+Postprocess: 0.000301 ms
+Mem move_time: 1.789 ms
+Graph time: 13.59 ms
+
+Preprocess: 3.280560 ms
+Run: 5.351645 ms
+Postprocess: 0.000725 ms
+Mem move_time: 1.924 ms
+Graph time: 1.609 ms
+
+Preprocess: 2.278226 ms
+Run: 3.906851 ms
+Postprocess: 0.000343 ms
+Mem move_time: 1.778 ms
+Graph time: 12.28 ms
+
+Preprocess: 3.401470 ms
+Run: 5.395632 ms
+Postprocess: 0.000457 ms
+Mem move_time: 1.773 ms
+Graph time: 1.45 ms
+
+Preprocess: 1.725252 ms
+Run: 3.125925 ms
+Postprocess: 0.000325 ms
+Mem move_time: 1.639 ms
+Graph time: 15.04 ms
+
+Preprocess: 3.510598 ms
+Run: 5.415440 ms
+Postprocess: 0.000344 ms
+Mem move_time: 1.829 ms
+Graph time: 1.377 ms
+
+Preprocess: 2.031383 ms
+Run: 2.883538 ms
+Postprocess: 0.000322 ms
+Mem move_time: 1.462 ms
+Graph time: 12.95 ms
+
+Preprocess: 3.849534 ms
+Run: 5.085113 ms
+Postprocess: 0.000376 ms
+Mem move_time: 1.783 ms
+Graph time: 1.212 ms
+
+Preprocess: 1.829919 ms
+Run: 3.094058 ms
+Postprocess: 0.000276 ms
+Mem move_time: 1.396 ms
+Graph time: 12.35 ms
+
+Preprocess: 3.533598 ms
+Run: 5.122455 ms
+Postprocess: 0.000348 ms
+Mem move_time: 1.84 ms
+Graph time: 1.158 ms
+
+Preprocess: 1.648888 ms
+Run: 2.391036 ms
+Postprocess: 0.000187 ms
+Mem move_time: 1.089 ms
+Graph time: 18.18 ms
+
+Preprocess: 3.357477 ms
+Run: 5.792707 ms
+Postprocess: 0.000409 ms
+Mem move_time: 2.093 ms
+Graph time: 1.544 ms
+
+Preprocess: 2.354297 ms
+Run: 3.938403 ms
+Postprocess: 0.000719 ms
+Mem move_time: 1.602 ms
+Graph time: 14.93 ms
+
+Preprocess: 3.262553 ms
+Run: 4.885114 ms
+Postprocess: 0.000376 ms
+Mem move_time: 1.742 ms
+Graph time: 23.68 ms
+
+Preprocess: 3.593160 ms
+Run: 6.281596 ms
+Postprocess: 0.000423 ms
+Mem move_time: 2.58 ms
+Graph time: 16.49 ms
+
+Preprocess: 3.069138 ms
+Run: 6.036820 ms
+Postprocess: 0.000442 ms
+Mem move_time: 2.394 ms
+Graph time: 1.792 ms
+
+Preprocess: 2.577176 ms
+Run: 3.438070 ms
+Postprocess: 0.000274 ms
+Mem move_time: 1.363 ms
+Graph time: 13.16 ms
+
+Preprocess: 2.967838 ms
+Run: 3.635619 ms
+Postprocess: 0.000359 ms
+Mem move_time: 1.622 ms
+Graph time: 1.12 ms
+
+Preprocess: 1.784391 ms
+Run: 3.547046 ms
+Postprocess: 0.000333 ms
+Mem move_time: 1.86 ms
+Graph time: 16.45 ms
+
