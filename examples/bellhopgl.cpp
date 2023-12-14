@@ -989,8 +989,503 @@ int main(int argc, char **argv)
     for (int i = 0; i < floorVectorX.size(); i++)
     {
 
-      float x = (((floorVectorX[i] - 0) / (1000 - 0)) * 1.7f) - 0.85f;
-      float y = (((floorVectorY[i] - 0) / (maxY - 0)) * 1.7f) - 0.85f;
+      // Run Bellhop algorithm
+      bhc::run(params, outputs);
+      // Update rays
+      dataVector.clear();
+      // std::cout << "Getting rays..." << std::endl;
+      getRays(dataVector, outputs);
+      // std::cout << "Got rays" << std::endl;
+
+      if (showPlayback)
+        glfwSwapInterval(enableVSync);
+      else
+        glfwSwapInterval(0);
+
+      glViewport(0, 0, 950, 800);
+
+      // Tell OpenGL a new frame is about to begin
+      ImGui_ImplOpenGL3_NewFrame();
+      ImGui_ImplGlfw_NewFrame();
+      ImGui::NewFrame();
+
+      if (simPlaying && !dataVector.empty())
+      {
+        ray++;
+        ray %= dataVector.size();
+      }
+      // if (!dataVector.empty ())
+
+      // Measure speed
+      double currentTime = glfwGetTime();
+      frameCount++;
+      if (currentTime - lastTime >= 1.0)
+      { // If last prinf() was more than 1 sec ago
+        lastFrameCount = frameCount;
+        frameCount = 0;
+        lastTime = currentTime;
+      }
+
+      vertices.clear();
+      if (!dataVector.empty())
+      {
+        for (int i = 0; i < dataVector[ray].vertices; i++)
+        {
+
+          float x = (((dataVector[ray].x[i] - 0) / (1000 - 0)) * 1.7f) - 0.85f;
+          float y = (((dataVector[ray].y[i] - 0) / (maxY - 0)) * 1.7f) - 0.85f;
+
+          vertices.push_back(x);
+          vertices.push_back(y);
+          vertices.push_back(0.0f);
+        }
+      }
+
+      if (!splineDrawn)
+      {
+        std::cout << "Spline" << std::endl;
+        // Print out x and y sline vals side by side
+        for (int i = 0; i < sosVectorX.size(); i++)
+        {
+          std::cout << sosVectorX[i] << "\t" << sosVectorY[i] << std::endl;
+        }
+
+        sosVertices.clear();
+        xSOSCurve.clear();
+        ySOSCurve.clear();
+        cubicSpline(sosVectorX, sosVectorY, 100, xSOSCurve, ySOSCurve);
+
+        double sosMinX = *std::min_element(xSOSCurve.begin(), xSOSCurve.end());
+        double sosMaxX = *std::max_element(xSOSCurve.begin(), xSOSCurve.end());
+        double sosMinY = *std::min_element(ySOSCurve.begin(), ySOSCurve.end());
+        double sosMaxY = *std::max_element(ySOSCurve.begin(), ySOSCurve.end());
+        for (int i = 0; i < xSOSCurve.size(); i++)
+        {
+
+          float x = (((xSOSCurve[i] - 0) / (sosMaxX - 0)) * 1.7f) - .85f;
+          float y = (((ySOSCurve[i] - sosMinY) / (sosMaxY - sosMinY)) * 1.7f) - .85f;
+
+          sosVertices.push_back(x);
+          sosVertices.push_back(y);
+          sosVertices.push_back(0.0f);
+        }
+        splineDrawn = true;
+      }
+
+      floorVertices.clear();
+      for (int i = 0; i < floorVectorX.size(); i++)
+      {
+
+        float x = (((floorVectorX[i] - 0) / (1000 - 0)) * 1.7f) - 0.85f;
+        float y = (((floorVectorY[i] - 0) / (maxY - 0)) * 1.7f) - 0.85f;
+
+        floorVertices.push_back(x);
+        floorVertices.push_back(y);
+        floorVertices.push_back(0.0f);
+      }
+
+      if (showPlayback)
+      {
+        // Clear screen
+        glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        drawFrame(frameVertices);
+        drawFloor(floorVertices);
+        if (!dataVector.empty())
+          drawRay(ray, dataVector, vertices);
+      }
+      else
+      {
+        if (drawingRays)
+        {
+          int numOfDrawnRays = 0;
+
+          if (numOfDrawnRays == 0)
+          {
+            // clearRegion (70, 50, 900, 700);
+            // glViewport (0, 0, 950, 800);
+            drawFrame(frameVertices);
+            drawFloor(floorVertices);
+          }
+
+          if (!dataVector.empty())
+            drawRay(ray, dataVector, vertices);
+          numOfDrawnRays++;
+
+          if (numOfDrawnRays == dataVector.size() - 1)
+          {
+            drawingRays = false;
+            numOfDrawnRays = 0;
+          }
+        }
+      }
+
+      ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x - 280, 0));
+      ImGui::SetNextWindowSize(ImVec2(280, io.DisplaySize.y));
+      // ImGUI window creation
+      ImGui::Begin("Acoustic Ray Casting Parameters", NULL,
+                   ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize);
+
+      // Main content
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      ImGui::Text("Select a Computation Method:");
+      ImGui::Spacing();
+      // First radio button
+      ImGui::RadioButton("##C++", &selectedComputeMode, 0);
+      ImGui::SameLine();
+      ImGui::Text("C++");
+      ImGui::SameLine();
+      // Second radio button
+      ImGui::RadioButton("##CUDA", &selectedComputeMode, 1);
+      ImGui::SameLine();
+      ImGui::Text("CUDA");
+      ImGui::SameLine();
+      // Display the selected mode of computeMode
+      const char *computeMode[] = {"C++", "CUDA"};
+      const char *rayMode[] = {"eigenrays", "rays"};
+
+      // New section
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      ImGui::Separator();
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+      ImGui::Text("Adjust Endpoints:");
+      ImGui::Spacing();
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+      ImGui::Text("TX");
+      ImGui::Spacing();
+      // ImGui::Text ("X");
+      // ImGui::SameLine ();
+      // ImGui::SliderInt ("##tx_x", &txStartPosX, 0, maxX);
+      // ImGui::SameLine ();
+      // ImGui::Text ("px");
+      ImGui::Text("Y");
+      ImGui::SameLine();
+      ImGui::SliderFloat("##tx_y", &txStartPosY, 0, maxY - .1);
+      ImGui::SameLine();
+      ImGui::Text("m");
+      if (selectedRayMode == 1)
+      {
+        ImGui::Text("Rays");
+        ImGui::SameLine();
+        ImGui::SliderInt("##rays", &numOfRays, 1, 1000);
+      }
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+      ImGui::Text("RX");
+      ImGui::Spacing();
+      ImGui::Text("X");
+      ImGui::SameLine();
+      ImGui::SliderFloat("##rx_x", &rxStartPosX, 0.1, 1000);
+      ImGui::SameLine();
+      ImGui::Text("m");
+      ImGui::Text("Y");
+      ImGui::SameLine();
+      ImGui::SliderFloat("##rx_y", &rxStartPosY, 0, maxY - .1);
+      ImGui::SameLine();
+      ImGui::Text("m");
+
+      // New section
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      ImGui::Separator();
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+      ImGui::Text("Speed of Sound");
+      ImGui::SameLine();
+      ImGui::Dummy(ImVec2(65.0f, 0.0f));
+      ImGui::SameLine();
+      if (ImGui::Button("Reset", ImVec2(75, 0)))
+      {
+        // Code to execute when Button 1 is clicked
+        std::cout << "Code to reset speed of sound goes here" << std::endl;
+        sosVectorX.clear();
+        sosVectorY.clear();
+        sosVectorX = resetSosVectorX;
+        sosVectorY = resetSosVectorY;
+        // Print sos vectors
+        std::cout << "Reset Spline" << std::endl;
+        for (int i = 0; i < sosVectorX.size(); i++)
+        {
+          std::cout << sosVectorX[i] << "\t" << sosVectorY[i] << std::endl;
+        }
+        // clearRegion (950, 0, 650, 800);
+        // clearRegion (0, 0, 1000, 800);
+        glClear(GL_COLOR_BUFFER_BIT);
+        splineDrawn = false;
+      }
+      ImGui::Spacing();
+      ImGui::Text("Add Point");
+      ImGui::Spacing();
+      ImGui::Text("X");
+      ImGui::SameLine();
+      ImGui::PushItemWidth(60);
+      ImGui::SameLine();
+      ImGui::InputDouble("##sos_x", &addSosX);
+      ImGui::PushItemWidth(60);
+      ImGui::SameLine();
+      ImGui::Text("Y");
+      ImGui::SameLine();
+      ImGui::InputDouble("##sos_y", &addSosY);
+      ImGui::SameLine();
+      ImGui::Dummy(ImVec2(5.0f, 0.0f));
+      ImGui::SameLine();
+      if (ImGui::Button("Add", ImVec2(75, 0)))
+      {
+        // Code to execute when Button 1 is clicked
+        std::cout << "Code to add point goes here" << std::endl;
+        insertOrUpdatePoint(sosVectorX, sosVectorY, addSosX, addSosY);
+        clearRegion(950, 0, 650, 800);
+        clearRegion(0, 0, 1000, 800);
+        dataVector.clear();
+        splineDrawn = false;
+      }
+
+      // New section
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      ImGui::Separator();
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+      ImGui::Text("Simulation Settings");
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+      // First radio button
+      ImGui::RadioButton("##eigenerays", &selectedRayMode, 0);
+      ImGui::SameLine();
+      ImGui::Text("Eigenrays");
+      ImGui::SameLine();
+      // Second radio button
+      ImGui::RadioButton("##rays", &selectedRayMode, 1);
+      ImGui::SameLine();
+      ImGui::Text("Rays");
+      ImGui::Spacing();
+      ImGui::Checkbox("Show Playback", &showPlayback);
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+      if (showPlayback)
+      {
+        ImGui::Text("Playback");
+        ImGui::Spacing();
+        ImGui::Dummy(ImVec2(12.5f, 0.0f));
+        ImGui::SameLine();
+        char mySimProgress[20];
+        std::sprintf(mySimProgress, "%d/%ld", ray + 1, dataVector.size());
+        ImGui::PushItemWidth(ImGui::GetWindowWidth() - 50);
+        ImGui::SliderInt("##playback", &ray, 0, dataVector.size() - 1,
+                         mySimProgress, ImGuiSliderFlags_NoInput);
+        ImGui::Spacing();
+
+        ImGui::Dummy(ImVec2(32.5f, 0.0f));
+        ImGui::SameLine();
+
+        if (!dataVector.empty())
+        {
+          ImGui::BeginDisabled(simPlaying);
+          if (ImGui::Button("|<<", ImVec2(50, 0)))
+          {
+            ray--;
+            ray = (ray < 0) ? 0 : ray;
+          }
+          ImGui::EndDisabled();
+          ImGui::SameLine();
+          if (ImGui::Button(simPlaying ? "||" : "|>", ImVec2(75, 0)))
+          {
+            // Play/Pause
+            simPlaying = !simPlaying;
+          }
+          ImGui::SameLine();
+          ImGui::BeginDisabled(simPlaying);
+          if (ImGui::Button(">>|", ImVec2(50, 0)))
+          {
+            ray++;
+            ray = (ray >= dataVector.size()) ? dataVector.size() - 1 : ray;
+          }
+        }
+        ImGui::EndDisabled();
+        ImGui::Spacing();
+        ImGui::Text("Simulation Characteristics");
+        ImGui::Spacing();
+
+        if (!dataVector.empty())
+        {
+          ImGui::Text("Vertices:        %d", dataVector[ray].vertices);
+          ImGui::Spacing();
+          ImGui::Text("Angle of Entry:  %f", dataVector[ray].angle_of_entry);
+          ImGui::Spacing();
+          ImGui::Text("Top Bounces:     %d", dataVector[ray].top_bounce);
+          ImGui::Spacing();
+          ImGui::Text("Bottom Bounce:   %d", dataVector[ray].bottom_bounce);
+        }
+        else
+        {
+          ImGui::Text("No Data");
+        }
+      }
+
+      // Add text anchored to the bottom of the side panel
+      ImGui::SetCursorPosY(ImGui::GetWindowHeight() - (ImGui::GetStyle().ItemSpacing.y + 60));
+      // Center the buttons horizontally
+      ImGui::SetCursorPosX((ImGui::GetWindowWidth() - 200.0f) * 0.5f);
+      // Add the first button
+      if (ImGui::Button("Export Simulation", ImVec2(200, 0)))
+      {
+        // Code to execute when Button 1 is clicked
+        std::cout << "Code to export simulation variables goes here"
+                  << std::endl;
+      }
+      ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+      ImGui::Text("FPS: ");
+      ImGui::SameLine();
+      const char *myFPS = std::to_string(lastFrameCount).c_str();
+      ImGui::Text("%s", myFPS);
+      ImGui::SameLine();
+      ImGui::Dummy(ImVec2(20.0, 0.0f));
+      ImGui::SameLine();
+      ImGui::Checkbox("Enable VSync", &enableVSync);
+
+      // Ends the window
+      ImGui::End();
+
+      // Export variables to shader
+      glUseProgram(shaderProgram);
+      glUniform1f(glGetUniformLocation(shaderProgram, "size"), size);
+      glUniform4f(glGetUniformLocation(shaderProgram, "color"), color[0],
+                  color[1], color[2], color[3]);
+
+      // Renders the ImGUI elements
+      ImGui::Render();
+      ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+      glViewport(950, 0, 650, 800);
+
+      clearRegion(950, 0, 650, 800);
+      drawFrame(frameVertices);
+
+      // Render the second OpenGL viewport
+      drawSOS(sosVertices);
+
+      // glViewport (0, 0, 1880, 800);
+      clearRegion(0, 0, 1880 - 280, 59);        // Clear bottom bar
+      clearRegion(0, 800 - 59, 1880 - 280, 59); // Clear top bar
+      clearRegion(0, 0, 70, 800);               // Clear left bar
+      clearRegion((1880 / 2) - 12, 0, 70, 800); // Clear right bar
+      glViewport(0, 0, 1880, 800);
+      // Draw Once
+      // if (showPlayback)
+      // {
+      drawText(shader, "Bellhop Algorithm", 350.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
+      drawText(shader, "Distance (m)", 425.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
+      drawText(shader, "Speed of Sound", 1175.0f, 760.0f, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
+      drawText(shader, "Speed (m/s)", 1225.0f, 30.0f, 0.35f, glm::vec3(1.0f, 1.0f, 1.0f));
+      char yMaxStr[100];
+      std::sprintf(yMaxStr, "%.1f", maxY);
+      drawText(shader, yMaxStr, 15.0, 60.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f));   // Y Max
+      drawText(shader, "0.0", 10.0, 735.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f));    // Y Min
+      drawText(shader, "0.0", 70.0, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f));     // X Min
+      drawText(shader, "1000.0", 840.0, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // X Max
+
+      double sosMinX = *std::min_element(xSOSCurve.begin(), xSOSCurve.end());
+      // double sosMaxX
+      //     = *std::max_element (xSOSCurve.begin (), xSOSCurve.end ());
+      double sosMinY = *std::min_element(ySOSCurve.begin(), ySOSCurve.end());
+      double sosMaxY = *std::max_element(ySOSCurve.begin(), ySOSCurve.end());
+      char sosMinXStr[10];
+      char sosMaxXStr[10];
+      char sosMinYStr[10];
+      char sosMaxYStr[10];
+      std::sprintf(sosMinXStr, "%.1f", sosMinX);
+      std::sprintf(sosMaxXStr, "%.1f", maxY);
+      std::sprintf(sosMinYStr, "%.1f", sosMinY);
+      std::sprintf(sosMaxYStr, "%.1f", sosMaxY);
+      drawText(shader, sosMinYStr, 1000, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS X Min
+      drawText(shader, sosMaxYStr, 1525, 30.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f)); // SOS X Max
+      drawText(shader, sosMaxXStr, 950, 60.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f));  // SOS Y Max
+      drawText(shader, "0.0", 950, 735.0, 0.3f, glm::vec3(1.0f, 1.0f, 1.0f));      // SOS Y Min
+
+      // Swap the back buffer with the front buffer
+      glfwSwapBuffers(window);
+      // Take care of all GLFW events
+      glfwPollEvents();
+
+      // Check to see if TX and RX positions are updated
+      if (txStartPosY != params.Pos->Sz[0])
+      {
+        params.Pos->Sz[0] = txStartPosY;
+        clearRegion(70, 50, 900, 700);
+        glViewport(0, 0, 950, 800);
+      }
+      if (rxStartPosX != params.Pos->Rr[0])
+      {
+        params.Pos->Rr[0] = rxStartPosX;
+        clearRegion(70, 50, 900, 700);
+        glViewport(0, 0, 950, 800);
+      }
+      if (rxStartPosY != params.Pos->Rz[0])
+      {
+        params.Pos->Rz[0] = rxStartPosY;
+        clearRegion(70, 50, 900, 700);
+        glViewport(0, 0, 950, 800);
+      }
+
+      // check to see if Ray mode needs to change
+      if (params.Beam->RunType[0] == 'E' && selectedRayMode == 1)
+      {
+        clearRegion(70, 50, 900, 700);
+        glViewport(0, 0, 950, 800);
+        params.Beam->RunType[0] = 'R';
+        params.Angles->alpha.n = numOfRays;
+        bhc::extsetup_rayelevations<false>(params, numOfRays);
+        params.Angles->alpha.inDegrees = true;
+
+        params.Angles->alpha.angles[0] = RL(-80.0);
+        params.Angles->alpha.angles[1] = RL(80.0);
+        params.Angles->alpha.angles[2] = FL(-999.9);
+        bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
+        // }
+      }
+      if (selectedRayMode == 1 && (params.Angles->alpha.n != numOfRays))
+      {
+        params.Angles->alpha.n = numOfRays;
+        bhc::extsetup_rayelevations<false>(params, numOfRays);
+        params.Angles->alpha.inDegrees = true;
+
+        params.Angles->alpha.angles[0] = RL(-80.0);
+        params.Angles->alpha.angles[1] = RL(80.0);
+        params.Angles->alpha.angles[2] = FL(-999.9);
+        bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
+      }
+
+      if (params.Beam->RunType[0] == 'R' && selectedRayMode == 0)
+      {
+        clearRegion(70, 50, 900, 700);
+        glViewport(0, 0, 950, 800);
+        params.Beam->RunType[0] = 'E';
+        // params.Angles->alpha.n = 5000;
+        params.Angles->alpha.inDegrees = true;
+        // int n = params.Angles->alpha.n;
+        bhc::extsetup_rayelevations<false>(params, 5000);
+        params.Angles->alpha.n = 5000;
+        params.Angles->alpha.angles[0] = RL(-80.0);
+        params.Angles->alpha.angles[1] = RL(80.0);
+        params.Angles->alpha.angles[2] = FL(-999.9);
+        bhc::SubTab(params.Angles->alpha.angles, params.Angles->alpha.n);
+      }
+      if (params.ssp->NPts != sosVectorX.size())
+      {
+        params.ssp->NPts = sosVectorX.size();
+        params.ssp->Nz = params.ssp->NPts;
+        for (int i = 0; i < params.ssp->NPts; ++i)
+        {
+          params.ssp->z[i] = sosVectorX[i];
+          params.ssp->alphaR[i] = sosVectorY[i];
+          params.ssp->betaR[i] = 0;
+          params.ssp->rho[i] = 1;
+          params.ssp->alphaI[i] = 0;
+        }
+        params.ssp->rangeInKm = false;
+        params.ssp->dirty = true;
+      }
 
       floorVertices.push_back(x);
       floorVertices.push_back(y);
