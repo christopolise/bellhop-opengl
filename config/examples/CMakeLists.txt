@@ -58,9 +58,9 @@ function(create_gui EXNAME)
     target_link_libraries(${EXNAME} PUBLIC bellhopcxxlib Threads::Threads glfw OpenGL::GL m freetype glad)
 endfunction()
 
-# create_example(defaults)
-# create_example(readout)
-# create_example(writeenv)
+create_example(defaults)
+create_example(readout)
+create_example(writeenv)
 create_example(test)
 create_gui(bellhopgl)
 
